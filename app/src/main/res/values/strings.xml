@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">iPark</string>
     <string name="title_home">Home</string>
-    <string name="title_reservations">Reservations</string>
-    <string name="title_rewards">Rewards</string>
+    <string name="title_reservations">My Reservations</string>
+    <string name="title_rewards">Reward Points</string>
     <string name="title_menu">Menu</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_reservations">Reservations</string>
+    <string name="tab_rewards">Rewards</string>
+    <string name="tab_menu">Menu</string>
 </resources>

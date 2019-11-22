@@ -4,21 +4,21 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_tab_home"
-        android:title="@string/title_home"/>
+        android:title="@string/tab_home"/>
 
     <item
         android:id="@+id/navigation_reservations"
         android:icon="@drawable/ic_tab_reservations"
-        android:title="@string/title_reservations"/>
+        android:title="@string/tab_reservations"/>
 
     <item
         android:id="@+id/navigation_rewards"
         android:icon="@drawable/ic_tab_rewards"
-        android:title="@string/title_rewards"/>
+        android:title="@string/tab_rewards"/>
 
     <item
         android:id="@+id/navigation_menu"
         android:icon="@drawable/ic_tab_menu"
-        android:title="@string/title_menu"/>
+        android:title="@string/tab_menu"/>
 
 </menu>
