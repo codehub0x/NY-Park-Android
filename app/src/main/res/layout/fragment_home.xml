@@ -5,16 +5,416 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
  
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/home_layout_top"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:paddingTop="@dimen/margin_8dp"
+        android:paddingBottom="@dimen/margin_8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/home_btn_toggle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="42dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/margin_12dp"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:text="@string/list"
+                android:textSize="@dimen/text_size_11sp"
+                android:textColor="@color/colorBlack80"
+                android:fontFamily="@font/lato_medium"
+                android:singleLine="true"
+                app:backgroundTint="@android:color/white"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/home_btn_search"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/search_placeholder"
+                android:textSize="@dimen/text_size_12sp"
+                android:textColor="@color/colorBlack60"
+                android:fontFamily="@font/lato_regular"
+                android:textAllCaps="false"
+                android:singleLine="true"
+                android:gravity="start|center_vertical"
+                app:backgroundTint="@android:color/white"
+                app:icon="@drawable/ic_search_black_24dp"
+                app:iconSize="16dp"
+                app:iconTint="@color/colorBlack60"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/home_btn_favorite"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/margin_2dp"
+                android:layout_marginEnd="@dimen/margin_10dp"
+                app:icon="@drawable/ic_favorite_border_black_24dp"
+                app:iconTint="@android:color/white"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <RelativeLayout
+                android:id="@+id/home_layout_timer"
+                android:layout_width="16dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="5">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/home_layout_separator"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/enter_time"
+                        android:textSize="@dimen/text_size_9sp"
+                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/lato_regular"/>
+
+                    <TextView
+                        android:id="@+id/home_text_enter_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apr 29 / 08:00"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/lato_black"/>
+
+                </LinearLayout>
+                
+                <RelativeLayout
+                    android:id="@+id/home_layout_separator"
+                    android:layout_width="@dimen/margin_16dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true">
+                    
+                    <ImageView
+                        android:layout_width="0.5dp"
+                        android:layout_height="28dp"
+                        android:background="@android:color/white"
+                        android:layout_centerInParent="true"/>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_centerInParent="true"
+                        android:background="@color/colorPrimary"
+                        android:src="@drawable/ic_time_black_24dp"
+                        android:tint="@android:color/white"
+                        android:padding="@dimen/margin_2dp"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@+id/home_layout_separator"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exit_time"
+                        android:textSize="@dimen/text_size_9sp"
+                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/lato_regular"/>
+
+                    <TextView
+                        android:id="@+id/home_text_exit_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apr 29 / 08:30"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/lato_black"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="0.5dp"
+                    android:layout_height="28dp"
+                    android:background="@android:color/white"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/home_btn_filters"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:layout_marginStart="@dimen/margin_24dp"
+                android:layout_marginEnd="@dimen/margin_12dp"
+                android:text="@string/filters"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_12sp"
+                android:fontFamily="@font/lato_medium"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/home_mapView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_layout_top"/>
+
+    <ScrollView
+        android:id="@+id/home_layout_filter"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_layout_top"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/margin_16dp"
+            android:paddingBottom="@dimen/margin_24dp"
+            android:paddingStart="@dimen/margin_24dp"
+            android:paddingEnd="@dimen/margin_16dp">
+
+            <CheckBox
+                android:id="@+id/home_checkbox_24hours"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/hours24"
+                android:textColor="@color/colorBlack70"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/lato_regular"
+                android:buttonTint="@color/colorBlack70"
+                android:paddingStart="@dimen/margin_12dp"/>
+
+            <CheckBox
+                android:id="@+id/home_checkbox_7days"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/days7"
+                android:textColor="@color/colorBlack70"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/lato_regular"
+                android:buttonTint="@color/colorBlack70"
+                android:paddingStart="@dimen/margin_12dp"/>
+
+            <CheckBox
+                android:id="@+id/home_checkbox_covered"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/covered"
+                android:textColor="@color/colorBlack70"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/lato_regular"
+                android:buttonTint="@color/colorBlack70"
+                android:paddingStart="@dimen/margin_12dp"/>
+
+            <CheckBox
+                android:id="@+id/home_checkbox_paved"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/paved"
+                android:textColor="@color/colorBlack70"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/lato_regular"
+                android:buttonTint="@color/colorBlack70"
+                android:paddingStart="@dimen/margin_12dp"/>
+
+            <CheckBox
+                android:id="@+id/home_checkbox_valet"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/valet"
+                android:textColor="@color/colorBlack70"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/lato_regular"
+                android:buttonTint="@color/colorBlack70"
+                android:paddingStart="@dimen/margin_12dp"/>
+
+            <CheckBox
+                android:id="@+id/home_checkbox_oversized"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/oversized_vehicles"
+                android:textColor="@color/colorBlack70"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/lato_regular"
+                android:buttonTint="@color/colorBlack70"
+                android:paddingStart="@dimen/margin_12dp"/>
+
+            <CheckBox
+                android:id="@+id/home_checkbox_green"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/green"
+                android:textColor="@color/colorBlack70"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/lato_regular"
+                android:buttonTint="@color/colorBlack70"
+                android:paddingStart="@dimen/margin_12dp"/>
+
+            <CheckBox
+                android:id="@+id/home_checkbox_tesla"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/tesla"
+                android:textColor="@color/colorBlack70"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/lato_regular"
+                android:buttonTint="@color/colorBlack70"
+                android:paddingStart="@dimen/margin_12dp"/>
+
+            <CheckBox
+                android:id="@+id/home_checkbox_outdoors"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/outdoors"
+                android:textColor="@color/colorBlack70"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/lato_regular"
+                android:buttonTint="@color/colorBlack70"
+                android:paddingStart="@dimen/margin_12dp"/>
+
+            <CheckBox
+                android:id="@+id/home_checkbox_onsite_staff"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/onsite_staff"
+                android:textColor="@color/colorBlack70"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/lato_regular"
+                android:buttonTint="@color/colorBlack70"
+                android:paddingStart="@dimen/margin_12dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin_16dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/home_btn_apply_filters"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="136dp"
+                    android:layout_height="40dp"
+                    android:text="@string/apply_filters"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:fontFamily="@font/lato_medium"
+                    android:textColor="@color/colorPrimary"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/home_btn_filter_clear"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/clear"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/lato_medium"
+                    android:layout_marginStart="@dimen/margin_16dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/home_layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/home_btn_bottom_arrow"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:gravity="center"
+            android:background="@drawable/btn_bottom_arrow">
+
+            <ImageView
+                android:id="@+id/home_image_arrow"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_up_black_24dp"/>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/home_layout_bottom_booked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_8dp"
+            android:background="@android:color/white">
+
+            <TextView
+                android:id="@+id/home_text_recently_booked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recently_booked_locations"
+                android:textSize="@dimen/text_size_12sp"
+                android:fontFamily="@font/lato_regular"
+                android:textColor="@color/colorBlack80"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_bottom_recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_text_recently_booked"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

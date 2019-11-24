@@ -8,4 +8,28 @@
     <string name="tab_reservations">Reservations</string>
     <string name="tab_rewards">Rewards</string>
     <string name="tab_menu">Menu</string>
+
+    <string name="apply_filters">Apply Filters</string>
+    <string name="clear">Clear</string>
+    <string name="close">Close</string>
+    <string name="enter_time">Enter Time</string>
+    <string name="exit_time">Exit Time</string>
+    <string name="filters">Filters</string>
+    <string name="list">List</string>
+    <string name="map">Map</string>
+    <string name="recently_booked_locations">Recently Booked Locations</string>
+    <string name="search_placeholder">Street, attraction or neighborhood</string>
+
+    <!--Filter options-->
+    <string name="hours24">24 Hours</string>
+    <string name="days7">7 Days</string>
+    <string name="covered">Covered</string>
+    <string name="paved">Paved</string>
+    <string name="valet">Valet</string>
+    <string name="oversized_vehicles">Oversized Vehicles</string>
+    <string name="green">Green</string>
+    <string name="tesla">Tesla</string>
+    <string name="outdoors">Outdoors</string>
+    <string name="onsite_staff">On-Site Staff</string>
+
 </resources>
