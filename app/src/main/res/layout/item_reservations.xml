@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@android:color/transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_view"
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:layout_marginEnd="@dimen/margin_8dp"
+        android:layout_marginTop="@dimen/margin_6dp"
+        android:layout_marginBottom="@dimen/margin_4dp">
+
+        <ImageView
+            android:id="@+id/item_reservations_imageView"
+            android:layout_width="114dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:src="@drawable/dog"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/item_reservations_text_license"
+            android:layout_width="0dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="@dimen/margin_12dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            android:text="#IP8196551      Ford Focus, N/A"
+            android:textColor="@color/colorBlack40"
+            android:textSize="@dimen/text_size_10sp"
+            android:fontFamily="@font/lato_regular"
+            app:layout_constraintTop_toTopOf="@+id/item_reservations_imageView"
+            app:layout_constraintStart_toEndOf="@+id/item_reservations_imageView"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:background="@color/colorBlack40"
+            app:layout_constraintStart_toStartOf="@+id/item_reservations_text_license"
+            app:layout_constraintEnd_toEndOf="@id/item_reservations_text_license"
+            app:layout_constraintTop_toBottomOf="@+id/item_reservations_text_license" />
+
+        <TextView
+            android:id="@+id/item_reservations_text_address"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:text="113 West 90th Street,\nNew York, NY 10024, USA"
+            android:textColor="@color/colorBlack100"
+            android:textSize="@dimen/text_size_17sp"
+            android:fontFamily="@font/lato_black"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="@+id/item_reservations_text_license"
+            app:layout_constraintEnd_toEndOf="@id/item_reservations_text_license"
+            app:layout_constraintTop_toBottomOf="@+id/item_reservations_text_license"/>
+
+        <TextView
+            android:id="@+id/item_reservations_text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="West 90TH Garage Corp."
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_11sp"
+            android:fontFamily="@font/lato_regular"
+            android:layout_marginTop="@dimen/margin_4dp"
+            app:layout_constraintStart_toStartOf="@+id/item_reservations_text_license"
+            app:layout_constraintEnd_toEndOf="@id/item_reservations_text_license"
+            app:layout_constraintTop_toBottomOf="@+id/item_reservations_text_address"/>
+
+        <LinearLayout
+            android:id="@+id/item_reservations_layout_middle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_6dp"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_reservations_imageView">
+
+            <RelativeLayout
+                android:id="@+id/item_reservations_layout_timer"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/item_reservations_layout_separator"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/enter_time"
+                        android:textSize="@dimen/text_size_9sp"
+                        android:textColor="@color/colorBlack40"
+                        android:fontFamily="@font/lato_regular"/>
+
+                    <TextView
+                        android:id="@+id/item_reservations_text_enter_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apr 29 / 08:00"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:textColor="@color/colorBlack90"
+                        android:fontFamily="@font/lato_black"/>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/item_reservations_layout_separator"
+                    android:layout_width="@dimen/margin_16dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:layout_width="0.5dp"
+                        android:layout_height="28dp"
+                        android:background="@color/colorBlack40"
+                        android:layout_centerInParent="true"/>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_centerInParent="true"
+                        android:background="@android:color/white"
+                        android:src="@drawable/ic_time_black_24dp"
+                        android:tint="@color/colorBlack40"
+                        android:padding="@dimen/margin_2dp"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@+id/item_reservations_layout_separator"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exit_time"
+                        android:textSize="@dimen/text_size_9sp"
+                        android:textColor="@color/colorBlack40"
+                        android:fontFamily="@font/lato_regular"/>
+
+                    <TextView
+                        android:id="@+id/item_reservations_text_exit_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apr 29 / 08:30"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:textColor="@color/colorBlack90"
+                        android:fontFamily="@font/lato_black"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/item_reservations_layout_price"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:background="@drawable/corner_background_yellow"
+                android:elevation="1dp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_2dp"
+                android:layout_marginBottom="@dimen/margin_2dp">
+
+                <TextView
+                    android:id="@+id/item_reservations_text_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$35"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:fontFamily="@font/lato_black"/>
+
+                <TextView
+                    android:id="@+id/item_reservations_text_completed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/completed"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_size_9sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/item_reservations_btn_directions"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="100dp"
+            android:layout_height="36dp"
+            android:text="@string/directions"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_9sp"
+            android:fontFamily="@font/lato_black"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_2dp"
+            android:backgroundTint="@color/colorPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/item_reservations_layout_middle"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/item_reservations_btn_rebook"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="100dp"
+            android:layout_height="36dp"
+            android:text="@string/rebook"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_9sp"
+            android:fontFamily="@font/lato_black"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_2dp"
+            android:backgroundTint="@color/colorAccent"
+            android:visibility="gone"
+            app:icon="@drawable/ic_rebook"
+            app:iconTint="@color/colorPrimary"
+            app:iconSize="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/item_reservations_layout_middle"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/item_reservations_btn_details"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="100dp"
+            android:layout_height="36dp"
+            android:text="@string/details"
+            android:textColor="@color/colorBlack80"
+            android:textSize="@dimen/text_size_9sp"
+            android:fontFamily="@font/lato_black"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_marginTop="@dimen/margin_2dp"
+            app:icon="@drawable/ic_details"
+            app:iconSize="16dp"
+            app:iconTint="@color/colorBlack80"
+            app:layout_constraintTop_toBottomOf="@+id/item_reservations_layout_middle"
+            app:layout_constraintStart_toEndOf="@+id/item_reservations_btn_directions"/>
+
+        <TextView
+            android:id="@+id/item_reservations_text_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="70dp"
+            android:text="0.6 miles away"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/text_size_10sp"
+            android:fontFamily="@font/lato_regular"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            app:layout_constraintTop_toBottomOf="@+id/item_reservations_layout_middle"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/ic_location"
+            android:tint="@color/colorGray"
+            android:layout_marginEnd="@dimen/margin_4dp"
+            app:layout_constraintEnd_toStartOf="@+id/item_reservations_text_distance"
+            app:layout_constraintTop_toTopOf="@+id/item_reservations_text_distance"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

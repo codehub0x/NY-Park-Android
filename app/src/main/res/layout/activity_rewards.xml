@@ -1,11 +1,345 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
     <LinearLayout
+        android:id="@+id/rewards_layout_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"/>
+        android:layout_height="60dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rewards_btn_create_account"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:text="@string/create_account"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_17sp"
+            android:fontFamily="@font/lato_bold"
+            android:textAllCaps="false"
+            app:strokeColor="@color/colorAccent"
+            app:strokeWidth="1dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rewards_btn_login"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:text="@string/login"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_17sp"
+            android:fontFamily="@font/lato_bold"
+            android:textAllCaps="false"
+            android:layout_marginStart="@dimen/margin_20dp"
+            app:strokeColor="@color/colorAccent"
+            app:strokeWidth="1dp"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/rewards_layout_top"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_view"
+                android:paddingTop="@dimen/margin_24dp"
+                android:paddingBottom="@dimen/margin_24dp"
+                android:paddingStart="@dimen/margin_32dp"
+                android:paddingEnd="@dimen/margin_28dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="EARN POINTS"
+                    android:textColor="@color/colorBlack90"
+                    android:textSize="@dimen/text_size_20sp"
+                    android:fontFamily="@font/lato_black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="As a iPark Rewards member you can earn 1 point for every iPark reservation made through your iPark Rewards member account.\n\nAfter every 10 points earned you will receive 1 free reservation.*"
+                    android:textColor="@color/colorBlack90"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_marginTop="@dimen/margin_8dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_view"
+                android:paddingTop="@dimen/margin_24dp"
+                android:paddingBottom="@dimen/margin_24dp"
+                android:paddingStart="@dimen/margin_32dp"
+                android:paddingEnd="@dimen/margin_28dp"
+                android:layout_marginTop="@dimen/margin_10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PARK FOR FREE"
+                    android:textColor="@color/colorBlack90"
+                    android:textSize="@dimen/text_size_20sp"
+                    android:fontFamily="@font/lato_black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="How to redeem your points for free parking:"
+                    android:textColor="@color/colorBlack90"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:fontFamily="@font/lato_bold"
+                    android:layout_marginTop="@dimen/margin_8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_12dp">
+
+                    <TextView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:text="1"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_10sp"
+                        android:fontFamily="@font/lato_black"
+                        android:textAlignment="center"
+                        android:paddingTop="@dimen/margin_2dp"
+                        android:background="@drawable/circle_yellow"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Reserve parking via the iPark website, while being logged into your iPark Rewards account;"
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:layout_marginStart="@dimen/margin_10dp"
+                        android:layout_marginEnd="@dimen/margin_6dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_12dp">
+
+                    <TextView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:text="2"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_10sp"
+                        android:fontFamily="@font/lato_black"
+                        android:textAlignment="center"
+                        android:paddingTop="@dimen/margin_2dp"
+                        android:background="@drawable/circle_yellow"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Each reservation will earn 1 point;"
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:layout_marginStart="@dimen/margin_10dp"
+                        android:layout_marginEnd="@dimen/margin_6dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_12dp">
+
+                    <TextView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:text="3"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_10sp"
+                        android:fontFamily="@font/lato_black"
+                        android:textAlignment="center"
+                        android:paddingTop="@dimen/margin_2dp"
+                        android:background="@drawable/circle_yellow"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="After 10 reservations have been made, the next reservation up to 24 hours will be free.*"
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:layout_marginStart="@dimen/margin_10dp"
+                        android:layout_marginEnd="@dimen/margin_6dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_view"
+                android:paddingTop="@dimen/margin_24dp"
+                android:paddingBottom="@dimen/margin_24dp"
+                android:paddingStart="@dimen/margin_32dp"
+                android:paddingEnd="@dimen/margin_28dp"
+                android:layout_marginTop="@dimen/margin_10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SAVE TIME"
+                    android:textColor="@color/colorBlack90"
+                    android:textSize="@dimen/text_size_20sp"
+                    android:fontFamily="@font/lato_black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Finalize your reservation and check out faster by saving your billing and vehicle information under your iPark Rewards account. With an iPark Rewards account you can:"
+                    android:textColor="@color/colorBlack90"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:fontFamily="@font/lato_bold"
+                    android:layout_marginTop="@dimen/margin_8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_12dp">
+
+                    <TextView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:text="1"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_10sp"
+                        android:fontFamily="@font/lato_black"
+                        android:textAlignment="center"
+                        android:paddingTop="@dimen/margin_2dp"
+                        android:background="@drawable/circle_yellow"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Save up to 3 vehicles under the 'Vehicles' menu "
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:layout_marginStart="@dimen/margin_10dp"
+                        android:layout_marginEnd="@dimen/margin_6dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_12dp">
+
+                    <TextView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:text="2"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_10sp"
+                        android:fontFamily="@font/lato_black"
+                        android:textAlignment="center"
+                        android:paddingTop="@dimen/margin_2dp"
+                        android:background="@drawable/circle_yellow"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Save payment information for future reservations under the 'Billing' menu"
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:layout_marginStart="@dimen/margin_10dp"
+                        android:layout_marginEnd="@dimen/margin_6dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_12dp">
+
+                    <TextView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:text="3"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_10sp"
+                        android:fontFamily="@font/lato_black"
+                        android:textAlignment="center"
+                        android:paddingTop="@dimen/margin_2dp"
+                        android:background="@drawable/circle_yellow"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Save up to 3 favorite iPark locations under the 'Locations' for quick access"
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:layout_marginStart="@dimen/margin_10dp"
+                        android:layout_marginEnd="@dimen/margin_6dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="All details will appear immediately at checkout, ensuring you can finalize your reservation a lot faster! "
+                    android:textColor="@color/colorBlack90"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_marginTop="@dimen/margin_16dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="IMPORTANT:\n*One free parking trip is limited to a 24-hour period. Any visit that extends beyond the first 24 hours will revert to a board rate beginning on the 25th hour. One Free Parking Trip is limited to one transaction only."
+                android:textColor="@color/colorBlack90"
+                android:textSize="@dimen/text_size_12sp"
+                android:fontFamily="@font/lato_regular"
+                android:textAlignment="center"
+                android:layout_margin="@dimen/margin_28dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

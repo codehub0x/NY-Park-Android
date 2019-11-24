@@ -4,12 +4,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
-
-    <LinearLayout
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/reservations_tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccent"/>
+        android:layout_height="50dp"
+        app:tabBackground="@color/colorPrimary"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabIndicatorHeight="4dp"
+        app:tabTextColor="@android:color/white"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/upcoming"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/past"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/canceled"/>
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reservations_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="@dimen/margin_6dp"
+        android:paddingBottom="@dimen/margin_6dp"
+        app:layout_constraintTop_toBottomOf="@+id/reservations_tabLayout"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

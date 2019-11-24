@@ -10,15 +10,24 @@
     <string name="tab_menu">Menu</string>
 
     <string name="apply_filters">Apply Filters</string>
+    <string name="canceled">Canceled</string>
     <string name="clear">Clear</string>
     <string name="close">Close</string>
+    <string name="completed">Completed</string>
+    <string name="create_account">Create Account</string>
+    <string name="details">Details</string>
+    <string name="directions">Directions</string>
     <string name="enter_time">Enter Time</string>
     <string name="exit_time">Exit Time</string>
     <string name="filters">Filters</string>
     <string name="list">List</string>
+    <string name="login">Login</string>
     <string name="map">Map</string>
+    <string name="past">Past</string>
+    <string name="rebook">Rebook</string>
     <string name="recently_booked_locations">Recently Booked Locations</string>
     <string name="search_placeholder">Street, attraction or neighborhood</string>
+    <string name="upcoming">Upcoming</string>
 
     <!--Filter options-->
     <string name="hours24">24 Hours</string>
