@@ -16,7 +16,14 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 import redhat.org.ipark.R;
 
-public class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapter.ViewHolder> {
+public class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapter.ViewHolder> implements View.OnClickListener {
+
+    public interface ClickListener {
+        void onDirectionsClicked(int position);
+        void onReBookClicked(int position);
+        void onDetailsClicked(int position);
+        void onUpcomingDetailsClicked(int position);
+    }
 
     public enum ReservationsType {
         UPCOMING, PAST, CANCELED
@@ -24,9 +31,11 @@ public class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapte
 
     private ReservationsType mType = ReservationsType.UPCOMING;
     private Context mContext;
+    private ClickListener mListener;
 
-    public ReservationsAdapter(Context context) {
+    public ReservationsAdapter(Context context, ClickListener listener) {
         this.mContext = context;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -63,6 +72,14 @@ public class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapte
                 break;
         }
 
+        holder.btnDirections.setTag(position);
+        holder.btnDirections.setOnClickListener(this);
+
+        holder.btnRebook.setTag(position);
+        holder.btnRebook.setOnClickListener(this);
+
+        holder.btnDetails.setTag(position);
+        holder.btnDetails.setOnClickListener(this);
     }
 
     @Override
@@ -72,6 +89,26 @@ public class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapte
 
     public void setType(ReservationsType type) {
         this.mType = type;
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.item_reservations_btn_directions:
+                mListener.onDirectionsClicked((Integer) view.getTag());
+                break;
+            case R.id.item_reservations_btn_rebook:
+                mListener.onReBookClicked((Integer) view.getTag());
+                break;
+            case R.id.item_reservations_btn_details:
+                if (mType == ReservationsType.UPCOMING) {
+                    mListener.onUpcomingDetailsClicked((Integer) view.getTag());
+                } else {
+                    mListener.onDetailsClicked((Integer) view.getTag());
+                }
+                break;
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -1,5 +1,6 @@
 package redhat.org.ipark;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +45,20 @@ public class SavedActivity extends AppCompatActivity {
 
     private void initialize() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new SavedAdapter(this);
+        mAdapter = new SavedAdapter(this, new SavedAdapter.ClickListener() {
+            @Override
+            public void onBookClicked(int position) {
+
+            }
+
+            @Override
+            public void onDetailsClicked(int position) {
+                // TODO: get item by position
+                Intent intent = new Intent(SavedActivity.this, DetailsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+            }
+        });
         recyclerView.setAdapter(mAdapter);
     }
 

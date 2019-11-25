@@ -4,10 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,12 +15,19 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 import redhat.org.ipark.R;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> implements View.OnClickListener {
+
+    public interface ClickListener {
+        void onBookClicked(int position);
+        void onDetailsClicked(int position);
+    }
 
     private Context mContext;
+    private final ClickListener mListener;
 
-    public HomeAdapter(Context context) {
+    public HomeAdapter(Context context, ClickListener listener) {
         this.mContext = context;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -35,8 +40,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // TODO: Integrate the reservations data
-        
+        holder.btnBook.setOnClickListener(this);
+        holder.btnBook.setTag(position);
 
+        holder.btnDetails.setOnClickListener(this);
+        holder.btnDetails.setTag(position);
     }
 
     @Override
@@ -44,8 +52,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         return 10;
     }
 
-    int dpToPx(@Dimension(unit = 0) int dps) {
-        return Math.round(mContext.getResources().getDisplayMetrics().density * (float)dps);
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.item_home_btn_book:
+                mListener.onBookClicked((Integer) view.getTag());
+                break;
+            case R.id.item_home_btn_details:
+                mListener.onDetailsClicked((Integer) view.getTag());
+                break;
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -51,6 +51,8 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.home_bottom_recyclerView)
     RecyclerView bottomRecyclerView;
 
+    @BindView(R.id.home_btn_toggle)
+    MaterialButton btnToggle;
     @BindView(R.id.home_btn_filters)
     MaterialButton btnFilters;
     @BindView(R.id.home_btn_apply_filters)
@@ -79,11 +81,12 @@ public class HomeFragment extends Fragment {
         if (isShownList) {
             getChildFragmentManager().popBackStack();
             isShownList = false;
+            btnToggle.setText(R.string.list);
             return;
         }
 
         isShownList = true;
-
+        btnToggle.setText(R.string.map);
         getChildFragmentManager().beginTransaction()
                 .setCustomAnimations(
                         R.animator.flip_right_in, R.animator.flip_right_out,
@@ -143,7 +146,12 @@ public class HomeFragment extends Fragment {
         btnFilterApply.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.colorYellow));
 
         bottomRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        bottomAdapter = new HomeBottomAdapter();
+        bottomAdapter = new HomeBottomAdapter(getContext(), new HomeBottomAdapter.ClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                
+            }
+        });
         bottomRecyclerView.setAdapter(bottomAdapter);
     }
 

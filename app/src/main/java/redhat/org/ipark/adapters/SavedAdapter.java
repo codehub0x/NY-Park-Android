@@ -16,12 +16,19 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 import redhat.org.ipark.R;
 
-public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder> {
+public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder> implements View.OnClickListener {
+
+    public interface ClickListener {
+        void onBookClicked(int position);
+        void onDetailsClicked(int position);
+    }
 
     private Context mContext;
+    private ClickListener mListener;
 
-    public SavedAdapter(Context context) {
+    public SavedAdapter(Context context, ClickListener listener) {
         this.mContext = context;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -34,13 +41,29 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // TODO: Integrate the reservations data
+        holder.btnBook.setTag(position);
+        holder.btnBook.setOnClickListener(this);
 
-
+        holder.btnDetails.setTag(position);
+        holder.btnDetails.setOnClickListener(this);
     }
 
     @Override
     public int getItemCount() {
         return 3;
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.item_saved_btn_book:
+                mListener.onBookClicked((Integer) view.getTag());
+                break;
+            case R.id.item_saved_btn_details:
+                mListener.onDetailsClicked((Integer) view.getTag());
+                break;
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

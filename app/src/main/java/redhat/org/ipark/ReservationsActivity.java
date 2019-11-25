@@ -1,5 +1,6 @@
 package redhat.org.ipark;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +32,29 @@ public class ReservationsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ReservationsAdapter(this);
+        adapter = new ReservationsAdapter(this, new ReservationsAdapter.ClickListener() {
+            @Override
+            public void onDirectionsClicked(int position) {
+
+            }
+
+            @Override
+            public void onReBookClicked(int position) {
+
+            }
+
+            @Override
+            public void onDetailsClicked(int position) {
+                Intent intent = new Intent(ReservationsActivity.this, DetailsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+            }
+
+            @Override
+            public void onUpcomingDetailsClicked(int position) {
+
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {

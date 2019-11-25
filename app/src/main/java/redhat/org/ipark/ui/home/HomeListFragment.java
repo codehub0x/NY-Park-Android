@@ -1,5 +1,6 @@
 package redhat.org.ipark.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.google.android.material.button.MaterialButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import redhat.org.ipark.DetailsActivity;
 import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.HomeAdapter;
 
@@ -64,7 +66,20 @@ public class HomeListFragment extends Fragment {
 
     private void initialize() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        homeAdapter = new HomeAdapter(getContext());
+        homeAdapter = new HomeAdapter(getContext(), new HomeAdapter.ClickListener() {
+            @Override
+            public void onBookClicked(int position) {
+                // TODO: get item from position
+            }
+
+            @Override
+            public void onDetailsClicked(int position) {
+                // TODO: get item from position
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+            }
+        });
         recyclerView.setAdapter(homeAdapter);
     }
 }
