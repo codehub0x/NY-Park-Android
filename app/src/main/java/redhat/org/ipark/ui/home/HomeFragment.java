@@ -1,5 +1,7 @@
 package redhat.org.ipark.ui.home;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.maps.MapView;
 import com.google.android.material.button.MaterialButton;
@@ -21,9 +25,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import redhat.org.ipark.R;
+import redhat.org.ipark.adapters.HomeAdapter;
 
 public class HomeFragment extends Fragment {
 
+    private boolean isShownList;
     private boolean isShownFilter;
     private boolean isShownBottom;
 
@@ -59,7 +65,21 @@ public class HomeFragment extends Fragment {
 
     @OnClick(R.id.home_btn_toggle)
     public void onClickToggle(MaterialButton button) {
+        if (isShownList) {
+            getChildFragmentManager().popBackStack();
+            isShownList = false;
+            return;
+        }
 
+        isShownList = true;
+
+        getChildFragmentManager().beginTransaction()
+                .setCustomAnimations(
+                        R.animator.flip_right_in, R.animator.flip_right_out,
+                        R.animator.flip_left_in, R.animator.flip_left_out)
+                .replace(R.id.home_fragment_container, new HomeListFragment())
+                .addToBackStack(null)
+                .commit();
     }
 
     @OnClick(R.id.home_btn_search)

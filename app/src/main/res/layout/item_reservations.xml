@@ -45,7 +45,7 @@
             android:layout_marginTop="@dimen/margin_4dp"
             android:background="@color/colorBlack40"
             app:layout_constraintStart_toStartOf="@+id/item_reservations_text_license"
-            app:layout_constraintEnd_toEndOf="@id/item_reservations_text_license"
+            app:layout_constraintEnd_toEndOf="@+id/item_reservations_text_license"
             app:layout_constraintTop_toBottomOf="@+id/item_reservations_text_license" />
 
         <TextView
@@ -58,7 +58,7 @@
             android:fontFamily="@font/lato_black"
             android:layout_marginTop="@dimen/margin_12dp"
             app:layout_constraintStart_toStartOf="@+id/item_reservations_text_license"
-            app:layout_constraintEnd_toEndOf="@id/item_reservations_text_license"
+            app:layout_constraintEnd_toEndOf="@+id/item_reservations_text_license"
             app:layout_constraintTop_toBottomOf="@+id/item_reservations_text_license"/>
 
         <TextView
@@ -71,7 +71,7 @@
             android:fontFamily="@font/lato_regular"
             android:layout_marginTop="@dimen/margin_4dp"
             app:layout_constraintStart_toStartOf="@+id/item_reservations_text_license"
-            app:layout_constraintEnd_toEndOf="@id/item_reservations_text_license"
+            app:layout_constraintEnd_toEndOf="@+id/item_reservations_text_license"
             app:layout_constraintTop_toBottomOf="@+id/item_reservations_text_address"/>
 
         <LinearLayout
