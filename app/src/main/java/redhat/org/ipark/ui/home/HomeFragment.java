@@ -26,12 +26,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.HomeAdapter;
+import redhat.org.ipark.adapters.HomeBottomAdapter;
 
 public class HomeFragment extends Fragment {
 
     private boolean isShownList;
     private boolean isShownFilter;
     private boolean isShownBottom;
+
+    private HomeBottomAdapter bottomAdapter;
 
     @BindView(R.id.home_mapView)
     MapView mapView;
@@ -41,6 +44,8 @@ public class HomeFragment extends Fragment {
     ConstraintLayout bottomBookedLayout;
     @BindView(R.id.home_layout_filter)
     ScrollView filterView;
+    @BindView(R.id.home_bottom_recyclerView)
+    RecyclerView bottomRecyclerView;
 
     @BindView(R.id.home_btn_filters)
     MaterialButton btnFilters;
@@ -117,6 +122,10 @@ public class HomeFragment extends Fragment {
     private void initialize() {
         filterView.setVisibility(View.INVISIBLE);
         bottomBookedLayout.setVisibility(View.GONE);
+
+        bottomRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        bottomAdapter = new HomeBottomAdapter();
+        bottomRecyclerView.setAdapter(bottomAdapter);
     }
 
     private Animation animate(boolean up) {

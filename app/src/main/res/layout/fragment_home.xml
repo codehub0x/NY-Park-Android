@@ -395,7 +395,6 @@
             android:id="@+id/home_layout_bottom_booked"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_8dp"
             android:background="@android:color/white">
 
             <TextView
@@ -406,15 +405,18 @@
                 android:textSize="@dimen/text_size_12sp"
                 android:fontFamily="@font/lato_regular"
                 android:textColor="@color/colorBlack80"
+                android:layout_marginStart="@dimen/margin_8dp"
+                android:layout_marginTop="@dimen/margin_8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_bottom_recyclerView"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="140dp"
                 android:layout_marginTop="@dimen/margin_8dp"
-                android:background="@color/colorPrimary"
+                android:layout_marginStart="@dimen/margin_4dp"
+                android:layout_marginEnd="@dimen/margin_4dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/home_text_recently_booked"

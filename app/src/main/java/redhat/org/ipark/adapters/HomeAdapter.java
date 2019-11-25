@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import redhat.org.ipark.R;
 
@@ -47,7 +48,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView itemImageView;
+        private RoundedImageView itemImageView;
         private TextView textAddress;
         private TextView textTitle;
         private TextView textPrice;

@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import redhat.org.ipark.R;
 
@@ -77,12 +78,8 @@ public class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapte
         this.mType = type;
     }
 
-    int dpToPx(@Dimension(unit = 0) int dps) {
-        return Math.round(mContext.getResources().getDisplayMetrics().density * (float)dps);
-    }
-
     class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView itemImageView;
+        private RoundedImageView imageView;
         private TextView textLicense;
         private TextView textAddress;
         private TextView textTitle;
@@ -99,7 +96,7 @@ public class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapte
         public ViewHolder(View view) {
             super(view);
 
-            itemImageView = view.findViewById(R.id.item_reservations_imageView);
+            imageView = view.findViewById(R.id.item_reservations_imageView);
             textLicense = view.findViewById(R.id.item_reservations_text_license);
             textAddress = view.findViewById(R.id.item_reservations_text_address);
             textTitle = view.findViewById(R.id.item_reservations_text_title);
