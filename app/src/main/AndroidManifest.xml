@@ -27,6 +27,8 @@
             android:label="@string/title_rewards" />
         <activity android:name=".MenuActivity"
             android:theme="@style/AppTheme.NoTitleBar"/>
+        <activity android:name=".SavedActivity"
+            android:label="@string/title_saved" />
     </application>
 
 </manifest>

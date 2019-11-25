@@ -2,6 +2,7 @@ package redhat.org.ipark.ui.home;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import redhat.org.ipark.R;
+import redhat.org.ipark.SavedActivity;
 import redhat.org.ipark.adapters.HomeAdapter;
 import redhat.org.ipark.adapters.HomeBottomAdapter;
 
@@ -94,7 +96,8 @@ public class HomeFragment extends Fragment {
 
     @OnClick(R.id.home_btn_favorite)
     public void onClickFavorite(MaterialButton button) {
-
+        Intent intent = new Intent(getActivity(), SavedActivity.class);
+        getActivity().startActivity(intent);
     }
 
     @OnClick(R.id.home_btn_bottom_arrow)

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/saved_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You can save up to 3 favorite garages "
+        android:textColor="@color/colorBlack90"
+        android:textSize="@dimen/text_size_12sp"
+        android:fontFamily="@font/lato_regular"
+        android:textAlignment="center"
+        android:layout_marginTop="@dimen/margin_24dp"
+        android:layout_marginBottom="@dimen/margin_24dp"/>
+
+</LinearLayout>

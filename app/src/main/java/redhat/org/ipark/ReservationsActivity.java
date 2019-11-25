@@ -10,7 +10,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnItemSelected;
 import redhat.org.ipark.adapters.ReservationsAdapter;
 
 public class ReservationsActivity extends AppCompatActivity {
