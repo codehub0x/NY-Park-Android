@@ -11,6 +11,7 @@
     <string name="tab_rewards">Rewards</string>
     <string name="tab_menu">Menu</string>
 
+    <string name="address">ADDRESS:</string>
     <string name="apply_filters">Apply Filters</string>
     <string name="book_again">Book Again</string>
     <string name="book_now">Book Now</string>
@@ -25,20 +26,32 @@
     <string name="enter_time">Enter Time</string>
     <string name="exit_time">Exit Time</string>
     <string name="filters">Filters</string>
+    <string name="get_directions">Get Directions</string>
+    <string name="hours_of_operation">HOURS OF OPERATION:</string>
+    <string name="included">Included:</string>
+    <string name="info">Info</string>
     <string name="list">List</string>
     <string name="login">Login</string>
     <string name="map">Map</string>
     <string name="monthly">Monthly</string>
     <string name="past">Past</string>
+    <string name="phone_number">PHONE NUMBER:</string>
     <string name="placeholder_end_time">End Time</string>
     <string name="placeholder_search">Street, attraction or neighborhood</string>
     <string name="placeholder_start_parking_on">Start Parking On</string>
     <string name="placeholder_start_time">Start Time</string>
+    <string name="rates">Rates</string>
     <string name="rebook">Rebook</string>
     <string name="recently_booked_locations">Recently Booked Locations</string>
+    <string name="regular">Regular</string>
     <string name="search">Search</string>
     <string name="sort_by_distance">Sort By Distance</string>
     <string name="sort_by_price">Sort By Price</string>
+    <string name="specials">Specials</string>
+    <string name="stay_period">Stay Period</string>
+    <string name="suv">SUV</string>
+    <string name="suv_large">Large SUV</string>
+    <string name="things_you_know">Things You Should Know:</string>
     <string name="upcoming">Upcoming</string>
 
     <!--Filter options-->

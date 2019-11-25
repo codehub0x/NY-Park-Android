@@ -149,7 +149,7 @@ public class HomeFragment extends Fragment {
         bottomAdapter = new HomeBottomAdapter(getContext(), new HomeBottomAdapter.ClickListener() {
             @Override
             public void onItemClick(int position) {
-                
+
             }
         });
         bottomRecyclerView.setAdapter(bottomAdapter);

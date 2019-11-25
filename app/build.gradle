@@ -47,6 +47,9 @@ dependencies {
     // Date & Time Picker
     implementation 'com.github.florent37:singledateandtimepicker:2.1.5'
 
+    // Segmented Control
+    implementation 'com.github.ceryle:SegmentedButton:v2.0.2'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
