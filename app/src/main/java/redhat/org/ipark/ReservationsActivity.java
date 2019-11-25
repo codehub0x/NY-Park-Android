@@ -52,7 +52,9 @@ public class ReservationsActivity extends AppCompatActivity {
 
             @Override
             public void onUpcomingDetailsClicked(int position) {
-
+                Intent intent = new Intent(ReservationsActivity.this, UpcomingDetailsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
             }
         });
         recyclerView.setAdapter(adapter);

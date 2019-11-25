@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical">
+
+        <RelativeLayout
+            android:id="@+id/upcoming_layout_timer"
+            android:layout_width="16dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/upcoming_layout_separator"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/margin_8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enter_time"
+                    android:textSize="@dimen/text_size_9sp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/lato_regular"/>
+
+                <TextView
+                    android:id="@+id/upcoming_text_enter_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apr 29 / 08:00"
+                    android:textSize="@dimen/text_size_12sp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/lato_black"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/upcoming_layout_separator"
+                android:layout_width="@dimen/margin_16dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:layout_width="0.5dp"
+                    android:layout_height="28dp"
+                    android:background="@android:color/white"
+                    android:layout_centerInParent="true"/>
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_centerInParent="true"
+                    android:background="@color/colorPrimary"
+                    android:src="@drawable/ic_time_black_24dp"
+                    android:tint="@android:color/white"
+                    android:padding="@dimen/margin_2dp"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/upcoming_layout_separator"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/margin_8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/exit_time"
+                    android:textSize="@dimen/text_size_9sp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/lato_regular"/>
+
+                <TextView
+                    android:id="@+id/upcoming_text_exit_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apr 29 / 08:30"
+                    android:textSize="@dimen/text_size_12sp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/lato_black"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="0.5dp"
+                android:layout_height="28dp"
+                android:background="@android:color/white"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/upcoming_text_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/margin_24dp"
+            android:layout_marginEnd="@dimen/margin_24dp"
+            android:text="$35"
+            android:textColor="@color/colorYellow"
+            android:textSize="@dimen/text_size_23sp"
+            android:fontFamily="@font/lato_black"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/margin_6dp">
+
+                <LinearLayout
+                    android:layout_width="@dimen/margin_10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stay_period"
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_13sp"
+                        android:fontFamily="@font/lato_regular"/>
+
+                    <TextView
+                        android:id="@+id/upcoming_text_stay_period"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.5 hour"
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_13sp"
+                        android:fontFamily="@font/lato_black"
+                        android:layout_marginStart="@dimen/margin_16dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/margin_10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_location"
+                        android:tint="@color/colorGray"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/upcoming_text_distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.62 miles away"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/text_size_13sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:layout_marginStart="@dimen/margin_4dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorGray">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginStart="@dimen/margin_32dp"
+                android:layout_marginEnd="@dimen/margin_20dp"
+                android:layout_marginBottom="@dimen/margin_12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vehicle"
+                    android:textSize="@dimen/text_size_13sp"
+                    android:fontFamily="@font/lato_black"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/upcoming_text_vehicle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Regular, Bentley FANCY, Color: Black, Plate: Testing"
+                    android:textSize="@dimen/text_size_17sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/colorGray"
+                    android:layout_marginStart="@dimen/margin_16dp"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/upcoming_btn_add_to_calendar"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/add_to_calendar"
+                android:textColor="@color/colorYellow"
+                android:textSize="@dimen/text_size_18sp"
+                android:fontFamily="@font/lato_black"
+                android:layout_marginTop="@dimen/margin_4dp"/>
+
+
+            <LinearLayout
+                android:id="@+id/upcoming_layout_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginBottom="@dimen/margin_32dp"
+                android:layout_marginStart="@dimen/margin_32dp"
+                android:layout_marginEnd="@dimen/margin_20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/amenities"
+                    android:textSize="@dimen/text_size_13sp"
+                    android:fontFamily="@font/lato_black"
+                    android:textColor="@android:color/black"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/margin_8dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:src="@drawable/valet"
+                            android:scaleType="centerInside"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/valet"
+                            android:textSize="@dimen/text_size_13sp"
+                            android:textColor="@color/colorGray"
+                            android:fontFamily="@font/lato_regular"
+                            android:layout_marginTop="@dimen/margin_8dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:src="@drawable/onsite_staff"
+                            android:scaleType="centerInside"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/onsite_staff"
+                            android:textSize="@dimen/text_size_13sp"
+                            android:textColor="@color/colorGray"
+                            android:fontFamily="@font/lato_regular"
+                            android:layout_marginTop="@dimen/margin_8dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:src="@drawable/covered"
+                            android:scaleType="centerInside"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/covered"
+                            android:textSize="@dimen/text_size_13sp"
+                            android:textColor="@color/colorGray"
+                            android:fontFamily="@font/lato_regular"
+                            android:layout_marginTop="@dimen/margin_8dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:src="@drawable/paved"
+                            android:scaleType="centerInside"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/paved"
+                            android:textSize="@dimen/text_size_13sp"
+                            android:textColor="@color/colorGray"
+                            android:fontFamily="@font/lato_regular"
+                            android:layout_marginTop="@dimen/margin_8dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorBlack40"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:layout_marginBottom="@dimen/margin_16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hours_of_operation"
+                        android:textSize="@dimen/text_size_13sp"
+                        android:fontFamily="@font/lato_black"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:id="@+id/upcoming_text_hours_of_operation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="7AM - Midnight / 7 Days"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@color/colorGray"
+                        android:layout_marginTop="@dimen/margin_8dp"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorBlack40"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:layout_marginBottom="@dimen/margin_16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/upcoming_title_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/address"
+                        android:textSize="@dimen/text_size_13sp"
+                        android:fontFamily="@font/lato_black"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:id="@+id/upcoming_text_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="7 East 14th Street,New York, NY 10003 Between 2nd Ave. and 3rd Ave."
+                        android:textSize="@dimen/text_size_17sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@color/colorGray"
+                        android:layout_marginTop="@dimen/margin_8dp"
+                        android:layout_marginEnd="@dimen/margin_8dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/upcoming_btn_directions"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:backgroundTint="@color/colorYellow"
+                        android:text="@string/get_directions"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_18sp"
+                        android:fontFamily="@font/lato_black"
+                        android:layout_marginTop="@dimen/margin_16dp"
+                        android:layout_marginBottom="@dimen/margin_16dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/phone_number"
+                        android:textSize="@dimen/text_size_13sp"
+                        android:fontFamily="@font/lato_black"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:id="@+id/upcoming_text_phonenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="(212) 861-0510\n(212) 472-4701"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@color/colorGray"
+                        android:layout_marginTop="@dimen/margin_8dp"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorBlack40"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:layout_marginBottom="@dimen/margin_16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/things_you_know"
+                        android:textSize="@dimen/text_size_18sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="This facility does NOT allow in/out privileges.\nYou CANNOT enter and exit more than once.\n\nPlease note: Exotic vechicles are NOT accepted at this location.\n\nAll SUVs oversized fee of $12.00 daily"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@color/colorGray"
+                        android:layout_marginTop="@dimen/margin_8dp"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorBlack40"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:layout_marginBottom="@dimen/margin_16dp"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/upcoming_title_price"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Price:"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:layout_marginTop="@dimen/margin_16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/upcoming_text_price1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$30.00"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:fontFamily="@font/lato_regular"
+                        app:layout_constraintTop_toTopOf="@+id/upcoming_title_price"
+                        app:layout_constraintStart_toEndOf="@+id/upcoming_title_price"/>
+
+                    <TextView
+                        android:id="@+id/upcoming_title_tax"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Tax:"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:layout_marginTop="@dimen/margin_8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/upcoming_title_price"/>
+
+                    <TextView
+                        android:id="@+id/upcoming_text_tax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$5.00"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:fontFamily="@font/lato_regular"
+                        app:layout_constraintTop_toTopOf="@+id/upcoming_title_tax"
+                        app:layout_constraintStart_toEndOf="@+id/upcoming_title_tax"/>
+
+                    <TextView
+                        android:id="@+id/upcoming_title_total"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Total:"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:layout_marginTop="@dimen/margin_8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/upcoming_title_tax"/>
+
+                    <TextView
+                        android:id="@+id/upcoming_text_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$35.00"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:fontFamily="@font/lato_regular"
+                        app:layout_constraintTop_toTopOf="@+id/upcoming_title_total"
+                        app:layout_constraintStart_toEndOf="@+id/upcoming_title_total"/>
+
+                    <ImageView
+                        android:id="@+id/upcoming_image_qrcode"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/qr_code"
+                        android:scaleType="centerInside"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/upcoming_btn_cancel_reservation"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="5"
+                        android:text="@string/cancel_reservation"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="@font/lato_bold"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/upcoming_btn_paid"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="2"
+                        android:text="@string/paid"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:textColor="@color/colorGray"
+                        android:fontFamily="@font/lato_bold"
+                        android:layout_marginStart="@dimen/margin_24dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reserved Stay Periods: One entry and exit permitted per transaction.\nNOTE: IF YOU INTEND ON ENTERING WITH AN SUV OR OVERSIZED VEHICLE YOU MUST CONTACT THE BOOKED LOCATION IN ADVANCE TO CONFIRM THE VEHICLE WILL CLEAR THE HEIGHT LIMITS OF THE BOOKED FACILITY. LARGE SUV'S ARE DEFINED SUCH AS CHEVY SUBURBAN (224.4 inch LENGTH, 74.4 inch HEIGHT, 80.5 inch WIDTH) OR OF SIMILAR TYPE. IF YOU STAY LONGER THAN YOUR RESERVATION YOU WILL BE CHARGED AT BOARD RATES."
+                    android:textColor="@color/colorBlack80"
+                    android:textSize="@dimen/text_size_10sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    android:layout_marginBottom="@dimen/margin_24dp"/>
+
+                <ImageView
+                    android:id="@+id/upcoming_image_barcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:src="@drawable/bar_code"
+                    android:scaleType="fitXY"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/margin_16dp"
+                android:background="@color/colorBackground">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="If you have any questions contact us by email reservations@ipark.com"
+                    android:textColor="@color/colorBlack80"
+                    android:textSize="@dimen/text_size_10sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

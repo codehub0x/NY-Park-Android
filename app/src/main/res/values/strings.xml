@@ -12,10 +12,13 @@
     <string name="tab_menu">Menu</string>
 
     <string name="address">ADDRESS:</string>
+    <string name="add_to_calendar">Add To Calendar</string>
+    <string name="amenities">AMENITIES:</string>
     <string name="apply_filters">Apply Filters</string>
     <string name="book_again">Book Again</string>
     <string name="book_now">Book Now</string>
     <string name="canceled">Canceled</string>
+    <string name="cancel_reservation">Cancel Reservation</string>
     <string name="clear">Clear</string>
     <string name="close">Close</string>
     <string name="completed">Completed</string>
@@ -34,6 +37,7 @@
     <string name="login">Login</string>
     <string name="map">Map</string>
     <string name="monthly">Monthly</string>
+    <string name="paid">Paid</string>
     <string name="past">Past</string>
     <string name="phone_number">PHONE NUMBER:</string>
     <string name="placeholder_end_time">End Time</string>
@@ -53,6 +57,7 @@
     <string name="suv_large">Large SUV</string>
     <string name="things_you_know">Things You Should Know:</string>
     <string name="upcoming">Upcoming</string>
+    <string name="vehicle">VEHICLE:</string>
 
     <!--Filter options-->
     <string name="hours24">24 Hours</string>
