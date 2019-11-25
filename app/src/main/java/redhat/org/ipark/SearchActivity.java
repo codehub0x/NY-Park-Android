@@ -9,9 +9,11 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -44,6 +46,8 @@ public class SearchActivity extends AppCompatActivity {
     TabLayout tabLayout;
     @BindView(R.id.search_scrollView)
     ScrollView scrollView;
+    @BindView(R.id.search_btn_search)
+    MaterialButton btnSearch;
 
     // Daily tab
     @BindView(R.id.search_layout_daily)
@@ -88,6 +92,11 @@ public class SearchActivity extends AppCompatActivity {
         showDateTimePicker(DateType.StartParkingOn, editText);
     }
 
+    @OnClick(R.id.search_btn_search)
+    public void onClickSearch(MaterialButton button) {
+
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +123,8 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void initialize() {
+        btnSearch.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorYellow));
+
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {

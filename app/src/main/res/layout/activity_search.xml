@@ -34,7 +34,8 @@
     <ScrollView
         android:id="@+id/search_scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -205,5 +206,19 @@
         </FrameLayout>
 
     </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/search_btn_search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/margin_16dp"
+        android:layout_marginStart="@dimen/margin_32dp"
+        android:layout_marginEnd="@dimen/margin_32dp"
+        android:text="@string/search"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_17sp"
+        android:fontFamily="@font/lato_black"
+        android:backgroundTint="@color/colorYellow"/>
 
 </LinearLayout>

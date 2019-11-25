@@ -36,6 +36,7 @@
     <string name="placeholder_start_time">Start Time</string>
     <string name="rebook">Rebook</string>
     <string name="recently_booked_locations">Recently Booked Locations</string>
+    <string name="search">Search</string>
     <string name="sort_by_distance">Sort By Distance</string>
     <string name="sort_by_price">Sort By Price</string>
     <string name="upcoming">Upcoming</string>
