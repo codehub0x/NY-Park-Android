@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
@@ -16,6 +17,12 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import redhat.org.ipark.R;
 
 public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder> {
+
+    private Context mContext;
+
+    public SavedAdapter(Context context) {
+        this.mContext = context;
+    }
 
     @NonNull
     @Override
@@ -59,6 +66,7 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder> 
             btnBook = view.findViewById(R.id.item_saved_btn_book);
             btnDetails = view.findViewById(R.id.item_saved_btn_details);
             textDistance = view.findViewById(R.id.item_saved_text_distance);
+            btnBook.setBackgroundTintList(ContextCompat.getColorStateList(mContext, R.color.colorYellow));
         }
     }
 }

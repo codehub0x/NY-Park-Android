@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
@@ -66,6 +67,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             btnBook = view.findViewById(R.id.item_home_btn_book);
             btnDetails = view.findViewById(R.id.item_home_btn_details);
             textDistance = view.findViewById(R.id.item_home_text_distance);
+            btnBook.setBackgroundTintList(ContextCompat.getColorStateList(mContext, R.color.colorYellow));
         }
     }
 }

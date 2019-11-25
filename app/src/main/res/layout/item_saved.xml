@@ -34,7 +34,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:src="@drawable/ic_star_black_24dp"
-            android:tint="@color/colorAccent"
+            android:tint="@color/colorYellow"
             android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -113,7 +113,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_9sp"
             android:fontFamily="@font/lato_black"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@color/colorYellow"
             android:gravity="end|center_vertical"
             app:layout_constraintTop_toBottomOf="@+id/item_saved_imageView"
             app:layout_constraintStart_toStartOf="@+id/item_saved_text_address"/>

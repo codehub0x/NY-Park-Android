@@ -1,16 +1,12 @@
 package redhat.org.ipark.adapters;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -110,6 +106,7 @@ public class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapte
             btnDetails = view.findViewById(R.id.item_reservations_btn_details);
             textDistance = view.findViewById(R.id.item_reservations_text_distance);
             btnDirections.setBackgroundTintList(ContextCompat.getColorStateList(mContext, R.color.colorPrimary));
+            btnRebook.setBackgroundTintList(ContextCompat.getColorStateList(mContext, R.color.colorYellow));
         }
     }
 }

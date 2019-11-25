@@ -32,17 +32,19 @@ public class SavedActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         finish();
+        overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
         return true;
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
     }
 
     private void initialize() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new SavedAdapter();
+        mAdapter = new SavedAdapter(this);
         recyclerView.setAdapter(mAdapter);
     }
 

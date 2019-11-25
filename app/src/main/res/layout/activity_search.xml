@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/search_tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:tabBackground="@color/colorPrimary"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorYellow"
+        app:tabIndicatorHeight="4dp"
+        app:tabTextColor="@android:color/white"
+        app:tabSelectedTextColor="@color/colorYellow"
+        app:tabTextAppearance="@style/TextAppearance.AppCompat.Small">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/daily"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/monthly"/>
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <ScrollView
+        android:id="@+id/search_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/margin_32dp"
+            android:paddingTop="@dimen/margin_32dp"
+            android:paddingEnd="@dimen/margin_24dp"
+            android:paddingBottom="@dimen/margin_32dp">
+
+            <LinearLayout
+                android:id="@+id/search_layout_daily"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/search_inputLayout_address"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/placeholder_search"
+                    android:foregroundTint="@color/colorPrimary"
+                    android:dividerPadding="@dimen/margin_4dp"
+                    app:boxCollapsedPaddingTop="@dimen/margin_8dp"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/search_edit_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_search_black_24dp"
+                        android:drawableTint="@color/colorBlack70"
+                        android:paddingStart="0dp"
+                        android:drawablePadding="@dimen/margin_4dp"
+                        android:textColor="@color/colorBlack100"
+                        android:textColorHint="@color/colorBlack70"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/search_inputLayout_start"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/placeholder_start_time"
+                    android:foregroundTint="@color/colorPrimary"
+                    android:dividerPadding="@dimen/margin_4dp"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:boxCollapsedPaddingTop="@dimen/margin_8dp"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/search_edit_start_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_time_black_24dp"
+                        android:drawableTint="@color/colorBlack70"
+                        android:paddingStart="0dp"
+                        android:drawablePadding="@dimen/margin_4dp"
+                        android:focusableInTouchMode="false"
+                        android:textColor="@color/colorBlack100"
+                        android:textColorHint="@color/colorBlack70"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/search_inputLayout_end"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/placeholder_end_time"
+                    android:foregroundTint="@color/colorPrimary"
+                    android:dividerPadding="@dimen/margin_4dp"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:boxCollapsedPaddingTop="@dimen/margin_8dp"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/search_edit_end_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_time_black_24dp"
+                        android:drawableTint="@color/colorBlack70"
+                        android:paddingStart="0dp"
+                        android:drawablePadding="@dimen/margin_4dp"
+                        android:focusableInTouchMode="false"
+                        android:textColor="@color/colorBlack100"
+                        android:textColorHint="@color/colorBlack70"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/search_layout_monthly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/search_inputLayout_address_monthly"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/placeholder_search"
+                    android:foregroundTint="@color/colorPrimary"
+                    android:dividerPadding="@dimen/margin_4dp"
+                    app:boxCollapsedPaddingTop="@dimen/margin_8dp"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/search_edit_address_monthly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_search_black_24dp"
+                        android:drawableTint="@color/colorBlack70"
+                        android:paddingStart="0dp"
+                        android:drawablePadding="@dimen/margin_4dp"
+                        android:textColor="@color/colorBlack100"
+                        android:textColorHint="@color/colorBlack70"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/search_inputLayout_start_parking"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/placeholder_start_parking_on"
+                    android:foregroundTint="@color/colorPrimary"
+                    android:dividerPadding="@dimen/margin_4dp"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:boxCollapsedPaddingTop="@dimen/margin_8dp"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/search_edit_start_parking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_time_black_24dp"
+                        android:drawableTint="@color/colorBlack70"
+                        android:paddingStart="0dp"
+                        android:drawablePadding="@dimen/margin_4dp"
+                        android:focusableInTouchMode="false"
+                        android:textColor="@color/colorBlack100"
+                        android:textColorHint="@color/colorBlack70"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </ScrollView>
+
+</LinearLayout>

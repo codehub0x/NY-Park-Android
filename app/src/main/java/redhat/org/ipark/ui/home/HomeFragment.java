@@ -1,7 +1,5 @@
 package redhat.org.ipark.ui.home;
 
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,9 +10,11 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,10 +27,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import redhat.org.ipark.R;
 import redhat.org.ipark.SavedActivity;
-import redhat.org.ipark.adapters.HomeAdapter;
+import redhat.org.ipark.SearchActivity;
 import redhat.org.ipark.adapters.HomeBottomAdapter;
 
 public class HomeFragment extends Fragment {
+
+    static final int SEARCH_REQUEST = 10001;
 
     private boolean isShownList;
     private boolean isShownFilter;
@@ -51,6 +53,8 @@ public class HomeFragment extends Fragment {
 
     @BindView(R.id.home_btn_filters)
     MaterialButton btnFilters;
+    @BindView(R.id.home_btn_apply_filters)
+    MaterialButton btnFilterApply;
     @BindView(R.id.home_btn_bottom_arrow)
     LinearLayout btnBottomArrow;
     @BindView(R.id.home_image_arrow)
@@ -91,13 +95,23 @@ public class HomeFragment extends Fragment {
 
     @OnClick(R.id.home_btn_search)
     public void onClickSearch(MaterialButton button) {
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        getActivity().startActivityForResult(intent, SEARCH_REQUEST);
+        getActivity().overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
+    }
 
+    @OnClick(R.id.home_layout_timer)
+    public void onClickTimer(RelativeLayout layout) {
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        getActivity().startActivityForResult(intent, SEARCH_REQUEST);
+        getActivity().overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
     @OnClick(R.id.home_btn_favorite)
     public void onClickFavorite(MaterialButton button) {
         Intent intent = new Intent(getActivity(), SavedActivity.class);
         getActivity().startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
     @OnClick(R.id.home_btn_bottom_arrow)
@@ -125,6 +139,8 @@ public class HomeFragment extends Fragment {
     private void initialize() {
         filterView.setVisibility(View.INVISIBLE);
         bottomBookedLayout.setVisibility(View.GONE);
+        btnFilters.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.colorYellow));
+        btnFilterApply.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.colorYellow));
 
         bottomRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         bottomAdapter = new HomeBottomAdapter();

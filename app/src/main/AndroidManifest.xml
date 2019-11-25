@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,13 +23,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".ReservationsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_reservations" />
         <activity android:name=".RewardsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_rewards" />
         <activity android:name=".MenuActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoTitleBar"/>
         <activity android:name=".SavedActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_saved" />
+        <activity android:name=".SearchActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_search" />
     </application>
 
 </manifest>
