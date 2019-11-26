@@ -66,7 +66,7 @@ public class VehiclesActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         finish();
-        overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
         return true;
     }
 

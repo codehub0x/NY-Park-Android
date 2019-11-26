@@ -1,11 +1,492 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:background="@color/colorYellow"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/colorBackground1">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/menu_layout_info_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/margin_24dp"
+                    android:paddingBottom="@dimen/margin_24dp"
+                    android:background="@color/colorPrimary">
+
+                    <TextView
+                        android:id="@+id/menu_text_guest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Welcome Guest,"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/text_size_18sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:background="@android:color/transparent"
+                        android:layout_marginStart="@dimen/margin_24dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/menu_layout_iPark_rewards"
+                        android:layout_width="match_parent"
+                        android:layout_height="96dp"
+                        android:background="@drawable/corner_yellow_border"
+                        android:layout_marginStart="@dimen/margin_24dp"
+                        android:layout_marginEnd="@dimen/margin_20dp"
+                        android:layout_marginTop="@dimen/margin_20dp"
+                        app:layout_constraintTop_toBottomOf="@+id/menu_text_guest"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <TextView
+                            android:id="@+id/menu_text_ipark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ipark_rewards"
+                            android:textColor="@color/colorYellow"
+                            android:textSize="@dimen/text_size_18sp"
+                            android:fontFamily="@font/lato_black"
+                            android:background="@android:color/transparent"
+                            android:layout_marginStart="@dimen/margin_24dp"
+                            android:layout_marginTop="@dimen/margin_12dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ipark_rewards_description"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/text_size_15sp"
+                            android:fontFamily="@font/lato_regular"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="@dimen/margin_4dp"
+                            android:layout_marginStart="@dimen/margin_24dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/menu_text_ipark"
+                            app:layout_constraintEnd_toStartOf="@+id/menu_image_arrow"/>
+
+                        <ImageView
+                            android:id="@+id/menu_image_arrow"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_arrow_right_black_24dp"
+                            android:scaleType="fitCenter"
+                            android:tint="@color/colorYellow"
+                            android:background="@android:color/transparent"
+                            android:layout_marginEnd="@dimen/margin_8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/menu_layout_info_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/margin_24dp"
+                    android:paddingBottom="@dimen/margin_24dp"
+                    android:background="@color/colorPrimary"
+                    android:visibility="gone">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/menu_image_avatar"
+                        android:layout_width="68dp"
+                        android:layout_height="68dp"
+                        android:src="@drawable/avatar"
+                        android:scaleType="centerCrop"
+                        android:background="@android:color/transparent"
+                        android:layout_marginStart="@dimen/margin_32dp"
+                        app:riv_corner_radius="34dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/menu_text_user_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Lev Vakulin"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/text_size_20sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:background="@android:color/transparent"
+                        android:layout_marginStart="@dimen/margin_16dp"
+                        android:layout_marginEnd="60dp"
+                        app:layout_constraintStart_toEndOf="@+id/menu_image_avatar"
+                        app:layout_constraintTop_toTopOf="@+id/menu_image_avatar"
+                        app:layout_constraintBottom_toBottomOf="@+id/menu_image_avatar"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <ProgressBar
+                        android:id="@+id/menu_progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_16dp"
+                        android:layout_marginStart="@dimen/margin_40dp"
+                        android:layout_marginEnd="@dimen/margin_40dp"
+                        android:min="1"
+                        android:max="10"
+                        android:indeterminate="false"
+                        android:progress="@color/colorBackground"
+                        android:secondaryProgress="@color/colorYellow"
+                        app:layout_constraintTop_toBottomOf="@+id/menu_image_avatar"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/menu_layout_rewards"
+                        android:layout_width="128dp"
+                        android:layout_height="98dp"
+                        android:background="@drawable/corner_white_border"
+                        android:layout_marginTop="@dimen/margin_24dp"
+                        android:layout_marginStart="@dimen/margin_16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/menu_progressBar"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/reward_points"
+                            android:textColor="@color/colorYellow"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:fontFamily="@font/lato_black"
+                            android:textAlignment="center"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="@dimen/margin_8dp"
+                            android:layout_marginStart="@dimen/margin_16dp"
+                            android:layout_marginEnd="@dimen/margin_16dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/menu_text_reward_points"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="7"
+                            android:textColor="@android:color/white"
+                            android:textSize="60sp"
+                            android:fontFamily="@font/lato_black"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="@dimen/margin_20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintHorizontal_bias="0.4"/>
+
+                        <TextView
+                            android:id="@+id/menu_text_reward_points_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/10"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/text_size_15sp"
+                            android:fontFamily="@font/lato_regular"
+                            android:background="@android:color/transparent"
+                            app:layout_constraintStart_toEndOf="@+id/menu_text_reward_points"
+                            app:layout_constraintTop_toTopOf="@+id/menu_text_reward_points"
+                            app:layout_constraintBottom_toBottomOf="@+id/menu_text_reward_points"
+                            app:layout_constraintVertical_bias="0.6"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/menu_layout_upcoming"
+                        android:layout_width="128dp"
+                        android:layout_height="98dp"
+                        android:background="@drawable/corner_white_border"
+                        android:layout_marginStart="@dimen/margin_8dp"
+                        app:layout_constraintTop_toTopOf="@+id/menu_layout_rewards"
+                        app:layout_constraintStart_toEndOf="@+id/menu_layout_rewards">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/upcoming_reservations"
+                            android:textColor="@color/colorYellow"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:fontFamily="@font/lato_black"
+                            android:textAlignment="center"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="@dimen/margin_8dp"
+                            android:layout_marginStart="@dimen/margin_16dp"
+                            android:layout_marginEnd="@dimen/margin_16dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/menu_text_upcoming"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textColor="@android:color/white"
+                            android:textSize="60sp"
+                            android:fontFamily="@font/lato_black"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="@dimen/margin_20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/menu_layout_saved"
+                        android:layout_width="128dp"
+                        android:layout_height="98dp"
+                        android:background="@drawable/corner_white_border"
+                        android:layout_marginTop="@dimen/margin_8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/menu_layout_rewards"
+                        app:layout_constraintStart_toStartOf="@+id/menu_layout_rewards">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/saved_locations"
+                            android:textColor="@color/colorYellow"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:fontFamily="@font/lato_black"
+                            android:textAlignment="center"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="@dimen/margin_8dp"
+                            android:layout_marginStart="@dimen/margin_16dp"
+                            android:layout_marginEnd="@dimen/margin_16dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/menu_text_saved"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@android:color/white"
+                            android:textSize="60sp"
+                            android:fontFamily="@font/lato_black"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="@dimen/margin_20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintHorizontal_bias="0.4"/>
+
+                        <TextView
+                            android:id="@+id/menu_text_saved_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/3"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/text_size_15sp"
+                            android:fontFamily="@font/lato_regular"
+                            android:background="@android:color/transparent"
+                            app:layout_constraintStart_toEndOf="@+id/menu_text_saved"
+                            app:layout_constraintTop_toTopOf="@+id/menu_text_saved"
+                            app:layout_constraintBottom_toBottomOf="@+id/menu_text_saved"
+                            app:layout_constraintVertical_bias="0.6"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/menu_layout_my_vehicles"
+                        android:layout_width="128dp"
+                        android:layout_height="98dp"
+                        android:background="@drawable/corner_white_border"
+                        android:layout_marginTop="@dimen/margin_8dp"
+                        android:layout_marginStart="@dimen/margin_8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/menu_layout_upcoming"
+                        app:layout_constraintStart_toEndOf="@+id/menu_layout_saved">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/my_vehicles"
+                            android:textColor="@color/colorYellow"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:fontFamily="@font/lato_black"
+                            android:textAlignment="center"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="@dimen/margin_8dp"
+                            android:layout_marginStart="@dimen/margin_16dp"
+                            android:layout_marginEnd="@dimen/margin_16dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/menu_text_vehicles"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textColor="@android:color/white"
+                            android:textSize="60sp"
+                            android:fontFamily="@font/lato_black"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="@dimen/margin_20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintHorizontal_bias="0.4"/>
+
+                        <TextView
+                            android:id="@+id/menu_text_vehicles_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/3"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/text_size_15sp"
+                            android:fontFamily="@font/lato_regular"
+                            android:background="@android:color/transparent"
+                            app:layout_constraintStart_toEndOf="@+id/menu_text_vehicles"
+                            app:layout_constraintTop_toTopOf="@+id/menu_text_vehicles"
+                            app:layout_constraintBottom_toBottomOf="@+id/menu_text_vehicles"
+                            app:layout_constraintVertical_bias="0.6"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/menu_btn_close"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    app:icon="@drawable/ic_close_black_24dp"
+                    app:iconTint="@android:color/white"/>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:paddingTop="@dimen/margin_20dp"
+                android:paddingBottom="@dimen/margin_40dp">
+
+                <TextView
+                    android:id="@+id/menu_text_monthly_parking"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/monthly_parking"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_18sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:background="@drawable/menu_text_background"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/margin_40dp"/>
+
+                <TextView
+                    android:id="@+id/menu_text_faq"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/faq"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_18sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:background="@drawable/menu_text_background"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/margin_40dp"/>
+
+                <TextView
+                    android:id="@+id/menu_text_promo_codes"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/promo_codes"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_18sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:background="@drawable/menu_text_background"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/margin_40dp"/>
+
+                <TextView
+                    android:id="@+id/menu_text_help"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/help"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_18sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:background="@drawable/menu_text_background"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/margin_40dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorBackground1"
+                android:paddingTop="@dimen/margin_24dp"
+                android:paddingBottom="@dimen/margin_24dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/menu_btn1"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/create_account"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_18sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textAllCaps="false"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="@dimen/margin_32dp"
+                    android:layout_marginStart="@dimen/margin_24dp"
+                    android:layout_marginEnd="@dimen/margin_16dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/menu_btn2"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/login"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_18sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textAllCaps="false"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="@dimen/margin_32dp"
+                    android:layout_marginTop="@dimen/margin_8dp"
+                    android:layout_marginStart="@dimen/margin_24dp"
+                    android:layout_marginEnd="@dimen/margin_16dp"/>
+
+                <TextView
+                    android:id="@+id/menu_text_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBorder"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:background="@android:color/transparent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/margin_40dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

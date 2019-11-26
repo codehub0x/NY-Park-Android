@@ -33,14 +33,14 @@ public class SavedActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         finish();
-        overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
         return true;
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
     }
 
     private void initialize() {

@@ -9,6 +9,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".MyApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
@@ -30,7 +31,7 @@
             android:label="@string/title_rewards" />
         <activity android:name=".MenuActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoTitleBar"/>
+            android:theme="@style/AppTheme.Transparent"/>
         <activity android:name=".SavedActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_saved" />

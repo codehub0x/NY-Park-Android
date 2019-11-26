@@ -1,20 +1,13 @@
 package redhat.org.ipark;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.navigation_menu:
                         intent = new Intent(MainActivity.this, MenuActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
                         break;
@@ -55,5 +49,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
 
+    }
 }

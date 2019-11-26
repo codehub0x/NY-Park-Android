@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
     public void onClickFavorite(MaterialButton button) {
         Intent intent = new Intent(getActivity(), SavedActivity.class);
         getActivity().startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
+        getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
     }
 
     @OnClick(R.id.home_btn_bottom_arrow)

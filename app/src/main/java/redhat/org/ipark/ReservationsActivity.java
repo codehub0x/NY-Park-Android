@@ -16,6 +16,7 @@ import redhat.org.ipark.adapters.ReservationsAdapter;
 public class ReservationsActivity extends AppCompatActivity {
 
     private ReservationsAdapter adapter;
+    private boolean closeLeft;
 
     @BindView(R.id.reservations_tabLayout)
     TabLayout tabLayout;
@@ -31,6 +32,33 @@ public class ReservationsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        closeLeft = getIntent().getBooleanExtra("closeLeft", false);
+
+        initialize();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        if (closeLeft) {
+            overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+        } else {
+            overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+        }
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (closeLeft) {
+            overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+        } else {
+            overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+        }
+    }
+
+    private void initialize() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ReservationsAdapter(this, new ReservationsAdapter.ClickListener() {
             @Override
@@ -90,18 +118,5 @@ public class ReservationsActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
-        return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
     }
 }
