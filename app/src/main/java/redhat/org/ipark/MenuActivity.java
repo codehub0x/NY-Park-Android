@@ -121,7 +121,7 @@ public class MenuActivity extends AppCompatActivity {
             // Go to Sign up page
             Intent intent = new Intent(MenuActivity.this, SignupActivity.class);
             startActivity(intent);
-            overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
+            overridePendingTransition(R.anim.fade_in, R.anim.nothing);
         }
     }
 
@@ -134,7 +134,7 @@ public class MenuActivity extends AppCompatActivity {
         } else {
             Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
             startActivity(intent);
-            overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
+            overridePendingTransition(R.anim.fade_in, R.anim.nothing);
         }
     }
 

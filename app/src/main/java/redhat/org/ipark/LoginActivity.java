@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.login_btn_close)
     public void onClickClose(View view) {
         finish();
-        overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+        overridePendingTransition(R.anim.nothing, R.anim.fade_out);
     }
 
     @OnClick(R.id.login_btn_signin)
@@ -60,8 +60,8 @@ public class LoginActivity extends AppCompatActivity {
     public void onClickRegister(View view) {
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.nothing);
         finish();
-        overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
     @OnTouch(R.id.login_scrollview)
@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+        overridePendingTransition(R.anim.nothing, R.anim.fade_out);
     }
 
     private void initialize() {

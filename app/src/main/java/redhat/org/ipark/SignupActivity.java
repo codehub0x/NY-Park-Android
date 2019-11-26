@@ -45,7 +45,7 @@ public class SignupActivity extends AppCompatActivity {
     @OnClick(R.id.signup_btn_close)
     public void onClickClose(View view) {
         finish();
-        overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+        overridePendingTransition(R.anim.nothing, R.anim.fade_out);
     }
 
     @OnClick(R.id.signup_btn_create)
@@ -61,8 +61,8 @@ public class SignupActivity extends AppCompatActivity {
     public void onClickLogin(View view) {
         Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.nothing);
         finish();
-        overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
     @OnClick(R.id.signup_text_terms)
@@ -92,7 +92,7 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+        overridePendingTransition(R.anim.nothing, R.anim.fade_out);
     }
 
     private void initialize() {
