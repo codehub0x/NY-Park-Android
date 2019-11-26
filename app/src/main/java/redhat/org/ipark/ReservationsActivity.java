@@ -40,7 +40,9 @@ public class ReservationsActivity extends AppCompatActivity {
 
             @Override
             public void onReBookClicked(int position) {
-
+                Intent intent = new Intent(ReservationsActivity.this, BookActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
             }
 
             @Override

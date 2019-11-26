@@ -1,5 +1,6 @@
 package redhat.org.ipark;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -66,7 +67,9 @@ public class DetailsActivity extends AppCompatActivity {
     // Actions
     @OnClick(R.id.details_btn_book)
     public void onClickBook(MaterialButton button) {
-
+        Intent intent = new Intent(DetailsActivity.this, BookActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
     }
 
     @OnClick(R.id.details_btn_help)
@@ -86,12 +89,12 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
 
-        initializeCustomeActionBar("West 90TH Garage Corp.", "7 East 14th Street, New York, NY 10003 Between 2nd Ave. and 3rd Ave.");
+        initializeCustomActionBar("West 90TH Garage Corp.", "7 East 14th Street, New York, NY 10003 Between 2nd Ave. and 3rd Ave.");
         initialize();
 
     }
 
-    private void initializeCustomeActionBar(String header, String subHeader) {
+    private void initializeCustomActionBar(String header, String subHeader) {
         ActionBar actionBar = getSupportActionBar();
 
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);

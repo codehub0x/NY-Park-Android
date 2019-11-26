@@ -89,12 +89,12 @@ public class UpcomingDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_upcoming_details);
         ButterKnife.bind(this);
 
-        initializeCustomeActionBar("West 90TH Garage Corp.", "7 East 14th Street, New York, NY 10003 Between 2nd Ave. and 3rd Ave.");
+        initializeCustomActionBar("West 90TH Garage Corp.", "7 East 14th Street, New York, NY 10003 Between 2nd Ave. and 3rd Ave.");
         initialize();
 
     }
 
-    private void initializeCustomeActionBar(String header, String subHeader) {
+    private void initializeCustomActionBar(String header, String subHeader) {
         ActionBar actionBar = getSupportActionBar();
 
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -117,12 +117,7 @@ public class UpcomingDetailsActivity extends AppCompatActivity {
         });
 
         ImageButton btnFavorite = view.findViewById(R.id.header_btn_favorite);
-        btnFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        btnFavorite.setVisibility(View.GONE);
 
         TextView textHeader = view.findViewById(R.id.header_text_header);
         TextView textSubHeader = view.findViewById(R.id.header_text_subheader);

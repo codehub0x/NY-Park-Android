@@ -48,7 +48,9 @@ public class SavedActivity extends AppCompatActivity {
         mAdapter = new SavedAdapter(this, new SavedAdapter.ClickListener() {
             @Override
             public void onBookClicked(int position) {
-
+                Intent intent = new Intent(SavedActivity.this, BookActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
             }
 
             @Override

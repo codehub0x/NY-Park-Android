@@ -25,6 +25,7 @@ import com.google.android.material.button.MaterialButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import redhat.org.ipark.DetailsActivity;
 import redhat.org.ipark.R;
 import redhat.org.ipark.SavedActivity;
 import redhat.org.ipark.SearchActivity;
@@ -149,7 +150,9 @@ public class HomeFragment extends Fragment {
         bottomAdapter = new HomeBottomAdapter(getContext(), new HomeBottomAdapter.ClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
             }
         });
         bottomRecyclerView.setAdapter(bottomAdapter);

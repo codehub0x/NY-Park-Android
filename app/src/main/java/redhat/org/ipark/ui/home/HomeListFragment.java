@@ -17,6 +17,7 @@ import com.google.android.material.button.MaterialButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import redhat.org.ipark.BookActivity;
 import redhat.org.ipark.DetailsActivity;
 import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.HomeAdapter;
@@ -70,6 +71,9 @@ public class HomeListFragment extends Fragment {
             @Override
             public void onBookClicked(int position) {
                 // TODO: get item from position
+                Intent intent = new Intent(getActivity(), BookActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
             }
 
             @Override
