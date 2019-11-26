@@ -53,6 +53,9 @@
         <activity android:name=".SignupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoTitleBar"/>
+        <activity android:name=".HelpActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_help" />
     </application>
 
 </manifest>

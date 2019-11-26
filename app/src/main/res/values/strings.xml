@@ -7,6 +7,7 @@
     <string name="title_saved">Saved Garages</string>
     <string name="title_search">Let\'s Find Your Spot</string>
     <string name="title_vehicles">Vehicles</string>
+    <string name="title_help">Help</string>
     <string name="tab_home">Home</string>
     <string name="tab_reservations">Reservations</string>
     <string name="tab_rewards">Rewards</string>
@@ -37,9 +38,11 @@
     <string name="dont_account">Don\'t have account?</string>
     <string name="edit">Edit</string>
     <string name="email">Email</string>
+    <string name="email_us">Email Us</string>
     <string name="enter_time">Enter Time</string>
     <string name="exit_time">Exit Time</string>
     <string name="faq">Frequently Asked Questions</string>
+    <string name="faq1">FAQ</string>
     <string name="filters">Filters</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="full_name">Full name</string>
@@ -69,8 +72,10 @@
     <string name="placeholder_start_parking_on">Start Parking On</string>
     <string name="placeholder_start_time">Start Time</string>
     <string name="plate">Plate</string>
+    <string name="privacy_policy">Privacy Plicy</string>
     <string name="promo_codes">Promo Codes</string>
     <string name="rates">Rates</string>
+    <string name="rate_us">Rate Us</string>
     <string name="rebook">Rebook</string>
     <string name="recently_booked_locations">Recently Booked Locations</string>
     <string name="register">Register</string>
@@ -87,12 +92,14 @@
     <string name="stay_period">Stay Period</string>
     <string name="suv">SUV</string>
     <string name="suv_large">Large SUV</string>
+    <string name="terms_conditions">Terms &amp; Conditions</string>
     <string name="things_you_know">Things You Should Know:</string>
     <string name="upcoming">Upcoming</string>
     <string name="upcoming_reservations">UPCOMING RESERVATIONS</string>
     <string name="vehicle">VEHICLE:</string>
     <string name="vehicle_make">Vehicle Make</string>
     <string name="vehicle_model">Vehicle Model</string>
+    <string name="website">Website</string>
     <string name="add_up_to_vehicles">You can add up to 3 vehicles</string>
 
     <!--Filter options-->

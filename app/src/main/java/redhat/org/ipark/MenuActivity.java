@@ -110,7 +110,9 @@ public class MenuActivity extends AppCompatActivity {
 
     @OnClick(R.id.menu_text_help)
     public void onClickHelp() {
-
+        Intent intent = new Intent(MenuActivity.this, HelpActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
     }
 
     @OnClick(R.id.menu_btn1)
