@@ -115,7 +115,14 @@ public class MenuActivity extends AppCompatActivity {
 
     @OnClick(R.id.menu_btn1)
     public void onClickBtn1() {
-
+        if (isLoggedIn()) {
+            // Go to my account page
+        } else {
+            // Go to Sign up page
+            Intent intent = new Intent(MenuActivity.this, SignupActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
+        }
     }
 
     @OnClick(R.id.menu_btn2)

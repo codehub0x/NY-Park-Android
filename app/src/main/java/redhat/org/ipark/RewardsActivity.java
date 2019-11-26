@@ -1,5 +1,6 @@
 package redhat.org.ipark;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -21,12 +22,16 @@ public class RewardsActivity extends AppCompatActivity {
 
     @OnClick(R.id.rewards_btn_create_account)
     public void onClickCreateAccount(MaterialButton button) {
-
+        Intent intent = new Intent(RewardsActivity.this, SignupActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
     @OnClick(R.id.rewards_btn_login)
     public void onClickLogin(MaterialButton button) {
-
+        Intent intent = new Intent(RewardsActivity.this, LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
     @Override

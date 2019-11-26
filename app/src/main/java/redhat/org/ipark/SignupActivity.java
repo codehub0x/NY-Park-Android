@@ -2,6 +2,7 @@ package redhat.org.ipark;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -21,50 +23,54 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
 
-public class LoginActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
     private boolean isKeyboardOpened;
 
-    @BindView(R.id.login_edit_email)
+    @BindView(R.id.signup_edit_fullname)
+    TextInputEditText editFullName;
+    @BindView(R.id.signup_edit_email)
     TextInputEditText editEmail;
-    @BindView(R.id.login_edit_password)
+    @BindView(R.id.signup_edit_password)
     TextInputEditText editPassword;
-    @BindView(R.id.login_btn_signin)
-    MaterialButton btnSignin;
-    @BindView(R.id.login_btn_register)
-    MaterialButton btnRegister;
-    @BindView(R.id.login_layout_bottom)
+    @BindView(R.id.signup_btn_create)
+    MaterialButton btnCreate;
+    @BindView(R.id.signup_btn_login)
+    MaterialButton btnLogin;
+    @BindView(R.id.signup_text_terms)
+    TextView textTerms;
+    @BindView(R.id.signup_layout_bottom)
     LinearLayout bottomLayout;
 
-    @OnClick(R.id.login_btn_close)
+    @OnClick(R.id.signup_btn_close)
     public void onClickClose(View view) {
         finish();
         overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
     }
 
-    @OnClick(R.id.login_btn_signin)
-    public void onClickSignin(View view) {
+    @OnClick(R.id.signup_btn_create)
+    public void onClickCreate(View view) {
         ((MyApplication) this.getApplication()).setLoggedIn(true);
-        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+        Intent intent = new Intent(SignupActivity.this, MenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
     }
 
-    @OnClick(R.id.login_text_forgot_password)
-    public void onClickForgotPassword(View view) {
-
-    }
-
-    @OnClick(R.id.login_btn_register)
-    public void onClickRegister(View view) {
-        Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+    @OnClick(R.id.signup_btn_login)
+    public void onClickLogin(View view) {
+        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
         overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
-    @OnTouch(R.id.login_scrollview)
+    @OnClick(R.id.signup_text_terms)
+    public void onClickTerms(View view) {
+
+    }
+
+    @OnTouch(R.id.signup_scrollview)
     public boolean onTouchScrollView(View view, MotionEvent event) {
         if (event != null && event.getAction() == MotionEvent.ACTION_MOVE) {
             hideKeyboard(view);
@@ -76,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
 
         initialize();
@@ -90,8 +96,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        btnSignin.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
-        btnRegister.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorYellow));
+        btnLogin.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+        btnCreate.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorYellow));
+
+        textTerms.setPaintFlags(textTerms.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
     }
 
     private void hideKeyboard(View view) {
