@@ -2,14 +2,13 @@ package redhat.org.ipark;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -24,7 +23,7 @@ import butterknife.OnTouch;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private boolean isOpened;
+    private boolean isKeyboardOpened;
 
     @BindView(R.id.login_edit_email)
     TextInputEditText editEmail;
@@ -109,10 +108,16 @@ public class LoginActivity extends AppCompatActivity {
                 int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
                 if (heightDiff > 100) { // 99% of the time the height diff will be due to a keyboard.
                     bottomLayout.setVisibility(View.GONE);
-                    isOpened = true;
-                } else if (isOpened == true) {
-                    bottomLayout.setVisibility(View.VISIBLE);
-                    isOpened = false;
+                    isKeyboardOpened = true;
+                } else if (isKeyboardOpened == true) {
+                    isKeyboardOpened = false;
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomLayout.setVisibility(View.VISIBLE);
+                        }
+                    }, 300);
                 }
             }
         });
