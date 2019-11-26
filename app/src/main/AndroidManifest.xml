@@ -43,6 +43,9 @@
             android:screenOrientation="portrait" />
         <activity android:name=".BookActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".VehiclesActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_vehicles"/>
     </application>
 
 </manifest>

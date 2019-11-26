@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="106dp"
+    android:background="@android:color/transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/corner_background_white"
+        android:layout_marginTop="@dimen/margin_4dp"
+        android:layout_marginBottom="@dimen/margin_4dp"
+        android:layout_marginStart="@dimen/margin_6dp"
+        android:layout_marginEnd="@dimen/margin_6dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/item_vehicle_btn_edit"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_15sp"
+            android:fontFamily="@font/lato_regular"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/item_vehicle_text_make"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ford"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_20sp"
+            android:fontFamily="@font/lato_black"
+            android:layout_marginStart="@dimen/margin_28dp"
+            android:layout_marginTop="@dimen/margin_20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/item_vehicle_text_model"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Continental"
+            android:textColor="@color/colorBlack90"
+            android:textSize="@dimen/text_size_20sp"
+            android:fontFamily="@font/lato_regular"
+            android:layout_marginStart="@dimen/margin_8dp"
+            app:layout_constraintStart_toEndOf="@+id/item_vehicle_text_make"
+            app:layout_constraintTop_toTopOf="@+id/item_vehicle_text_make"
+            app:layout_constraintEnd_toStartOf="@+id/item_vehicle_btn_edit"/>
+
+        <TextView
+            android:id="@+id/item_vehicle_text_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Color: Black,   Plate: FAA-1000"
+            android:textColor="@color/colorBlack90"
+            android:textSize="@dimen/text_size_15sp"
+            android:fontFamily="@font/lato_regular"
+            android:layout_marginStart="@dimen/margin_28dp"
+            android:layout_marginEnd="@dimen/margin_20dp"
+            android:layout_marginTop="@dimen/margin_2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_vehicle_text_make"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

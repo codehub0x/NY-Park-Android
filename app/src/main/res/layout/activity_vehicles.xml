@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <ScrollView
+        android:id="@+id/vehicle_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/vehicle_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/margin_4dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/margin_36dp"
+                android:paddingEnd="@dimen/margin_30dp"
+                android:layout_marginTop="@dimen/margin_24dp"
+                android:layout_marginBottom="@dimen/margin_32dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_vehicle"
+                    android:textColor="@color/colorBlack90"
+                    android:textSize="@dimen/text_size_20sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center_vertical"/>
+                
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="@string/vehicle_make"
+                    android:layout_marginTop="@dimen/margin_16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/vehicle_edit_vehicle_make"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:maxLines="1"
+                        android:inputType="text"
+                        android:nextFocusDown="@+id/vehicle_edit_vehicle_model"
+                        android:imeOptions="actionNext"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="@string/vehicle_model"
+                    android:layout_marginTop="@dimen/margin_16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/vehicle_edit_vehicle_model"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:maxLines="1"
+                        android:inputType="text"
+                        android:nextFocusDown="@+id/vehicle_edit_color"
+                        android:nextFocusUp="@+id/vehicle_edit_vehicle_make"
+                        android:imeOptions="actionNext"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="@string/color"
+                    android:layout_marginTop="@dimen/margin_16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/vehicle_edit_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:maxLines="1"
+                        android:inputType="text"
+                        android:nextFocusDown="@+id/vehicle_edit_plate"
+                        android:nextFocusUp="@+id/vehicle_edit_vehicle_model"
+                        android:imeOptions="actionNext"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="@string/plate"
+                    android:layout_marginTop="@dimen/margin_16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/vehicle_edit_plate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorBlack90"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:maxLines="1"
+                        android:inputType="text"
+                        android:nextFocusUp="@+id/vehicle_edit_color"
+                        android:imeOptions="actionDone"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/vehicle_btn_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/add_vehicle"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/lato_black"
+                    android:backgroundTint="@color/colorYellow"
+                    android:layout_marginTop="@dimen/margin_24dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_up_to_vehicles"
+                    android:textColor="@color/colorBlack90"
+                    android:textSize="@dimen/text_size_12sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textAlignment="center"
+                    android:layout_marginTop="@dimen/margin_40dp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

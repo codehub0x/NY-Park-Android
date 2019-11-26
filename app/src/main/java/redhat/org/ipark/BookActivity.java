@@ -1,5 +1,6 @@
 package redhat.org.ipark;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -54,7 +55,9 @@ public class BookActivity extends AppCompatActivity {
 
     @OnClick(R.id.book_layout_vehicle)
     public void onClickVehicle() {
-
+        Intent intent = new Intent(BookActivity.this, VehiclesActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
     }
 
     @OnClick(R.id.book_layout_payment)
@@ -140,6 +143,8 @@ public class BookActivity extends AppCompatActivity {
                     }
 
                     mAdapter.setList(data);
+                } else {
+                    data.get(position).setSelected(!data.get(position).isSelected());
                 }
             }
         });

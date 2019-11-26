@@ -6,6 +6,7 @@
     <string name="title_menu">Menu</string>
     <string name="title_saved">Saved Garages</string>
     <string name="title_search">Let\'s Find Your Spot</string>
+    <string name="title_vehicles">Vehicles</string>
     <string name="tab_home">Home</string>
     <string name="tab_reservations">Reservations</string>
     <string name="tab_rewards">Rewards</string>
@@ -15,6 +16,7 @@
     <string name="add_payment">Add Payment</string>
     <string name="add_promo_code">Add Promo Code</string>
     <string name="add_to_calendar">Add To Calendar</string>
+    <string name="add_vehicle">Add Vehicle</string>
     <string name="amenities">AMENITIES:</string>
     <string name="apply_filters">Apply Filters</string>
     <string name="book_again">Book Again</string>
@@ -24,11 +26,13 @@
     <string name="cancel_reservation">Cancel Reservation</string>
     <string name="clear">Clear</string>
     <string name="close">Close</string>
+    <string name="color">Color</string>
     <string name="completed">Completed</string>
     <string name="create_account">Create Account</string>
     <string name="daily">Daily</string>
     <string name="details">Details</string>
     <string name="directions">Directions</string>
+    <string name="edit">Edit</string>
     <string name="enter_time">Enter Time</string>
     <string name="exit_time">Exit Time</string>
     <string name="filters">Filters</string>
@@ -48,6 +52,7 @@
     <string name="placeholder_search">Street, attraction or neighborhood</string>
     <string name="placeholder_start_parking_on">Start Parking On</string>
     <string name="placeholder_start_time">Start Time</string>
+    <string name="plate">Plate</string>
     <string name="rates">Rates</string>
     <string name="rebook">Rebook</string>
     <string name="recently_booked_locations">Recently Booked Locations</string>
@@ -62,6 +67,9 @@
     <string name="things_you_know">Things You Should Know:</string>
     <string name="upcoming">Upcoming</string>
     <string name="vehicle">VEHICLE:</string>
+    <string name="vehicle_make">Vehicle Make</string>
+    <string name="vehicle_model">Vehicle Model</string>
+    <string name="add_up_to_vehicles">You can add up to 3 vehicles</string>
 
     <!--Filter options-->
     <string name="hours24">24 Hours</string>
