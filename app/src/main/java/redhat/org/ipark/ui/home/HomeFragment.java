@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -49,6 +50,27 @@ public class HomeFragment extends Fragment {
     ConstraintLayout bottomBookedLayout;
     @BindView(R.id.home_layout_filter)
     ScrollView filterView;
+    @BindView(R.id.home_checkbox_24hours)
+    CheckBox checkBox24Hours;
+    @BindView(R.id.home_checkbox_7days)
+    CheckBox checkBox7Days;
+    @BindView(R.id.home_checkbox_covered)
+    CheckBox checkBoxCovered;
+    @BindView(R.id.home_checkbox_paved)
+    CheckBox checkBoxPaved;
+    @BindView(R.id.home_checkbox_valet)
+    CheckBox checkBoxValet;
+    @BindView(R.id.home_checkbox_oversized)
+    CheckBox checkBoxOversized;
+    @BindView(R.id.home_checkbox_green)
+    CheckBox checkBoxGreen;
+    @BindView(R.id.home_checkbox_tesla)
+    CheckBox checkBoxTesla;
+    @BindView(R.id.home_checkbox_outdoors)
+    CheckBox checkBoxOutdoors;
+    @BindView(R.id.home_checkbox_onsite_staff)
+    CheckBox checkBoxOnsite;
+
     @BindView(R.id.home_bottom_recyclerView)
     RecyclerView bottomRecyclerView;
 
@@ -77,8 +99,30 @@ public class HomeFragment extends Fragment {
         isShownFilter = !isShownFilter;
     }
 
+    @OnClick(R.id.home_btn_apply_filters)
+    public void onClickApplyFilters(View view) {
+        filterView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.left_to_right));
+        btnFilters.setText(R.string.filters);
+        filterView.setVisibility(View.INVISIBLE);
+        isShownFilter = false;
+    }
+
+    @OnClick(R.id.home_btn_filter_clear)
+    public void onClickClearFilters(View view) {
+        checkBox24Hours.setChecked(false);
+        checkBox7Days.setChecked(false);
+        checkBoxCovered.setChecked(false);
+        checkBoxPaved.setChecked(false);
+        checkBoxValet.setChecked(false);
+        checkBoxOversized.setChecked(false);
+        checkBoxGreen.setChecked(false);
+        checkBoxTesla.setChecked(false);
+        checkBoxOutdoors.setChecked(false);
+        checkBoxOnsite.setChecked(false);
+    }
+
     @OnClick(R.id.home_btn_toggle)
-    public void onClickToggle(MaterialButton button) {
+    public void onClickToggle(View view) {
         if (isShownList) {
             getChildFragmentManager().popBackStack();
             isShownList = false;
@@ -98,28 +142,28 @@ public class HomeFragment extends Fragment {
     }
 
     @OnClick(R.id.home_btn_search)
-    public void onClickSearch(MaterialButton button) {
+    public void onClickSearch(View view) {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
         getActivity().startActivityForResult(intent, SEARCH_REQUEST);
         getActivity().overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
     @OnClick(R.id.home_layout_timer)
-    public void onClickTimer(RelativeLayout layout) {
+    public void onClickTimer(View view) {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
         getActivity().startActivityForResult(intent, SEARCH_REQUEST);
         getActivity().overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
     @OnClick(R.id.home_btn_favorite)
-    public void onClickFavorite(MaterialButton button) {
+    public void onClickFavorite(View view) {
         Intent intent = new Intent(getActivity(), SavedActivity.class);
         getActivity().startActivity(intent);
         getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
     }
 
     @OnClick(R.id.home_btn_bottom_arrow)
-    public void onClickDownArrow(LinearLayout button) {
+    public void onClickDownArrow(View view) {
         if (isShownBottom) {
             imageArrow.startAnimation(animate(true));
             bottomBookedLayout.setVisibility(View.GONE);
