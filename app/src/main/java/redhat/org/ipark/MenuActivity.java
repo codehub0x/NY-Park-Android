@@ -122,10 +122,13 @@ public class MenuActivity extends AppCompatActivity {
     public void onClickBtn2() {
         if (isLoggedIn()) {
             ((MyApplication) this.getApplication()).setLoggedIn(false);
+            finish();
+            overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
         } else {
-            ((MyApplication) this.getApplication()).setLoggedIn(true);
+            Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
         }
-        initialize();
     }
 
     @Override

@@ -31,5 +31,6 @@
     <dimen name="text_size_18sp">18sp</dimen>
     <dimen name="text_size_20sp">20sp</dimen>
     <dimen name="text_size_23sp">23sp</dimen>
+    <dimen name="text_size_28sp">28sp</dimen>
 
 </resources>
