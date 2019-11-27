@@ -39,42 +39,6 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
     @BindView(R.id.signup_layout_bottom)
     LinearLayout bottomLayout;
 
-    @OnClick(R.id.signup_btn_close)
-    public void onClickClose(View view) {
-        finish();
-        overridePendingTransition(R.anim.nothing, R.anim.fade_out);
-    }
-
-    @OnClick(R.id.signup_btn_create)
-    public void onClickCreate(View view) {
-        ((MyApplication) this.getApplication()).setLoggedIn(true);
-        Intent intent = new Intent(SignupActivity.this, MenuActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-    }
-
-    @OnClick(R.id.signup_btn_login)
-    public void onClickLogin(View view) {
-        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.fade_in, R.anim.nothing);
-        finish();
-    }
-
-    @OnClick(R.id.signup_text_terms)
-    public void onClickTerms(View view) {
-
-    }
-
-    @OnTouch(R.id.signup_scrollview)
-    public boolean onTouchScrollView(View view, MotionEvent event) {
-        if (event != null && event.getAction() == MotionEvent.ACTION_MOVE) {
-            Utils.hideKeyboard(this, view);
-        }
-        return false;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,5 +75,41 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
                 }
             }, 300);
         }
+    }
+
+    @OnClick(R.id.signup_btn_close)
+    public void onClickClose(View view) {
+        finish();
+        overridePendingTransition(R.anim.nothing, R.anim.fade_out);
+    }
+
+    @OnClick(R.id.signup_btn_create)
+    public void onClickCreate(View view) {
+        ((MyApplication) this.getApplication()).setLoggedIn(true);
+        Intent intent = new Intent(SignupActivity.this, MenuActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+    }
+
+    @OnClick(R.id.signup_btn_login)
+    public void onClickLogin(View view) {
+        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.nothing);
+        finish();
+    }
+
+    @OnClick(R.id.signup_text_terms)
+    public void onClickTerms(View view) {
+
+    }
+
+    @OnTouch(R.id.signup_scrollview)
+    public boolean onTouchScrollView(View view, MotionEvent event) {
+        if (event != null && event.getAction() == MotionEvent.ACTION_MOVE) {
+            Utils.hideKeyboard(this, view);
+        }
+        return false;
     }
 }

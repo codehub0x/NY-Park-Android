@@ -53,28 +53,6 @@ public class BookActivity extends AppCompatActivity {
     @BindView(R.id.book_btn_add_payment)
     MaterialButton btnAddPayment;
 
-    @OnClick(R.id.book_layout_vehicle)
-    public void onClickVehicle() {
-        Intent intent = new Intent(BookActivity.this, VehiclesActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-    }
-
-    @OnClick(R.id.book_layout_payment)
-    public void onClickPayment() {
-
-    }
-
-    @OnClick(R.id.book_layout_promo_code)
-    public void onClickPromoCode() {
-
-    }
-
-    @OnClick(R.id.book_btn_add_payment)
-    public void onClickAddPayment() {
-
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,5 +141,27 @@ public class BookActivity extends AppCompatActivity {
         long t = cal.getTimeInMillis();
         Date afterAddingMinutes = new Date(t + (days * ONE_DAY_IN_MILLIS));
         return afterAddingMinutes;
+    }
+
+    @OnClick(R.id.book_layout_vehicle)
+    public void onClickVehicle(View view) {
+        Intent intent = new Intent(BookActivity.this, VehiclesActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+    }
+
+    @OnClick(R.id.book_layout_payment)
+    public void onClickPayment(View view) {
+
+    }
+
+    @OnClick(R.id.book_layout_promo_code)
+    public void onClickPromoCode(View view) {
+
+    }
+
+    @OnClick(R.id.book_btn_add_payment)
+    public void onClickAddPayment(View view) {
+
     }
 }

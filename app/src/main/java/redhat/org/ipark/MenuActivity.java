@@ -3,7 +3,6 @@ package redhat.org.ipark;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,108 +49,6 @@ public class MenuActivity extends AppCompatActivity {
     @BindView(R.id.menu_text_version)
     TextView textVersion;
 
-    @OnClick(R.id.menu_layout)
-    public void onClickOutside(View view) {
-        finish();
-        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
-    }
-
-    @OnClick(R.id.menu_btn_close)
-    public void onClickClose(MaterialButton button) {
-        finish();
-        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
-    }
-
-    @OnClick(R.id.menu_layout_iPark_rewards)
-    public void onClickiParkRewards() {
-        Intent intent = new Intent(MenuActivity.this, RewardsActivity.class);
-        intent.putExtra("closeLeft", true);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-    }
-
-    @OnClick(R.id.menu_layout_rewards)
-    public void onClickRewards() {
-        Intent intent = new Intent(MenuActivity.this, RewardsActivity.class);
-        intent.putExtra("closeLeft", true);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-    }
-
-    @OnClick(R.id.menu_layout_upcoming)
-    public void onClickUpcoming() {
-        Intent intent = new Intent(MenuActivity.this, ReservationsActivity.class);
-        intent.putExtra("closeLeft", true);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-    }
-
-    @OnClick(R.id.menu_layout_saved)
-    public void onClickSaved() {
-        Intent intent = new Intent(MenuActivity.this, SavedActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-    }
-
-    @OnClick(R.id.menu_layout_my_vehicles)
-    public void onClickMyVehicles() {
-        Intent intent = new Intent(MenuActivity.this, VehiclesActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-    }
-
-    @OnClick(R.id.menu_text_monthly_parking)
-    public void onClickMonthlyParking() {
-
-    }
-
-    @OnClick(R.id.menu_text_faq)
-    public void onClickFAQ() {
-        Intent intent = new Intent(MenuActivity.this, FAQActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-    }
-
-    @OnClick(R.id.menu_text_promo_codes)
-    public void onClickPromoCodes() {
-
-    }
-
-    @OnClick(R.id.menu_text_help)
-    public void onClickHelp() {
-        Intent intent = new Intent(MenuActivity.this, HelpActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-    }
-
-    @OnClick(R.id.menu_btn1)
-    public void onClickBtn1() {
-        if (isLoggedIn()) {
-            // Go to my account page
-            Intent intent = new Intent(MenuActivity.this, AccountActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-        } else {
-            // Go to Sign up page
-            Intent intent = new Intent(MenuActivity.this, SignupActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.fade_in, R.anim.nothing);
-        }
-    }
-
-    @OnClick(R.id.menu_btn2)
-    public void onClickBtn2() {
-        if (isLoggedIn()) {
-            ((MyApplication) this.getApplication()).setLoggedIn(false);
-            finish();
-            overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
-        } else {
-            Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.fade_in, R.anim.nothing);
-        }
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,6 +79,108 @@ public class MenuActivity extends AppCompatActivity {
             btn2.setText(R.string.login);
         }
         textVersion.setText(getVersionName());
+    }
+
+    @OnClick(R.id.menu_layout)
+    public void onClickOutside(View view) {
+        finish();
+        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+    }
+
+    @OnClick(R.id.menu_btn_close)
+    public void onClickClose(View view) {
+        finish();
+        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+    }
+
+    @OnClick(R.id.menu_layout_iPark_rewards)
+    public void onClickiParkRewards(View view) {
+        Intent intent = new Intent(MenuActivity.this, RewardsActivity.class);
+        intent.putExtra("closeLeft", true);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+    }
+
+    @OnClick(R.id.menu_layout_rewards)
+    public void onClickRewards(View view) {
+        Intent intent = new Intent(MenuActivity.this, RewardsActivity.class);
+        intent.putExtra("closeLeft", true);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+    }
+
+    @OnClick(R.id.menu_layout_upcoming)
+    public void onClickUpcoming(View view) {
+        Intent intent = new Intent(MenuActivity.this, ReservationsActivity.class);
+        intent.putExtra("closeLeft", true);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+    }
+
+    @OnClick(R.id.menu_layout_saved)
+    public void onClickSaved(View view) {
+        Intent intent = new Intent(MenuActivity.this, SavedActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+    }
+
+    @OnClick(R.id.menu_layout_my_vehicles)
+    public void onClickMyVehicles(View view) {
+        Intent intent = new Intent(MenuActivity.this, VehiclesActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+    }
+
+    @OnClick(R.id.menu_text_monthly_parking)
+    public void onClickMonthlyParking(View view) {
+
+    }
+
+    @OnClick(R.id.menu_text_faq)
+    public void onClickFAQ(View view) {
+        Intent intent = new Intent(MenuActivity.this, FAQActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+    }
+
+    @OnClick(R.id.menu_text_promo_codes)
+    public void onClickPromoCodes(View view) {
+
+    }
+
+    @OnClick(R.id.menu_text_help)
+    public void onClickHelp(View view) {
+        Intent intent = new Intent(MenuActivity.this, HelpActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+    }
+
+    @OnClick(R.id.menu_btn1)
+    public void onClickBtn1(View view) {
+        if (isLoggedIn()) {
+            // Go to my account page
+            Intent intent = new Intent(MenuActivity.this, AccountActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+        } else {
+            // Go to Sign up page
+            Intent intent = new Intent(MenuActivity.this, SignupActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.fade_in, R.anim.nothing);
+        }
+    }
+
+    @OnClick(R.id.menu_btn2)
+    public void onClickBtn2(View view) {
+        if (isLoggedIn()) {
+            ((MyApplication) this.getApplication()).setLoggedIn(false);
+            finish();
+            overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+        } else {
+            Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.fade_in, R.anim.nothing);
+        }
     }
 
     private boolean isLoggedIn() {

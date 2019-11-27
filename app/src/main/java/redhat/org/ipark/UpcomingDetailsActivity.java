@@ -22,7 +22,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import co.ceryle.segmentedbutton.SegmentedButtonGroup;
 import redhat.org.ipark.adapters.DotsIndicatorPagerAdapter;
 
 public class UpcomingDetailsActivity extends AppCompatActivity {
@@ -76,27 +75,6 @@ public class UpcomingDetailsActivity extends AppCompatActivity {
     ImageView imageQRCode;
     @BindView(R.id.upcoming_image_barcode)
     ImageView imageBarCode;
-
-    // Actions
-    @OnClick(R.id.upcoming_btn_add_to_calendar)
-    public void onClickAddToCalendar(MaterialButton button) {
-
-    }
-
-    @OnClick(R.id.upcoming_btn_directions)
-    public void onClickDirections(MaterialButton button) {
-
-    }
-
-    @OnClick(R.id.upcoming_btn_cancel_reservation)
-    public void onClickCancelReservation(MaterialButton button) {
-
-    }
-
-    @OnClick(R.id.upcoming_btn_paid)
-    public void onClickPaid(MaterialButton button) {
-
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -160,5 +138,26 @@ public class UpcomingDetailsActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+    }
+
+    // Actions
+    @OnClick(R.id.upcoming_btn_add_to_calendar)
+    public void onClickAddToCalendar(View view) {
+
+    }
+
+    @OnClick(R.id.upcoming_btn_directions)
+    public void onClickDirections(View view) {
+
+    }
+
+    @OnClick(R.id.upcoming_btn_cancel_reservation)
+    public void onClickCancelReservation(View view) {
+
+    }
+
+    @OnClick(R.id.upcoming_btn_paid)
+    public void onClickPaid(View view) {
+
     }
 }

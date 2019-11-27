@@ -34,28 +34,7 @@ public class HomeListFragment extends Fragment {
     @BindView(R.id.home_list_btn_sort_price)
     MaterialButton btnSortByPrice;
 
-    @OnClick(R.id.home_list_btn_sort_distance)
-    public void onClickDistance(MaterialButton btn) {
-        if (!isSortByPrice)
-            return;
-        isSortByPrice = false;
-        btnSortByDistance.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.colorPrimary));
-        btnSortByPrice.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.colorBlack60));
-
-        // TODO: Update the recycler view
-    }
-
-    @OnClick(R.id.home_list_btn_sort_price)
-    public void onClickPrice(MaterialButton btn) {
-        if (isSortByPrice)
-            return;
-        isSortByPrice = true;
-        btnSortByDistance.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.colorBlack60));
-        btnSortByPrice.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.colorPrimary));
-
-        // TODO: Update the recycler view
-    }
-
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home_list, container, false);
@@ -85,5 +64,27 @@ public class HomeListFragment extends Fragment {
             }
         });
         recyclerView.setAdapter(homeAdapter);
+    }
+
+    @OnClick(R.id.home_list_btn_sort_distance)
+    public void onClickDistance(View view) {
+        if (!isSortByPrice)
+            return;
+        isSortByPrice = false;
+        btnSortByDistance.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.colorPrimary));
+        btnSortByPrice.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.colorBlack60));
+
+        // TODO: Update the recycler view
+    }
+
+    @OnClick(R.id.home_list_btn_sort_price)
+    public void onClickPrice(View view) {
+        if (isSortByPrice)
+            return;
+        isSortByPrice = true;
+        btnSortByDistance.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.colorBlack60));
+        btnSortByPrice.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.colorPrimary));
+
+        // TODO: Update the recycler view
     }
 }

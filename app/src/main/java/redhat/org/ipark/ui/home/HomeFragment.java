@@ -11,8 +11,6 @@ import android.view.animation.LinearInterpolator;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
@@ -84,6 +82,39 @@ public class HomeFragment extends Fragment {
     LinearLayout btnBottomArrow;
     @BindView(R.id.home_image_arrow)
     ImageView imageArrow;
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        ButterKnife.bind(this, root);
+
+        initialize();
+        return root;
+    }
+
+    private void initialize() {
+        filterView.setVisibility(View.INVISIBLE);
+        bottomBookedLayout.setVisibility(View.GONE);
+        btnFilters.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.colorYellow));
+        btnFilterApply.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.colorYellow));
+
+        bottomRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        bottomAdapter = new HomeBottomAdapter(getContext(), new HomeBottomAdapter.ClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+            }
+        });
+        bottomRecyclerView.setAdapter(bottomAdapter);
+    }
+
+    private Animation animate(boolean up) {
+        Animation anim = AnimationUtils.loadAnimation(getActivity(), up ? R.anim.rotate_up : R.anim.rotate_down);
+        anim.setInterpolator(new LinearInterpolator()); // for smooth animation
+        return anim;
+    }
 
     @OnClick(R.id.home_btn_filters)
     public void onClickFilters(MaterialButton button) {
@@ -174,38 +205,4 @@ public class HomeFragment extends Fragment {
         }
         isShownBottom = !isShownBottom;
     }
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-            ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        ButterKnife.bind(this, root);
-
-        initialize();
-        return root;
-    }
-
-    private void initialize() {
-        filterView.setVisibility(View.INVISIBLE);
-        bottomBookedLayout.setVisibility(View.GONE);
-        btnFilters.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.colorYellow));
-        btnFilterApply.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.colorYellow));
-
-        bottomRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        bottomAdapter = new HomeBottomAdapter(getContext(), new HomeBottomAdapter.ClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                getActivity().startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-            }
-        });
-        bottomRecyclerView.setAdapter(bottomAdapter);
-    }
-
-    private Animation animate(boolean up) {
-        Animation anim = AnimationUtils.loadAnimation(getActivity(), up ? R.anim.rotate_up : R.anim.rotate_down);
-        anim.setInterpolator(new LinearInterpolator()); // for smooth animation
-        return anim;
-    }
-
 }

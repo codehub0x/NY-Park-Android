@@ -7,8 +7,6 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.button.MaterialButton;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -19,20 +17,6 @@ public class RewardsActivity extends AppCompatActivity {
 
     @BindView(R.id.rewards_layout_top)
     LinearLayout topLayout;
-
-    @OnClick(R.id.rewards_btn_create_account)
-    public void onClickCreateAccount(MaterialButton button) {
-        Intent intent = new Intent(RewardsActivity.this, SignupActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.fade_in, R.anim.nothing);
-    }
-
-    @OnClick(R.id.rewards_btn_login)
-    public void onClickLogin(MaterialButton button) {
-        Intent intent = new Intent(RewardsActivity.this, LoginActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.fade_in, R.anim.nothing);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,5 +58,19 @@ public class RewardsActivity extends AppCompatActivity {
         } else {
             topLayout.setVisibility(View.VISIBLE);
         }
+    }
+
+    @OnClick(R.id.rewards_btn_create_account)
+    public void onClickCreateAccount(View view) {
+        Intent intent = new Intent(RewardsActivity.this, SignupActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.nothing);
+    }
+
+    @OnClick(R.id.rewards_btn_login)
+    public void onClickLogin(View view) {
+        Intent intent = new Intent(RewardsActivity.this, LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.nothing);
     }
 }

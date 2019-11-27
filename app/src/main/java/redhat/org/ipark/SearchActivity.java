@@ -79,34 +79,6 @@ public class SearchActivity extends AppCompatActivity implements KeyboardVisibil
     @BindView(R.id.search_edit_start_parking)
     TextInputEditText editStartParking;
 
-    @OnClick(R.id.search_edit_start_time)
-    public void onClickStartTime(TextInputEditText editText) {
-        showDateTimePicker(DateType.StartTime, editText);
-    }
-
-    @OnClick(R.id.search_edit_end_time)
-    public void onClickEndTime(TextInputEditText editText) {
-        showDateTimePicker(DateType.EndTime, editText);
-    }
-
-    @OnClick(R.id.search_edit_start_parking)
-    public void onClickStartParkingOn(TextInputEditText editText) {
-        showDateTimePicker(DateType.StartParkingOn, editText);
-    }
-
-    @OnClick(R.id.search_btn_search)
-    public void onClickSearch(MaterialButton button) {
-
-    }
-
-    @OnTouch(R.id.search_scrollView)
-    public boolean onTouchScrollView(View view, MotionEvent event) {
-        if (event != null && event.getAction() == MotionEvent.ACTION_MOVE) {
-            Utils.hideKeyboard(this, view);
-        }
-        return false;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,6 +133,33 @@ public class SearchActivity extends AppCompatActivity implements KeyboardVisibil
 
     }
 
+    @OnClick(R.id.search_edit_start_time)
+    public void onClickStartTime(TextInputEditText editText) {
+        showDateTimePicker(DateType.StartTime, editText);
+    }
+
+    @OnClick(R.id.search_edit_end_time)
+    public void onClickEndTime(TextInputEditText editText) {
+        showDateTimePicker(DateType.EndTime, editText);
+    }
+
+    @OnClick(R.id.search_edit_start_parking)
+    public void onClickStartParkingOn(TextInputEditText editText) {
+        showDateTimePicker(DateType.StartParkingOn, editText);
+    }
+
+    @OnClick(R.id.search_btn_search)
+    public void onClickSearch(View view) {
+
+    }
+
+    @OnTouch(R.id.search_scrollView)
+    public boolean onTouchScrollView(View view, MotionEvent event) {
+        if (event != null && event.getAction() == MotionEvent.ACTION_MOVE) {
+            Utils.hideKeyboard(this, view);
+        }
+        return false;
+    }
 
     @Override
     public void onKeyboardVisibilityChanged(boolean keyboardVisible) {

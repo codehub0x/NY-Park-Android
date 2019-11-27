@@ -22,6 +22,34 @@ public class HelpActivity extends AppCompatActivity {
     @BindView(R.id.help_btn_phone)
     MaterialButton btnPhone;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_help);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ButterKnife.bind(this);
+
+        initialize();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+    }
+
+    private void initialize() {
+        btnPhone.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorYellow));
+    }
+
     @OnClick(R.id.help_layout_website)
     public void onClickWebSite(View view) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ipark.com/"));
@@ -36,16 +64,16 @@ public class HelpActivity extends AppCompatActivity {
             startActivity(intent);
         } catch (ActivityNotFoundException e) {
             AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Email failure")
-                .setMessage("There isn't an Email app in your phone. Please install the email app and try again!")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Email failure")
+                    .setMessage("There isn't an Email app in your phone. Please install the email app and try again!")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
-                    }
-                })
-                .show();
+                        }
+                    })
+                    .show();
         }
     }
 
@@ -90,33 +118,5 @@ public class HelpActivity extends AppCompatActivity {
     public void onClickTwitter(View view) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/imperialparking"));
         startActivity(browserIntent);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_help);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ButterKnife.bind(this);
-
-        initialize();
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
-        return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
-    }
-
-    private void initialize() {
-        btnPhone.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorYellow));
     }
 }

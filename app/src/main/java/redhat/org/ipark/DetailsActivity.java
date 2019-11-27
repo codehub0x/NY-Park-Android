@@ -79,24 +79,6 @@ public class DetailsActivity extends AppCompatActivity {
     @BindView(R.id.details_layout_specials)
     LinearLayout layoutSpecials;
 
-    // Actions
-    @OnClick(R.id.details_btn_book)
-    public void onClickBook(MaterialButton button) {
-        Intent intent = new Intent(DetailsActivity.this, BookActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-    }
-
-    @OnClick(R.id.details_btn_help)
-    public void onClickHelp(MaterialButton button) {
-
-    }
-
-    @OnClick(R.id.details_btn_directions)
-    public void onClickDirections(MaterialButton button) {
-
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -194,5 +176,23 @@ public class DetailsActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+    }
+
+    // Actions
+    @OnClick(R.id.details_btn_book)
+    public void onClickBook(View view) {
+        Intent intent = new Intent(DetailsActivity.this, BookActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+    }
+
+    @OnClick(R.id.details_btn_help)
+    public void onClickHelp(View view) {
+
+    }
+
+    @OnClick(R.id.details_btn_directions)
+    public void onClickDirections(View view) {
+
     }
 }

@@ -36,19 +36,6 @@ public class VehiclesActivity extends AppCompatActivity {
     @BindView(R.id.vehicle_btn_add)
     MaterialButton btnAddVehicle;
 
-    @OnClick(R.id.vehicle_btn_add)
-    public void onClickAddVehicle(MaterialButton button) {
-        Utils.hideKeyboard(this, button);
-    }
-
-    @OnTouch(R.id.vehicle_scrollView)
-    public boolean onTouchView(View view, MotionEvent event) {
-        if (event != null && event.getAction() == MotionEvent.ACTION_MOVE) {
-            Utils.hideKeyboard(this, view);
-        }
-        return false;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,5 +72,18 @@ public class VehiclesActivity extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(mAdapter);
+    }
+
+    @OnClick(R.id.vehicle_btn_add)
+    public void onClickAddVehicle(View view) {
+        Utils.hideKeyboard(this, view);
+    }
+
+    @OnTouch(R.id.vehicle_scrollView)
+    public boolean onTouchView(View view, MotionEvent event) {
+        if (event != null && event.getAction() == MotionEvent.ACTION_MOVE) {
+            Utils.hideKeyboard(this, view);
+        }
+        return false;
     }
 }
