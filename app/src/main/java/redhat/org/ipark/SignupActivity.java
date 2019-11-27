@@ -90,6 +90,7 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+        finish();
     }
 
     @OnClick(R.id.signup_btn_login)

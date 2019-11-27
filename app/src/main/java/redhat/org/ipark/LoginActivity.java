@@ -82,6 +82,7 @@ public class LoginActivity extends AppCompatActivity implements KeyboardVisibili
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+        finish();
     }
 
     @OnClick(R.id.login_text_forgot_password)

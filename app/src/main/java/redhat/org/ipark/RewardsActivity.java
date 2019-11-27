@@ -43,6 +43,12 @@ public class RewardsActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        initialize();
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         if (closeLeft) {
