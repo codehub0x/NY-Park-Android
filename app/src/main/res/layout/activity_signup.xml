@@ -75,7 +75,7 @@
                     android:textSize="@dimen/text_size_15sp"
                     android:fontFamily="@font/lato_regular"
                     android:maxLines="1"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:nextFocusDown="@+id/signup_edit_password"
                     android:imeOptions="actionNext"/>
 

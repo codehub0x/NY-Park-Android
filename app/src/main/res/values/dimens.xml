@@ -29,6 +29,7 @@
     <dimen name="text_size_16sp">16sp</dimen>
     <dimen name="text_size_17sp">17sp</dimen>
     <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="text_size_19sp">19sp</dimen>
     <dimen name="text_size_20sp">20sp</dimen>
     <dimen name="text_size_23sp">23sp</dimen>
     <dimen name="text_size_25sp">25sp</dimen>

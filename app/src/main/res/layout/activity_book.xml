@@ -114,10 +114,10 @@
                 android:id="@+id/book_layout_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="@dimen/margin_40dp"
                 android:layout_marginEnd="@dimen/margin_24dp"
                 android:paddingTop="@dimen/margin_20dp"
-                android:paddingBottom="@dimen/text_size_12sp">
+                android:paddingBottom="@dimen/margin_12dp">
 
                 <TextView
                     android:id="@+id/book_label_payment"

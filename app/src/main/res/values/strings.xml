@@ -9,6 +9,7 @@
     <string name="title_vehicles">Vehicles</string>
     <string name="title_help">Help</string>
     <string name="title_faq">FAQ</string>
+    <string name="title_account">Account</string>
     <string name="tab_home">Home</string>
     <string name="tab_reservations">Reservations</string>
     <string name="tab_rewards">Rewards</string>
@@ -27,6 +28,8 @@
     <string name="book_on_multiple_days">Book on Multiple Days</string>
     <string name="canceled">Canceled</string>
     <string name="cancel_reservation">Cancel Reservation</string>
+    <string name="change_avatar">Change Avatar</string>
+    <string name="change_your_settings">Change your settings here:</string>
     <string name="choose_topic">Choose the topic you are interested in:</string>
     <string name="clear">Clear</string>
     <string name="close">Close</string>
@@ -68,6 +71,7 @@
     <string name="password">Password</string>
     <string name="past">Past</string>
     <string name="payment_method">Payment Method</string>
+    <string name="phone">Phone</string>
     <string name="phone_number">PHONE NUMBER:</string>
     <string name="placeholder_end_time">End Time</string>
     <string name="placeholder_search">Street, attraction or neighborhood</string>
@@ -76,6 +80,7 @@
     <string name="plate">Plate</string>
     <string name="privacy_policy">Privacy Plicy</string>
     <string name="promo_codes">Promo Codes</string>
+    <string name="push_notifications">Push Notifications</string>
     <string name="rates">Rates</string>
     <string name="rate_us">Rate Us</string>
     <string name="rebook">Rebook</string>
@@ -84,7 +89,9 @@
     <string name="registration">Registraion</string>
     <string name="registration_description">Register as \"iPark Reward\" member</string>
     <string name="regular">Regular</string>
+    <string name="repeat_password">Repeat Password</string>
     <string name="reward_points">REWARD POINTS</string>
+    <string name="save_changes">Save Changes</string>
     <string name="saved_locations">SAVED LOCATIONS</string>
     <string name="search">Search</string>
     <string name="sign_in">Sign in</string>

@@ -59,6 +59,9 @@
         <activity android:name=".FAQActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_faq" />
+        <activity android:name=".AccountActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_account" />
     </application>
 
 </manifest>
