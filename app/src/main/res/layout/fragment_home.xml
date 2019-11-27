@@ -205,169 +205,182 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_layout_top"/>
 
-    <ScrollView
+    <LinearLayout
         android:id="@+id/home_layout_filter"
         android:layout_width="300dp"
         android:layout_height="0dp"
+        android:orientation="vertical"
         android:background="@android:color/white"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_layout_top"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/margin_16dp"
-            android:paddingBottom="@dimen/margin_24dp"
-            android:paddingStart="@dimen/margin_24dp"
-            android:paddingEnd="@dimen/margin_16dp">
-
-            <CheckBox
-                android:id="@+id/home_checkbox_24hours"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/hours24"
-                android:textColor="@color/colorBlack70"
-                android:textSize="@dimen/text_size_14sp"
-                android:fontFamily="@font/lato_regular"
-                android:buttonTint="@color/colorBlack70"
-                android:paddingStart="@dimen/margin_12dp"/>
-
-            <CheckBox
-                android:id="@+id/home_checkbox_7days"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/days7"
-                android:textColor="@color/colorBlack70"
-                android:textSize="@dimen/text_size_14sp"
-                android:fontFamily="@font/lato_regular"
-                android:buttonTint="@color/colorBlack70"
-                android:paddingStart="@dimen/margin_12dp"/>
-
-            <CheckBox
-                android:id="@+id/home_checkbox_covered"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/covered"
-                android:textColor="@color/colorBlack70"
-                android:textSize="@dimen/text_size_14sp"
-                android:fontFamily="@font/lato_regular"
-                android:buttonTint="@color/colorBlack70"
-                android:paddingStart="@dimen/margin_12dp"/>
-
-            <CheckBox
-                android:id="@+id/home_checkbox_paved"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/paved"
-                android:textColor="@color/colorBlack70"
-                android:textSize="@dimen/text_size_14sp"
-                android:fontFamily="@font/lato_regular"
-                android:buttonTint="@color/colorBlack70"
-                android:paddingStart="@dimen/margin_12dp"/>
-
-            <CheckBox
-                android:id="@+id/home_checkbox_valet"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/valet"
-                android:textColor="@color/colorBlack70"
-                android:textSize="@dimen/text_size_14sp"
-                android:fontFamily="@font/lato_regular"
-                android:buttonTint="@color/colorBlack70"
-                android:paddingStart="@dimen/margin_12dp"/>
-
-            <CheckBox
-                android:id="@+id/home_checkbox_oversized"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/oversized_vehicles"
-                android:textColor="@color/colorBlack70"
-                android:textSize="@dimen/text_size_14sp"
-                android:fontFamily="@font/lato_regular"
-                android:buttonTint="@color/colorBlack70"
-                android:paddingStart="@dimen/margin_12dp"/>
-
-            <CheckBox
-                android:id="@+id/home_checkbox_green"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/green"
-                android:textColor="@color/colorBlack70"
-                android:textSize="@dimen/text_size_14sp"
-                android:fontFamily="@font/lato_regular"
-                android:buttonTint="@color/colorBlack70"
-                android:paddingStart="@dimen/margin_12dp"/>
-
-            <CheckBox
-                android:id="@+id/home_checkbox_tesla"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/tesla"
-                android:textColor="@color/colorBlack70"
-                android:textSize="@dimen/text_size_14sp"
-                android:fontFamily="@font/lato_regular"
-                android:buttonTint="@color/colorBlack70"
-                android:paddingStart="@dimen/margin_12dp"/>
-
-            <CheckBox
-                android:id="@+id/home_checkbox_outdoors"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/outdoors"
-                android:textColor="@color/colorBlack70"
-                android:textSize="@dimen/text_size_14sp"
-                android:fontFamily="@font/lato_regular"
-                android:buttonTint="@color/colorBlack70"
-                android:paddingStart="@dimen/margin_12dp"/>
-
-            <CheckBox
-                android:id="@+id/home_checkbox_onsite_staff"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/onsite_staff"
-                android:textColor="@color/colorBlack70"
-                android:textSize="@dimen/text_size_14sp"
-                android:fontFamily="@font/lato_regular"
-                android:buttonTint="@color/colorBlack70"
-                android:paddingStart="@dimen/margin_12dp"/>
+        <ScrollView
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/margin_16dp">
+                android:orientation="vertical"
+                android:paddingTop="@dimen/margin_16dp"
+                android:paddingBottom="@dimen/margin_16dp"
+                android:paddingStart="@dimen/margin_24dp"
+                android:paddingEnd="@dimen/margin_16dp">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/home_btn_apply_filters"
-                    style="@style/Widget.MaterialComponents.Button"
-                    android:layout_width="136dp"
-                    android:layout_height="40dp"
-                    android:text="@string/apply_filters"
-                    android:textSize="@dimen/text_size_14sp"
-                    android:fontFamily="@font/lato_medium"
-                    android:textColor="@color/colorPrimary"
-                    android:backgroundTint="@color/colorYellow"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/home_btn_filter_clear"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="@string/clear"
+                <CheckBox
+                    android:id="@+id/home_checkbox_24hours"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/hours24"
                     android:textColor="@color/colorBlack70"
                     android:textSize="@dimen/text_size_14sp"
-                    android:textAllCaps="false"
-                    android:fontFamily="@font/lato_medium"
-                    android:layout_marginStart="@dimen/margin_16dp"/>
+                    android:fontFamily="@font/lato_regular"
+                    android:buttonTint="@color/colorBlack70"
+                    android:paddingStart="@dimen/margin_12dp"/>
+
+                <CheckBox
+                    android:id="@+id/home_checkbox_7days"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/days7"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:buttonTint="@color/colorBlack70"
+                    android:paddingStart="@dimen/margin_12dp"/>
+
+                <CheckBox
+                    android:id="@+id/home_checkbox_covered"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/covered"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:buttonTint="@color/colorBlack70"
+                    android:paddingStart="@dimen/margin_12dp"/>
+
+                <CheckBox
+                    android:id="@+id/home_checkbox_paved"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/paved"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:buttonTint="@color/colorBlack70"
+                    android:paddingStart="@dimen/margin_12dp"/>
+
+                <CheckBox
+                    android:id="@+id/home_checkbox_valet"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/valet"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:buttonTint="@color/colorBlack70"
+                    android:paddingStart="@dimen/margin_12dp"/>
+
+                <CheckBox
+                    android:id="@+id/home_checkbox_oversized"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/oversized_vehicles"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:buttonTint="@color/colorBlack70"
+                    android:paddingStart="@dimen/margin_12dp"/>
+
+                <CheckBox
+                    android:id="@+id/home_checkbox_green"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/green"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:buttonTint="@color/colorBlack70"
+                    android:paddingStart="@dimen/margin_12dp"/>
+
+                <CheckBox
+                    android:id="@+id/home_checkbox_tesla"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/tesla"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:buttonTint="@color/colorBlack70"
+                    android:paddingStart="@dimen/margin_12dp"/>
+
+                <CheckBox
+                    android:id="@+id/home_checkbox_outdoors"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/outdoors"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:buttonTint="@color/colorBlack70"
+                    android:paddingStart="@dimen/margin_12dp"/>
+
+                <CheckBox
+                    android:id="@+id/home_checkbox_onsite_staff"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/onsite_staff"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:buttonTint="@color/colorBlack70"
+                    android:paddingStart="@dimen/margin_12dp"/>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </ScrollView>
 
-    </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/margin_24dp"
+            android:paddingEnd="@dimen/margin_16dp"
+            android:paddingTop="@dimen/margin_16dp"
+            android:paddingBottom="@dimen/margin_16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/home_btn_apply_filters"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="136dp"
+                android:layout_height="40dp"
+                android:text="@string/apply_filters"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/lato_medium"
+                android:textColor="@color/colorPrimary"
+                android:backgroundTint="@color/colorYellow"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/home_btn_filter_clear"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/clear"
+                android:textColor="@color/colorBlack70"
+                android:textSize="@dimen/text_size_14sp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/lato_medium"
+                android:layout_marginStart="@dimen/margin_16dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/home_layout_bottom"

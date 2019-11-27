@@ -1,6 +1,7 @@
 package redhat.org.ipark;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +49,9 @@ public class FAQActivity extends AppCompatActivity implements FAQAdapter.ClickLi
 
     private void initialize() {
         prepareData();
+
+        View header = getLayoutInflater().inflate(R.layout.item_faq_header, null);
+        listView.addHeaderView(header);
 
         mAdapter = new FAQAdapter(this, data, this);
         listView.setAdapter(mAdapter);

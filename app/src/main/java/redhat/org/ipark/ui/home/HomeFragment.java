@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.home_layout_bottom_booked)
     ConstraintLayout bottomBookedLayout;
     @BindView(R.id.home_layout_filter)
-    ScrollView filterView;
+    LinearLayout filterView;
     @BindView(R.id.home_checkbox_24hours)
     CheckBox checkBox24Hours;
     @BindView(R.id.home_checkbox_7days)
