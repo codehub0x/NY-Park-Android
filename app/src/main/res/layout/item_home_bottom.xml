@@ -5,6 +5,7 @@
     android:id="@+id/item_home_bottom_layout"
     android:layout_width="140dp"
     android:layout_height="140dp"
+    android:background="@drawable/menu_text_background"
     android:paddingStart="@dimen/margin_4dp"
     android:paddingEnd="@dimen/margin_4dp">
     

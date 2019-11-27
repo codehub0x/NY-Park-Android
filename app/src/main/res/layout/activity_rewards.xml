@@ -127,7 +127,7 @@
                         android:textSize="@dimen/text_size_10sp"
                         android:fontFamily="@font/lato_black"
                         android:textAlignment="center"
-                        android:paddingTop="@dimen/margin_2dp"
+                        android:gravity="center"
                         android:background="@drawable/circle_yellow"/>
 
                     <TextView
@@ -156,7 +156,7 @@
                         android:textSize="@dimen/text_size_10sp"
                         android:fontFamily="@font/lato_black"
                         android:textAlignment="center"
-                        android:paddingTop="@dimen/margin_2dp"
+                        android:gravity="center"
                         android:background="@drawable/circle_yellow"/>
 
                     <TextView
@@ -185,7 +185,7 @@
                         android:textSize="@dimen/text_size_10sp"
                         android:fontFamily="@font/lato_black"
                         android:textAlignment="center"
-                        android:paddingTop="@dimen/margin_2dp"
+                        android:gravity="center"
                         android:background="@drawable/circle_yellow"/>
 
                     <TextView
@@ -244,7 +244,7 @@
                         android:textSize="@dimen/text_size_10sp"
                         android:fontFamily="@font/lato_black"
                         android:textAlignment="center"
-                        android:paddingTop="@dimen/margin_2dp"
+                        android:gravity="center"
                         android:background="@drawable/circle_yellow"/>
 
                     <TextView
@@ -273,7 +273,7 @@
                         android:textSize="@dimen/text_size_10sp"
                         android:fontFamily="@font/lato_black"
                         android:textAlignment="center"
-                        android:paddingTop="@dimen/margin_2dp"
+                        android:gravity="center"
                         android:background="@drawable/circle_yellow"/>
 
                     <TextView
@@ -302,7 +302,7 @@
                         android:textSize="@dimen/text_size_10sp"
                         android:fontFamily="@font/lato_black"
                         android:textAlignment="center"
-                        android:paddingTop="@dimen/margin_2dp"
+                        android:gravity="center"
                         android:background="@drawable/circle_yellow"/>
 
                     <TextView

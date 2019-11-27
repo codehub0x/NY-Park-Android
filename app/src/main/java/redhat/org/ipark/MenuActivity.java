@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.button.MaterialButton;
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.warkiz.widget.IndicatorSeekBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,8 +27,8 @@ public class MenuActivity extends AppCompatActivity {
     RoundedImageView imageAvatar;
     @BindView(R.id.menu_text_user_name)
     TextView textUserName;
-    @BindView(R.id.menu_progressBar)
-    ProgressBar progressBar;
+    @BindView(R.id.menu_seekbar)
+    IndicatorSeekBar seekBar;
     @BindView(R.id.menu_text_reward_points)
     TextView textRewardPoints;
     @BindView(R.id.menu_text_reward_points_total)
