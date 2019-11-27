@@ -11,15 +11,25 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.button.MaterialButton;
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.ceryle.segmentedbutton.SegmentedButtonGroup;
+import redhat.org.ipark.adapters.DotsIndicatorPagerAdapter;
 
 public class UpcomingDetailsActivity extends AppCompatActivity {
+
+    private List<Integer> images = new ArrayList<>();
+    private DotsIndicatorPagerAdapter pagerAdapter;
+
     @BindView(R.id.upcoming_text_enter_time)
     TextView textStartTime;
     @BindView(R.id.upcoming_text_exit_time)
@@ -38,6 +48,12 @@ public class UpcomingDetailsActivity extends AppCompatActivity {
     MaterialButton btnCancelReservation;
     @BindView(R.id.upcoming_btn_paid)
     MaterialButton btnPaid;
+
+    // ViewPager & DotsIndicator
+    @BindView(R.id.upcoming_viewPager)
+    ViewPager viewPager;
+    @BindView(R.id.upcoming_dotsIndicator)
+    SpringDotsIndicator dotsIndicator;
 
     // Info view
     @BindView(R.id.upcoming_layout_info)
@@ -128,6 +144,16 @@ public class UpcomingDetailsActivity extends AppCompatActivity {
     private void initialize() {
         btnAddToCalendar.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
         btnDirections.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorYellow));
+
+        // Define ViewPager & DotsIndicator
+        images.add(R.drawable.image1);
+        images.add(R.drawable.image2);
+        images.add(R.drawable.image1);
+        images.add(R.drawable.image2);
+
+        pagerAdapter = new DotsIndicatorPagerAdapter(this, images);
+        viewPager.setAdapter(pagerAdapter);
+        dotsIndicator.setViewPager(viewPager);
     }
 
     @Override

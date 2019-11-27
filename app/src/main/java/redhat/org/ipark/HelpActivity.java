@@ -56,7 +56,9 @@ public class HelpActivity extends AppCompatActivity {
 
     @OnClick(R.id.help_layout_faq)
     public void onClickFAQ(View view) {
-
+        Intent intent = new Intent(HelpActivity.this, FAQActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
     }
 
     @OnClick(R.id.help_btn_phone)

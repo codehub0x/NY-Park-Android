@@ -11,15 +11,24 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.button.MaterialButton;
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.ceryle.segmentedbutton.SegmentedButtonGroup;
+import redhat.org.ipark.adapters.DotsIndicatorPagerAdapter;
 
 public class DetailsActivity extends AppCompatActivity {
+
+    private List<Integer> images = new ArrayList<>();
+    private DotsIndicatorPagerAdapter pagerAdapter;
 
     @BindView(R.id.details_text_enter_time)
     TextView textStartTime;
@@ -43,6 +52,12 @@ public class DetailsActivity extends AppCompatActivity {
     MaterialButton btnBook;
     @BindView(R.id.details_btn_help)
     MaterialButton btnHelp;
+
+    // ViewPager & DotsIndicator
+    @BindView(R.id.details_viewPager)
+    ViewPager viewPager;
+    @BindView(R.id.details_dotsIndicator)
+    SpringDotsIndicator dotsIndicator;
 
     // Info view
     @BindView(R.id.details_layout_info)
@@ -163,6 +178,16 @@ public class DetailsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Define ViewPager & DotsIndicator
+        images.add(R.drawable.image1);
+        images.add(R.drawable.image2);
+        images.add(R.drawable.image1);
+        images.add(R.drawable.image2);
+
+        pagerAdapter = new DotsIndicatorPagerAdapter(this, images);
+        viewPager.setAdapter(pagerAdapter);
+        dotsIndicator.setViewPager(viewPager);
     }
 
     @Override
