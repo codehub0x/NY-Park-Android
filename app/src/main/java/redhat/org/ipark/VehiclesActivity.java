@@ -1,11 +1,8 @@
 package redhat.org.ipark;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -20,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
 import redhat.org.ipark.adapters.VehicleAdapter;
+import redhat.org.ipark.extras.Utils;
 
 public class VehiclesActivity extends AppCompatActivity {
 
@@ -40,13 +38,13 @@ public class VehiclesActivity extends AppCompatActivity {
 
     @OnClick(R.id.vehicle_btn_add)
     public void onClickAddVehicle(MaterialButton button) {
-        hideKeyboard(button);
+        Utils.hideKeyboard(this, button);
     }
 
     @OnTouch(R.id.vehicle_scrollView)
     public boolean onTouchView(View view, MotionEvent event) {
         if (event != null && event.getAction() == MotionEvent.ACTION_MOVE) {
-            hideKeyboard(view);
+            Utils.hideKeyboard(this, view);
         }
         return false;
     }
@@ -87,14 +85,5 @@ public class VehiclesActivity extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(mAdapter);
-    }
-
-    private void hideKeyboard(View view) {
-        InputMethodManager imm = ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE));
-        boolean isKeyboardUp = imm.isAcceptingText();
-
-        if (isKeyboardUp) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
     }
 }

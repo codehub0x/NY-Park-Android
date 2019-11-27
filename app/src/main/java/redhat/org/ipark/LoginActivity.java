@@ -1,13 +1,10 @@
 package redhat.org.ipark;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,10 +17,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
+import redhat.org.ipark.extras.KeyboardVisibilityListener;
+import redhat.org.ipark.extras.Utils;
 
-public class LoginActivity extends AppCompatActivity {
-
-    private boolean isKeyboardOpened;
+public class LoginActivity extends AppCompatActivity implements KeyboardVisibilityListener {
 
     @BindView(R.id.login_edit_email)
     TextInputEditText editEmail;
@@ -67,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
     @OnTouch(R.id.login_scrollview)
     public boolean onTouchScrollView(View view, MotionEvent event) {
         if (event != null && event.getAction() == MotionEvent.ACTION_MOVE) {
-            hideKeyboard(view);
+            Utils.hideKeyboard(this, view);
         }
         return false;
     }
@@ -80,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initialize();
-        setListenerToRootView();
+        Utils.setKeyboardVisibilityListener(this, this);
     }
 
     @Override
@@ -94,35 +91,17 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorYellow));
     }
 
-    private void hideKeyboard(View view) {
-        InputMethodManager imm = ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE));
-        boolean isKeyboardUp = imm.isAcceptingText();
-
-        if (isKeyboardUp) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
-
-    public void setListenerToRootView() {
-        final View activityRootView = getWindow().getDecorView().findViewById(android.R.id.content);
-        activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
-                if (heightDiff > 100) { // 99% of the time the height diff will be due to a keyboard.
-                    bottomLayout.setVisibility(View.GONE);
-                    isKeyboardOpened = true;
-                } else if (isKeyboardOpened == true) {
-                    isKeyboardOpened = false;
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            bottomLayout.setVisibility(View.VISIBLE);
-                        }
-                    }, 300);
+    @Override
+    public void onKeyboardVisibilityChanged(boolean keyboardVisible) {
+        if (keyboardVisible) {
+            bottomLayout.setVisibility(View.GONE);
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomLayout.setVisibility(View.VISIBLE);
                 }
-            }
-        });
+            }, 300);
+        }
     }
 }

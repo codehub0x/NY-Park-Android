@@ -2,7 +2,6 @@ package redhat.org.ipark;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
@@ -14,7 +13,6 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Switch;
 
 import androidx.annotation.Nullable;
@@ -40,6 +38,7 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTouch;
+import redhat.org.ipark.extras.Utils;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -93,15 +92,6 @@ public class AccountActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
     }
 
-    private void hideKeyboard(View view) {
-        InputMethodManager imm = ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE));
-        boolean isKeyboardUp = imm.isAcceptingText();
-
-        if (isKeyboardUp) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
-
     private void loadProfile(String url) {
         Log.d(TAG, "Image cache path: " + url);
 
@@ -134,7 +124,7 @@ public class AccountActivity extends AppCompatActivity {
     @OnTouch(R.id.account_scrollView)
     boolean onTouchScrollView(View view, MotionEvent event) {
         if (event != null && event.getAction() == MotionEvent.ACTION_MOVE) {
-            hideKeyboard(view);
+            Utils.hideKeyboard(this, view);
         }
         return false;
     }
