@@ -8,6 +8,7 @@
     <string name="title_search">Let\'s Find Your Spot</string>
     <string name="title_vehicles">Vehicles</string>
     <string name="title_help">Help</string>
+    <string name="title_faq">FAQ</string>
     <string name="tab_home">Home</string>
     <string name="tab_reservations">Reservations</string>
     <string name="tab_rewards">Rewards</string>
@@ -26,6 +27,7 @@
     <string name="book_on_multiple_days">Book on Multiple Days</string>
     <string name="canceled">Canceled</string>
     <string name="cancel_reservation">Cancel Reservation</string>
+    <string name="choose_topic">Choose the topic you are interested in:</string>
     <string name="clear">Clear</string>
     <string name="close">Close</string>
     <string name="color">Color</string>

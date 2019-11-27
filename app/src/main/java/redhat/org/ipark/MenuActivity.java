@@ -100,7 +100,9 @@ public class MenuActivity extends AppCompatActivity {
 
     @OnClick(R.id.menu_text_faq)
     public void onClickFAQ() {
-
+        Intent intent = new Intent(MenuActivity.this, FAQActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
     }
 
     @OnClick(R.id.menu_text_promo_codes)

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/item_faq_child_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/faq_background"
+        android:layout_marginStart="@dimen/margin_6dp"
+        android:layout_marginEnd="@dimen/margin_6dp"
+        android:layout_marginTop="@dimen/margin_4dp"
+        android:layout_marginBottom="@dimen/margin_4dp"
+        android:paddingStart="@dimen/margin_28dp"
+        android:paddingTop="@dimen/margin_16dp"
+        android:paddingEnd="@dimen/margin_16dp"
+        android:paddingBottom="@dimen/margin_16dp">
+
+        <LinearLayout
+            android:id="@+id/item_faq_child_layout_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_faq_child_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Are iPark parking spots guaranteed?"
+                android:textColor="@color/faq_text_color"
+                android:textSize="@dimen/text_size_17sp"
+                android:fontFamily="@font/lato_bold"/>
+
+            <ImageView
+                android:id="@+id/item_faq_child_arrow"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_down_black_24dp"
+                android:tint="@color/faq_text_color"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_faq_child_subtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="We guarantee you will have a spot to park at the rate you selected when you reserve through iPark! In the rare occasion there is an issue, please call our support line at (855) 472-7569."
+            android:textColor="@color/colorBlack90"
+            android:textSize="@dimen/text_size_15sp"
+            android:fontFamily="@font/lato_regular"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+</LinearLayout>

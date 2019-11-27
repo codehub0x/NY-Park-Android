@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_faq_group_layout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/item_faq_group_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How it Works"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_23sp"
+        android:fontFamily="@font/lato_regular"
+        android:layout_marginTop="@dimen/margin_12dp"
+        android:layout_marginLeft="@dimen/margin_32dp"
+        android:layout_marginRight="@dimen/margin_20dp"
+        android:layout_marginBottom="@dimen/margin_12dp"/>
+
+</LinearLayout>
