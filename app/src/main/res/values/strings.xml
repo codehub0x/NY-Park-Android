@@ -26,10 +26,12 @@
     <string name="book_again">Book Again</string>
     <string name="book_now">Book Now</string>
     <string name="book_on_multiple_days">Book on Multiple Days</string>
+    <string name="cancel">Cancel</string>
     <string name="canceled">Canceled</string>
     <string name="cancel_reservation">Cancel Reservation</string>
     <string name="change_avatar">Change Avatar</string>
     <string name="change_your_settings">Change your settings here:</string>
+    <string name="choose_from_gallery">Choose from gallery</string>
     <string name="choose_topic">Choose the topic you are interested in:</string>
     <string name="clear">Clear</string>
     <string name="close">Close</string>
@@ -39,6 +41,8 @@
     <string name="create_your_account">Create Your Account</string>
     <string name="daily">Daily</string>
     <string name="details">Details</string>
+    <string name="dialog_permission_title">Grant Permissions</string>
+    <string name="dialog_permission_message">This app needs permission to use this feature. You can grant them in app settings.</string>
     <string name="directions">Directions</string>
     <string name="dont_account">Don\'t have account?</string>
     <string name="edit">Edit</string>
@@ -46,6 +50,7 @@
     <string name="email_us">Email Us</string>
     <string name="enter_time">Enter Time</string>
     <string name="exit_time">Exit Time</string>
+    <string name="go_to_settings">GOTO SETTINGS</string>
     <string name="faq">Frequently Asked Questions</string>
     <string name="faq1">FAQ</string>
     <string name="filters">Filters</string>
@@ -101,8 +106,10 @@
     <string name="stay_period">Stay Period</string>
     <string name="suv">SUV</string>
     <string name="suv_large">Large SUV</string>
+    <string name="take_picture">Take a picture</string>
     <string name="terms_conditions">Terms &amp; Conditions</string>
     <string name="things_you_know">Things You Should Know:</string>
+    <string name="toast_image_intent_null">Image picker option is missing!</string>
     <string name="upcoming">Upcoming</string>
     <string name="upcoming_reservations">UPCOMING RESERVATIONS</string>
     <string name="vehicle">VEHICLE:</string>
