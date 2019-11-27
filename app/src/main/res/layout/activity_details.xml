@@ -269,6 +269,7 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/text_size_18sp"
                 android:fontFamily="@font/lato_black"
+                android:letterSpacing="0"
                 android:layout_marginTop="@dimen/margin_4dp"/>
 
             <LinearLayout
@@ -581,6 +582,7 @@
                             android:textColor="@color/colorPrimary"
                             android:textSize="@dimen/text_size_12sp"
                             android:fontFamily="@font/lato_bold"
+                            android:letterSpacing="0"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"/>
 

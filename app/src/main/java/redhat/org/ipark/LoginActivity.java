@@ -1,5 +1,7 @@
 package redhat.org.ipark;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -60,12 +62,7 @@ public class LoginActivity extends AppCompatActivity implements KeyboardVisibili
         if (keyboardVisible) {
             bottomLayout.setVisibility(View.GONE);
         } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    bottomLayout.setVisibility(View.VISIBLE);
-                }
-            }, 300);
+            bottomLayout.setVisibility(View.VISIBLE);
         }
     }
 

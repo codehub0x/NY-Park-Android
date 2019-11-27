@@ -268,6 +268,7 @@
                 android:textColor="@color/colorYellow"
                 android:textSize="@dimen/text_size_18sp"
                 android:fontFamily="@font/lato_black"
+                android:letterSpacing="0"
                 android:layout_marginTop="@dimen/margin_4dp"/>
 
 
@@ -468,6 +469,7 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/text_size_18sp"
                         android:fontFamily="@font/lato_black"
+                        android:letterSpacing="0"
                         android:layout_marginTop="@dimen/margin_16dp"
                         android:layout_marginBottom="@dimen/margin_16dp"/>
 
@@ -628,7 +630,8 @@
                         android:text="@string/cancel_reservation"
                         android:textSize="@dimen/text_size_12sp"
                         android:textColor="@color/colorPrimary"
-                        android:fontFamily="@font/lato_bold"/>
+                        android:fontFamily="@font/lato_bold"
+                        android:letterSpacing="0"/>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/upcoming_btn_paid"
@@ -640,6 +643,7 @@
                         android:textSize="@dimen/text_size_12sp"
                         android:textColor="@color/colorGray"
                         android:fontFamily="@font/lato_bold"
+                        android:letterSpacing="0"
                         android:layout_marginStart="@dimen/margin_24dp"/>
 
                 </LinearLayout>

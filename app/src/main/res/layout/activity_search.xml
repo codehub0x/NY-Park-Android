@@ -219,6 +219,7 @@
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_17sp"
         android:fontFamily="@font/lato_black"
+        android:letterSpacing="0"
         android:backgroundTint="@color/colorYellow"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

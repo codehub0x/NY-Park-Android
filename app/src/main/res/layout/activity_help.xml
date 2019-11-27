@@ -152,6 +152,7 @@
                     android:textSize="@dimen/text_size_25sp"
                     android:textColor="@color/colorPrimary"
                     android:fontFamily="@font/lato_black"
+                    android:letterSpacing="0"
                     android:backgroundTint="@color/colorYellow"
                     android:layout_marginStart="@dimen/margin_8dp"
                     android:layout_marginEnd="@dimen/margin_8dp"

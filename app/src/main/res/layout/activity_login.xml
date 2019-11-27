@@ -115,6 +115,7 @@
                 android:textSize="@dimen/text_size_18sp"
                 android:fontFamily="@font/lato_regular"
                 android:textAllCaps="false"
+                android:letterSpacing="0"
                 android:layout_marginTop="@dimen/margin_20dp"
                 app:layout_constraintStart_toStartOf="@+id/login_inputLayout_email"
                 app:layout_constraintEnd_toEndOf="@+id/login_inputLayout_email"
@@ -181,6 +182,7 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_14sp"
             android:fontFamily="@font/lato_medium"
+            android:letterSpacing="0"
             android:backgroundTint="@color/colorYellow"
             android:layout_marginStart="@dimen/margin_32dp"/>
 

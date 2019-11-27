@@ -1,5 +1,8 @@
 package redhat.org.ipark;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -164,14 +167,23 @@ public class SearchActivity extends AppCompatActivity implements KeyboardVisibil
     @Override
     public void onKeyboardVisibilityChanged(boolean keyboardVisible) {
         if (keyboardVisible) {
-            btnSearch.setVisibility(View.GONE);
+            btnSearch.setVisibility(View.VISIBLE);
+            btnSearch.setAlpha(1.0f);
+            btnSearch.animate()
+                    .alpha(0.0f)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            btnSearch.setVisibility(View.GONE);
+                        }
+                    });
         } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    btnSearch.setVisibility(View.VISIBLE);
-                }
-            }, 300);
+            btnSearch.setVisibility(View.VISIBLE);
+            btnSearch.setAlpha(0.0f);
+            btnSearch.animate()
+                    .alpha(1.0f)
+                    .setListener(null);
         }
     }
 

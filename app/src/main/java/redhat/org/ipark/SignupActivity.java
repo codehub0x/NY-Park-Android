@@ -1,5 +1,7 @@
 package redhat.org.ipark;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -68,12 +70,7 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
         if (keyboardVisible) {
             bottomLayout.setVisibility(View.GONE);
         } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    bottomLayout.setVisibility(View.VISIBLE);
-                }
-            }, 300);
+            bottomLayout.setVisibility(View.VISIBLE);
         }
     }
 

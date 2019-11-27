@@ -18,6 +18,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_9sp"
             android:fontFamily="@font/lato_black"
+            android:letterSpacing="0.2"
             android:layout_toStartOf="@id/home_list_separator"/>
 
         <ImageView
@@ -37,6 +38,7 @@
             android:textColor="@color/colorBlack60"
             android:textSize="@dimen/text_size_9sp"
             android:fontFamily="@font/lato_black"
+            android:letterSpacing="0.2"
             android:layout_toEndOf="@id/home_list_separator"/>
 
     </RelativeLayout>

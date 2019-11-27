@@ -29,7 +29,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Are iPark parking spots guaranteed?"
+                android:text=""
                 android:textColor="@color/faq_text_color"
                 android:textSize="@dimen/text_size_17sp"
                 android:fontFamily="@font/lato_bold"/>
@@ -47,7 +47,7 @@
             android:id="@+id/item_faq_child_subtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="We guarantee you will have a spot to park at the rate you selected when you reserve through iPark! In the rare occasion there is an issue, please call our support line at (855) 472-7569."
+            android:text=""
             android:textColor="@color/colorBlack90"
             android:textSize="@dimen/text_size_15sp"
             android:fontFamily="@font/lato_regular"

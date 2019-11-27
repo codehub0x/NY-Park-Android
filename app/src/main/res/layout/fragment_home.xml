@@ -35,6 +35,7 @@
                 android:textSize="@dimen/text_size_11sp"
                 android:textColor="@color/colorBlack80"
                 android:fontFamily="@font/lato_medium"
+                android:letterSpacing="0"
                 android:singleLine="true"
                 android:padding="0dp"
                 app:backgroundTint="@android:color/white"/>
@@ -50,6 +51,7 @@
                 android:textColor="@color/colorBlack60"
                 android:fontFamily="@font/lato_regular"
                 android:textAllCaps="false"
+                android:letterSpacing="0"
                 android:singleLine="true"
                 android:gravity="start|center_vertical"
                 app:backgroundTint="@android:color/white"
@@ -183,6 +185,7 @@
                 android:text="@string/filters"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/text_size_12sp"
+                android:letterSpacing="0"
                 android:backgroundTint="@color/colorYellow"
                 android:fontFamily="@font/lato_medium"/>
 
@@ -364,6 +367,7 @@
                 android:textSize="@dimen/text_size_14sp"
                 android:fontFamily="@font/lato_medium"
                 android:textColor="@color/colorPrimary"
+                android:letterSpacing="0"
                 android:backgroundTint="@color/colorYellow"/>
 
             <com.google.android.material.button.MaterialButton
@@ -376,6 +380,7 @@
                 android:textSize="@dimen/text_size_14sp"
                 android:textAllCaps="false"
                 android:fontFamily="@font/lato_medium"
+                android:letterSpacing="0"
                 android:layout_marginStart="@dimen/margin_16dp"/>
 
         </LinearLayout>

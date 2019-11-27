@@ -173,6 +173,7 @@
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/text_size_18sp"
                     android:fontFamily="@font/lato_black"
+                    android:letterSpacing="0"
                     android:layout_marginTop="@dimen/margin_24dp"
                     android:backgroundTint="@color/colorYellow"/>
 

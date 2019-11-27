@@ -26,6 +26,7 @@
     <string name="book_again">Book Again</string>
     <string name="book_now">Book Now</string>
     <string name="book_on_multiple_days">Book on Multiple Days</string>
+    <string name="by_purchasing">By purchasing, you agree to iPark\'s Terms and Conditions</string>
     <string name="cancel">Cancel</string>
     <string name="canceled">Canceled</string>
     <string name="cancel_reservation">Cancel Reservation</string>
@@ -37,7 +38,7 @@
     <string name="close">Close</string>
     <string name="color">Color</string>
     <string name="completed">Completed</string>
-    <string name="create_account">Create Account</string>
+    <string name="create_account">Create an Account</string>
     <string name="create_your_account">Create Your Account</string>
     <string name="daily">Daily</string>
     <string name="details">Details</string>

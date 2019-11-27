@@ -25,6 +25,7 @@
             android:textSize="@dimen/text_size_17sp"
             android:fontFamily="@font/lato_bold"
             android:textAllCaps="false"
+            android:letterSpacing="0"
             app:strokeColor="@color/colorYellow"
             app:strokeWidth="1dp"/>
 
@@ -38,6 +39,7 @@
             android:textSize="@dimen/text_size_17sp"
             android:fontFamily="@font/lato_bold"
             android:textAllCaps="false"
+            android:letterSpacing="0"
             android:layout_marginStart="@dimen/margin_20dp"
             app:strokeColor="@color/colorYellow"
             app:strokeWidth="1dp"/>
