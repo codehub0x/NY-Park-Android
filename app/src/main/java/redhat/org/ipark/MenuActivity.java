@@ -50,6 +50,12 @@ public class MenuActivity extends AppCompatActivity {
     @BindView(R.id.menu_text_version)
     TextView textVersion;
 
+    @OnClick(R.id.menu_layout)
+    public void onClickOutside(View view) {
+        finish();
+        overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+    }
+
     @OnClick(R.id.menu_btn_close)
     public void onClickClose(MaterialButton button) {
         finish();
