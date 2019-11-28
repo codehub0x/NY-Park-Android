@@ -1,7 +1,11 @@
 package redhat.org.ipark.ui.home;
 
+import android.Manifest;
 import android.content.Intent;
+import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +15,29 @@ import android.view.animation.LinearInterpolator;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.material.button.MaterialButton;
 
 import butterknife.BindView;
@@ -30,17 +49,46 @@ import redhat.org.ipark.SavedActivity;
 import redhat.org.ipark.SearchActivity;
 import redhat.org.ipark.adapters.HomeBottomAdapter;
 
-public class HomeFragment extends Fragment {
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
-    static final int SEARCH_REQUEST = 10001;
+public class HomeFragment extends Fragment implements OnMapReadyCallback {
+
+    private static final String TAG = HomeFragment.class.getSimpleName();
+
+    static final int SEARCH_REQUEST_CODE = 10001;
+    private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
+    private static final int LOCATION_REQUEST_CODE = 1101;
+    // Keys for storing activity state.
+    private static final String KEY_CAMERA_POSITION = "camera_position";
+    private static final String KEY_LOCATION = "location";
 
     private boolean isShownList;
     private boolean isShownFilter;
     private boolean isShownBottom;
 
     private HomeBottomAdapter bottomAdapter;
+    private GoogleMap mMap;
+    private CameraPosition mCameraPosition;
 
-    @BindView(R.id.home_mapView)
+    // The entry points to the Places API.
+    private PlacesClient mPlacesClient;
+
+    // The entry point to the Fused Location Provider.
+    private FusedLocationProviderClient mFusedLocationProviderClient;
+
+    // A default location (Sydney, Australia) and default zoom to use when location permission is
+    // not granted.
+    private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
+    private static final int DEFAULT_ZOOM = 13;
+    private boolean mLocationPermissionGranted;
+    // Used for selecting the current place.
+    private static final int M_MAX_ENTRIES = 5;
+
+    // The geographical location where the device is currently located. That is, the last-known
+    // location retrieved by the Fused Location Provider.
+    private Location mLastKnownLocation;
+
+    @BindView(R.id.home_map_view)
     MapView mapView;
     @BindView(R.id.home_layout_bottom)
     LinearLayout bottomLayout;
@@ -78,8 +126,6 @@ public class HomeFragment extends Fragment {
     MaterialButton btnFilters;
     @BindView(R.id.home_btn_apply_filters)
     MaterialButton btnFilterApply;
-    @BindView(R.id.home_btn_bottom_arrow)
-    LinearLayout btnBottomArrow;
     @BindView(R.id.home_image_arrow)
     ImageView imageArrow;
 
@@ -88,8 +134,76 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, root);
 
+        // Retrieve location and camera position from saved instance state.
+        Bundle mapViewBundle = null;
+        if (savedInstanceState != null) {
+            mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
+            mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
+            mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_BUNDLE_KEY);
+        }
+
+        if (!Places.isInitialized()) {
+            Places.initialize(getContext(), getString(R.string.google_maps_key));
+        }
+        mPlacesClient = Places.createClient(getContext());
+
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
+
+        mapView.onCreate(mapViewBundle);
+        mapView.getMapAsync(this);
+
         initialize();
         return root;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        if (mMap != null) {
+            outState.putParcelable(KEY_CAMERA_POSITION, mMap.getCameraPosition());
+            outState.putParcelable(KEY_LOCATION, mLastKnownLocation);
+            super.onSaveInstanceState(outState);
+
+            Bundle mapViewBundle = outState.getBundle(MAP_VIEW_BUNDLE_KEY);
+            if (mapViewBundle == null) {
+                mapViewBundle = new Bundle();
+                outState.putBundle(MAP_VIEW_BUNDLE_KEY, mapViewBundle);
+            }
+
+            mapView.onSaveInstanceState(mapViewBundle);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mapView.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mapView.onStop();
+    }
+    @Override
+    public void onPause() {
+        mapView.onPause();
+        super.onPause();
+    }
+    @Override
+    public void onDestroy() {
+        mapView.onDestroy();
+        super.onDestroy();
+    }
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
     }
 
     private void initialize() {
@@ -175,14 +289,14 @@ public class HomeFragment extends Fragment {
     @OnClick(R.id.home_btn_search)
     public void onClickSearch(View view) {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
-        getActivity().startActivityForResult(intent, SEARCH_REQUEST);
+        getActivity().startActivityForResult(intent, SEARCH_REQUEST_CODE);
         getActivity().overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
     @OnClick(R.id.home_layout_timer)
     public void onClickTimer(View view) {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
-        getActivity().startActivityForResult(intent, SEARCH_REQUEST);
+        getActivity().startActivityForResult(intent, SEARCH_REQUEST_CODE);
         getActivity().overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
@@ -204,5 +318,125 @@ public class HomeFragment extends Fragment {
             bottomBookedLayout.setVisibility(View.VISIBLE);
         }
         isShownBottom = !isShownBottom;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Prompt the user for permission.
+        getLocationPermission();
+
+        // Turn on the My Location layer and the related control on the map.
+        updateLocationUI();
+
+        // Get the current location of the device and set the position of the map.
+        getDeviceLocation();
+
+//        LatLng ny = new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
+//
+//        MarkerOptions markerOptions = new MarkerOptions();
+//        markerOptions.position(ny);
+//        markerOptions.title("You are here");
+//        mMap.addMarker(markerOptions);
+//
+//        mMap.animateCamera(CameraUpdateFactory.newLatLng(ny));
+//
+//        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+//            @Override
+//            public boolean onMarkerClick(Marker marker) {
+//                marker.showInfoWindow();
+//                return true;
+//            }
+//        });
+    }
+
+    private void getLocationPermission() {
+        if (Build.VERSION.SDK_INT < 23 || ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
+            mLocationPermissionGranted = true;
+        } else {
+            ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, LOCATION_REQUEST_CODE);
+            mLocationPermissionGranted = false;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        mLocationPermissionGranted = false;
+        switch (requestCode) {
+            case LOCATION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
+                    //Permission Granted
+                    mLocationPermissionGranted = true;
+                } else {
+                    Toast.makeText(getContext(), "Location Permission Denied", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+        updateLocationUI();
+    }
+
+    /**
+     * Updates the map's UI settings based on whether the user has granted location permission.
+     */
+    private void updateLocationUI() {
+        if (mMap == null) {
+            return;
+        }
+        try {
+            if (mLocationPermissionGranted) {
+                mMap.setMyLocationEnabled(true);
+                mMap.setIndoorEnabled(true);
+
+                UiSettings uiSettings = mMap.getUiSettings();
+                uiSettings.setIndoorLevelPickerEnabled(true);
+                uiSettings.setMyLocationButtonEnabled(true);
+                uiSettings.setMapToolbarEnabled(true);
+                uiSettings.setCompassEnabled(true);
+                uiSettings.setZoomControlsEnabled(true);
+            } else {
+                mMap.setMyLocationEnabled(false);
+                mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                mLastKnownLocation = null;
+                getLocationPermission();
+            }
+        } catch (SecurityException e)  {
+            Log.e("Exception: %s", e.getMessage());
+        }
+    }
+
+    /**
+     * Gets the current location of the device, and positions the map's camera.
+     */
+    private void getDeviceLocation() {
+        /*
+         * Get the best and most recent location of the device, which may be null in rare
+         * cases when a location is not available.
+         */
+        try {
+            if (mLocationPermissionGranted) {
+                Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
+                locationResult.addOnCompleteListener(new OnCompleteListener<Location>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Location> task) {
+                        if (task.isSuccessful()) {
+                            // Set the map's camera position to the current location of the device.
+                            mLastKnownLocation = task.getResult();
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                    new LatLng(mLastKnownLocation.getLatitude(),
+                                            mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                        } else {
+                            Log.d(TAG, "Current location is null. Using defaults.");
+                            Log.e(TAG, "Exception: %s", task.getException());
+                            mMap.moveCamera(CameraUpdateFactory
+                                    .newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
+                            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                        }
+                    }
+                });
+            }
+        } catch (SecurityException e) {
+            Log.e("Exception: %s", e.getMessage());
+        }
     }
 }

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">iPark</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCi3gCa_aLlXhu72sKBXkGex4rFyFUcMAU</string>
+
     <string name="title_home">Home</string>
     <string name="title_reservations">My Reservations</string>
     <string name="title_rewards">Reward Points</string>

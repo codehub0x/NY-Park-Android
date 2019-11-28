@@ -85,7 +85,7 @@
             android:fontFamily="@font/lato_black"
             android:maxLines="2"
             android:layout_marginTop="@dimen/margin_8dp"
-            android:layout_marginStart="@dimen/margin_12dp"
+            android:layout_marginStart="@dimen/margin_16dp"
             android:layout_marginEnd="@dimen/margin_12dp"
             app:layout_constraintStart_toEndOf="@+id/item_saved_imageView"
             app:layout_constraintEnd_toEndOf="parent"
