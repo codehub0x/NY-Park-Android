@@ -80,6 +80,8 @@
             android:screenOrientation="portrait"
             android:label="@string/title_account" />
 
+        <activity android:name="com.google.android.libraries.places.widget.AutocompleteActivity"/>
+
         <activity android:name=".ImagePickerActivity" />
         <!-- uCrop cropping activity -->
         <activity

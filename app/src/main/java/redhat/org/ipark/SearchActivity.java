@@ -2,9 +2,9 @@ package redhat.org.ipark;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -15,14 +15,23 @@ import androidx.core.content.ContextCompat;
 
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog;
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +42,8 @@ import redhat.org.ipark.extras.Utils;
 
 public class SearchActivity extends AppCompatActivity implements KeyboardVisibilityListener {
 
+    private static final String TAG = SearchActivity.class.getSimpleName();
+
     public enum DateType {
         StartTime, EndTime, StartParkingOn
     }
@@ -40,6 +51,9 @@ public class SearchActivity extends AppCompatActivity implements KeyboardVisibil
     static final String DATETIME_FORMAT = "EEE, MMM dd h:mm a";
     static final String DATE_FORMAT = "EEE, MMM dd";
     static final long ONE_MINUTE_IN_MILLIS = 60000;
+
+    private final int DAILY_ADDRESS_REQUEST_CODE = 101;
+    private final int MONTHLY_ADDRESS_REQUEST_CODE = 102;
 
     private DateType selectedDateType;
 
@@ -86,6 +100,8 @@ public class SearchActivity extends AppCompatActivity implements KeyboardVisibil
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Places.initialize(this, getString(R.string.google_maps_key));
+
         setContentView(R.layout.activity_search);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -106,6 +122,28 @@ public class SearchActivity extends AppCompatActivity implements KeyboardVisibil
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == DAILY_ADDRESS_REQUEST_CODE || requestCode == MONTHLY_ADDRESS_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Place place = Autocomplete.getPlaceFromIntent(data);
+                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId() + ", " + place.getAddress());
+                if (requestCode == DAILY_ADDRESS_REQUEST_CODE) {
+                    editAddress.setText(place.getAddress());
+                } else {
+                    editAddressMonthly.setText(place.getAddress());
+                }
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                // TODO: Handle the error.
+                Status status = Autocomplete.getStatusFromIntent(data);
+                Log.i(TAG, status.getStatusMessage());
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+        }
     }
 
     private void initialize() {
@@ -134,6 +172,34 @@ public class SearchActivity extends AppCompatActivity implements KeyboardVisibil
             }
         });
 
+    }
+
+    @OnClick(R.id.search_edit_address)
+    public void onClickAddress(View view) {
+        // Set the fields to specify which types of place data to
+        // return after the user has made a selection.
+        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+
+        // Start the autocomplete intent.
+        Intent intent = new Autocomplete
+                .IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
+                .setTypeFilter(TypeFilter.ADDRESS)
+                .build(this);
+        startActivityForResult(intent, DAILY_ADDRESS_REQUEST_CODE);
+    }
+
+    @OnClick(R.id.search_edit_address_monthly)
+    public void onClickAddressMonthly(View view) {
+        // Set the fields to specify which types of place data to
+        // return after the user has made a selection.
+        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+
+        // Start the autocomplete intent.
+        Intent intent = new Autocomplete
+                .IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
+                .setTypeFilter(TypeFilter.ADDRESS)
+                .build(this);
+        startActivityForResult(intent, MONTHLY_ADDRESS_REQUEST_CODE);
     }
 
     @OnClick(R.id.search_edit_start_time)
