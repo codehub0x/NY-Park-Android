@@ -37,10 +37,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
-import redhat.org.ipark.extras.KeyboardVisibilityListener;
 import redhat.org.ipark.extras.Utils;
 
-public class SearchActivity extends AppCompatActivity implements KeyboardVisibilityListener {
+public class SearchActivity extends AppCompatActivity {
 
     private static final String TAG = SearchActivity.class.getSimpleName();
 
@@ -108,7 +107,6 @@ public class SearchActivity extends AppCompatActivity implements KeyboardVisibil
         ButterKnife.bind(this);
 
         initialize();
-        Utils.setKeyboardVisibilityListener(this, this);
     }
 
     @Override
@@ -228,29 +226,6 @@ public class SearchActivity extends AppCompatActivity implements KeyboardVisibil
             Utils.hideKeyboard(this, view);
         }
         return false;
-    }
-
-    @Override
-    public void onKeyboardVisibilityChanged(boolean keyboardVisible) {
-        if (keyboardVisible) {
-            btnSearch.setVisibility(View.VISIBLE);
-            btnSearch.setAlpha(1.0f);
-            btnSearch.animate()
-                    .alpha(0.0f)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            super.onAnimationEnd(animation);
-                            btnSearch.setVisibility(View.GONE);
-                        }
-                    });
-        } else {
-            btnSearch.setVisibility(View.VISIBLE);
-            btnSearch.setAlpha(0.0f);
-            btnSearch.animate()
-                    .alpha(1.0f)
-                    .setListener(null);
-        }
     }
 
     private void showDateTimePicker(DateType dateType, TextInputEditText editText) {
