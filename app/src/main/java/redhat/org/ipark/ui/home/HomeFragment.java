@@ -1,6 +1,8 @@
 package redhat.org.ipark.ui.home;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -50,6 +52,7 @@ import com.google.android.material.button.MaterialButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import redhat.org.ipark.BookActivity;
 import redhat.org.ipark.DetailsActivity;
 import redhat.org.ipark.R;
 import redhat.org.ipark.SavedActivity;
@@ -72,6 +75,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private boolean isShownList;
     private boolean isShownFilter;
     private boolean isShownBottom;
+    private boolean isShownMarkerInfo;
 
     private HomeBottomAdapter bottomAdapter;
     private GoogleMap mMap;
@@ -121,6 +125,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     CheckBox checkBoxOutdoors;
     @BindView(R.id.home_checkbox_onsite_staff)
     CheckBox checkBoxOnsite;
+    @BindView(R.id.home_marker_info_layout)
+    LinearLayout markerInfoLayout;
 
     @BindView(R.id.home_bottom_recyclerView)
     RecyclerView bottomRecyclerView;
@@ -198,6 +204,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onPause() {
         mapView.onPause();
+        updateMarkerInfoLayout(false, false);
+        updateBottomLayout(false, false);
+        updateFiltersLayout(false, false);
         super.onPause();
     }
     @Override
@@ -227,6 +236,109 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             }
         });
         bottomRecyclerView.setAdapter(bottomAdapter);
+
+        initMarkerInfoLayout();
+    }
+
+    private void initMarkerInfoLayout() {
+        View infoView = getActivity().getLayoutInflater().inflate(R.layout.item_home, null);
+        MaterialButton btnBook = infoView.findViewById(R.id.item_home_btn_book);
+        MaterialButton btnDetails = infoView.findViewById(R.id.item_home_btn_details);
+        btnBook.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.colorYellow));
+
+        btnBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), BookActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+
+                updateMarkerInfoLayout(false, false);
+            }
+        });
+
+        btnDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+
+                updateMarkerInfoLayout(false, false);
+            }
+        });
+
+        markerInfoLayout.addView(infoView);
+        markerInfoLayout.setVisibility(View.GONE);
+    }
+
+    private void updateMarkerInfoLayout(boolean isShown, boolean animate) {
+        isShownMarkerInfo = isShown;
+        if (isShownMarkerInfo) {
+            if (animate) {
+                markerInfoLayout.setVisibility(View.VISIBLE);
+                markerInfoLayout.setAlpha(0.0f);
+
+                markerInfoLayout.animate()
+                        .alpha(1.0f)
+                        .setDuration(300)
+                        .setListener(null);
+            } else {
+                markerInfoLayout.setVisibility(View.VISIBLE);
+            }
+        } else {
+            if (animate) {
+                markerInfoLayout.setVisibility(View.VISIBLE);
+                markerInfoLayout.setAlpha(1.0f);
+
+                markerInfoLayout.animate()
+                        .alpha(0.0f)
+                        .setDuration(300)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                markerInfoLayout.setVisibility(View.GONE);
+                            }
+                        });
+            } else {
+                markerInfoLayout.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private void updateBottomLayout(boolean isShwon, boolean animate) {
+        isShownBottom = isShwon;
+        if (isShownBottom) {
+            bottomLayout.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.bottom_up));
+            imageArrow.startAnimation(animate(false));
+            bottomBookedLayout.setVisibility(View.VISIBLE);
+        } else {
+            if (animate) {
+                imageArrow.startAnimation(animate(true));
+                bottomBookedLayout.setVisibility(View.GONE);
+            } else {
+                imageArrow.setImageResource(R.drawable.ic_arrow_up_black_24dp);
+                bottomBookedLayout.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private void updateFiltersLayout(boolean isShown, boolean animate) {
+        isShownFilter = isShown;
+        if (isShownFilter) {
+            filterView.setVisibility(View.VISIBLE);
+            filterView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.right_to_left));
+            btnFilters.setText(R.string.close);
+        } else {
+            if (animate) {
+                filterView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.left_to_right));
+                btnFilters.setText(R.string.filters);
+                filterView.setVisibility(View.INVISIBLE);
+            } else {
+                btnFilters.setText(R.string.filters);
+                filterView.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
     private Animation animate(boolean up) {
@@ -236,25 +348,16 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     }
 
     @OnClick(R.id.home_btn_filters)
-    public void onClickFilters(MaterialButton button) {
-        if (isShownFilter) {
-            filterView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.left_to_right));
-            button.setText(R.string.filters);
-            filterView.setVisibility(View.INVISIBLE);
-        } else {
-            filterView.setVisibility(View.VISIBLE);
-            filterView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.right_to_left));
-            button.setText(R.string.close);
-        }
+    public void onClickFilters(View view) {
         isShownFilter = !isShownFilter;
+        updateFiltersLayout(isShownFilter, true);
+        updateBottomLayout(false, false);
+        updateMarkerInfoLayout(false, false);
     }
 
     @OnClick(R.id.home_btn_apply_filters)
     public void onClickApplyFilters(View view) {
-        filterView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.left_to_right));
-        btnFilters.setText(R.string.filters);
-        filterView.setVisibility(View.INVISIBLE);
-        isShownFilter = false;
+        updateFiltersLayout(false, true);
     }
 
     @OnClick(R.id.home_btn_filter_clear)
@@ -273,6 +376,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     @OnClick(R.id.home_btn_toggle)
     public void onClickToggle(View view) {
+        updateFiltersLayout(false, false);
+        updateBottomLayout(false, false);
+        updateMarkerInfoLayout(false, false);
         if (isShownList) {
             getChildFragmentManager().popBackStack();
             isShownList = false;
@@ -314,15 +420,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     @OnClick(R.id.home_btn_bottom_arrow)
     public void onClickDownArrow(View view) {
-        if (isShownBottom) {
-            imageArrow.startAnimation(animate(true));
-            bottomBookedLayout.setVisibility(View.GONE);
-        } else {
-            bottomLayout.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.bottom_up));
-            imageArrow.startAnimation(animate(false));
-            bottomBookedLayout.setVisibility(View.VISIBLE);
-        }
         isShownBottom = !isShownBottom;
+        updateBottomLayout(isShownBottom, true);
+        updateMarkerInfoLayout(false, false);
+        updateFiltersLayout(false, false);
     }
 
     @Override
@@ -344,8 +445,19 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Toast.makeText(getContext(), String.format("Location %f : %f", marker.getPosition().latitude, marker.getPosition().longitude), Toast.LENGTH_SHORT).show();
+                updateMarkerInfoLayout(true, true);
+                updateBottomLayout(false, false);
+                updateFiltersLayout(false, false);
                 return true;
+            }
+        });
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                updateMarkerInfoLayout(false, false);
+                updateBottomLayout(false, false);
+                updateFiltersLayout(false, false);
             }
         });
     }

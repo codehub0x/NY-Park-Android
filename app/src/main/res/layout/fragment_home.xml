@@ -201,6 +201,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_layout_top"/>
 
+    <LinearLayout
+        android:id="@+id/home_marker_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:layout_marginEnd="@dimen/margin_8dp"
+        android:layout_marginBottom="@dimen/margin_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <FrameLayout
         android:id="@+id/home_fragment_container"
         android:layout_width="match_parent"
@@ -385,7 +396,6 @@
 
         </LinearLayout>
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/home_layout_bottom"
