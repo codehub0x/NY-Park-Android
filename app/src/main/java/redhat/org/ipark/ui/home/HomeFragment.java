@@ -2,7 +2,10 @@ package redhat.org.ipark.ui.home;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.location.Location;
+import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +18,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,8 +36,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
@@ -79,10 +86,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
     private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
-    private static final int DEFAULT_ZOOM = 13;
+    private static final int DEFAULT_ZOOM = 15;
     private boolean mLocationPermissionGranted;
-    // Used for selecting the current place.
-    private static final int M_MAX_ENTRIES = 5;
 
     // The geographical location where the device is currently located. That is, the last-known
     // location retrieved by the Fused Location Provider.
@@ -323,32 +328,26 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         // Prompt the user for permission.
         getLocationPermission();
-
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI();
-
         // Get the current location of the device and set the position of the map.
         getDeviceLocation();
 
-//        LatLng ny = new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
-//
-//        MarkerOptions markerOptions = new MarkerOptions();
-//        markerOptions.position(ny);
-//        markerOptions.title("You are here");
-//        mMap.addMarker(markerOptions);
-//
-//        mMap.animateCamera(CameraUpdateFactory.newLatLng(ny));
-//
-//        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-//            @Override
-//            public boolean onMarkerClick(Marker marker) {
-//                marker.showInfoWindow();
-//                return true;
-//            }
-//        });
+        addMarker(mDefaultLocation, "$35");
+        addMarker(new LatLng(41.8057, 123.4315), "$14");
+        addMarker(new LatLng(41.8156, 123.4014), "$25");
+        addMarker(new LatLng(41.8355, 123.4213), "$30");
+        addMarker(new LatLng(41.8254, 123.4412), "$15");
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Toast.makeText(getContext(), String.format("Location %f : %f", marker.getPosition().latitude, marker.getPosition().longitude), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
     }
 
     private void getLocationPermission() {
@@ -387,6 +386,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             if (mLocationPermissionGranted) {
                 mMap.setMyLocationEnabled(true);
                 mMap.setIndoorEnabled(true);
+                mMap.setMinZoomPreference(10);
 
                 UiSettings uiSettings = mMap.getUiSettings();
                 uiSettings.setIndoorLevelPickerEnabled(true);
@@ -425,6 +425,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(mLastKnownLocation.getLatitude(),
                                             mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());
@@ -438,5 +439,27 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         } catch (SecurityException e) {
             Log.e("Exception: %s", e.getMessage());
         }
+    }
+
+    private void addMarker(LatLng ly, String text) {
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(ly);
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(createMapMarker(text)));
+        mMap.addMarker(markerOptions);
+    }
+
+    private Bitmap createMapMarker(String text) {
+        View markerLayout = getActivity().getLayoutInflater().inflate(R.layout.marker_layout, null);
+        TextView markerText = markerLayout.findViewById(R.id.marker_image_text);
+        markerText.setText(text);
+
+        markerLayout.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        markerLayout.layout(0, 0, markerLayout.getMeasuredWidth(), markerLayout.getMeasuredHeight());
+
+        final Bitmap bitmap = Bitmap.createBitmap(markerLayout.getMeasuredWidth(), markerLayout.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        markerLayout.draw(canvas);
+
+        return bitmap;
     }
 }
