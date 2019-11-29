@@ -5,9 +5,15 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -55,6 +61,36 @@ public class LoginActivity extends AppCompatActivity implements KeyboardVisibili
     private void initialize() {
         btnSignin.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
         btnRegister.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorYellow));
+
+        editEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    editEmail.setError(null);
+                } else {
+                    String email = editEmail.getText().toString().trim();
+                    if (email.isEmpty()) {
+                        editEmail.setError(getString(R.string.error_empty_email));
+                    } else if (!Utils.isValidEmail(email)) {
+                        editEmail.setError(getString(R.string.error_invalid_email));
+                    }
+                }
+            }
+        });
+
+        editPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    editPassword.setError(null);
+                } else {
+                    String password = editPassword.getText().toString().trim();
+                    if (password.isEmpty()) {
+                        editPassword.setError(getString(R.string.error_empty_password));
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -74,12 +110,37 @@ public class LoginActivity extends AppCompatActivity implements KeyboardVisibili
 
     @OnClick(R.id.login_btn_signin)
     public void onClickSignin(View view) {
-        ((MyApplication) this.getApplication()).setLoggedIn(true);
-        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-        finish();
+        boolean valid = true;
+        String email = editEmail.getText().toString().trim();
+        String password = editPassword.getText().toString().trim();
+
+        if (email.isEmpty()) {
+            editEmail.setError(getString(R.string.error_empty_email));
+            valid = false;
+            editEmail.requestFocus();
+        } else if (!Utils.isValidEmail(email)) {
+            editEmail.setError(getString(R.string.error_invalid_email));
+            valid = false;
+            editEmail.requestFocus();
+        }
+
+        if (password.isEmpty()) {
+            editPassword.setError(getString(R.string.error_empty_password));
+            if (valid) {
+                editPassword.requestFocus();
+            }
+            valid = false;
+        }
+
+        if (valid) {
+            ((MyApplication) this.getApplication()).setLoggedIn(true);
+            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+            finish();
+        }
+
     }
 
     @OnClick(R.id.login_text_forgot_password)

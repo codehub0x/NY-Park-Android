@@ -38,6 +38,7 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTouch;
+import redhat.org.ipark.extras.PhoneTextFormatter;
 import redhat.org.ipark.extras.Utils;
 
 public class AccountActivity extends AppCompatActivity {
@@ -77,6 +78,8 @@ public class AccountActivity extends AppCompatActivity {
         // don't call this line if you want to choose multiple images in the same activity
         // call this once the bitmap(s) usage is over
         ImagePickerActivity.clearCache(this);
+
+        editPhone.addTextChangedListener(new PhoneTextFormatter(editPhone, "###-###-####"));
     }
 
     @Override

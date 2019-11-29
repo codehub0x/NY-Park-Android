@@ -2,6 +2,8 @@ package redhat.org.ipark.extras;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
@@ -50,5 +52,13 @@ public class Utils {
         if (isKeyboardUp) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    public static boolean isValidEmail(String email) {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    public static boolean isValidPhoneNumber(String phoneNumber) {
+        return !TextUtils.isEmpty(phoneNumber) && android.util.Patterns.PHONE.matcher(phoneNumber).matches();
     }
 }

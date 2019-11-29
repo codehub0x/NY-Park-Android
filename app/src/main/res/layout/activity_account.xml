@@ -118,6 +118,7 @@
                         android:fontFamily="@font/lato_regular"
                         android:maxLines="1"
                         android:inputType="phone"
+                        android:digits="0123456789+"
                         android:nextFocusDown="@+id/account_edit_password"
                         android:imeOptions="actionNext"/>
 

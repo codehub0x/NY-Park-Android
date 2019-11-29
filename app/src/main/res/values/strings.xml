@@ -57,6 +57,14 @@
     <string name="error_empty_start_time">Start time is required.</string>
     <string name="error_empty_end_time">End time is required.</string>
     <string name="error_empty_start_parking_on">Start parking on is required.</string>
+    <string name="error_empty_email">Email is required.</string>
+    <string name="error_invalid_email">Email is invalid.</string>
+    <string name="error_empty_phone">Phone number is required.</string>
+    <string name="error_invalid_phone">Phone number is invalid.</string>
+    <string name="error_empty_full_name">Full name is required.</string>
+    <string name="error_empty_password">Password is required.</string>
+    <string name="error_empty_repeat_password">Repeat password is required.</string>
+    <string name="error_mismatch_password">The specified password do not match.</string>
     <string name="go_to_settings">GOTO SETTINGS</string>
     <string name="faq">Frequently Asked Questions</string>
     <string name="faq1">FAQ</string>
