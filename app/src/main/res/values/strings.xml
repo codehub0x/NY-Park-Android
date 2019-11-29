@@ -53,6 +53,10 @@
     <string name="email_us">Email Us</string>
     <string name="enter_time">Enter Time</string>
     <string name="exit_time">Exit Time</string>
+    <string name="error_empty_address">Address is required.</string>
+    <string name="error_empty_start_time">Start time is required.</string>
+    <string name="error_empty_end_time">End time is required.</string>
+    <string name="error_empty_start_parking_on">Start parking on is required.</string>
     <string name="go_to_settings">GOTO SETTINGS</string>
     <string name="faq">Frequently Asked Questions</string>
     <string name="faq1">FAQ</string>

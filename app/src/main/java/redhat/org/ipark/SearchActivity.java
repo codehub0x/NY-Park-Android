@@ -1,7 +1,6 @@
 package redhat.org.ipark;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.TypeFilter;
@@ -38,6 +38,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
 import redhat.org.ipark.extras.Utils;
+import redhat.org.ipark.models.SearchResult;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -45,6 +46,10 @@ public class SearchActivity extends AppCompatActivity {
 
     public enum DateType {
         StartTime, EndTime, StartParkingOn
+    }
+
+    enum SearchType {
+        Daily, Monthly
     }
 
     static final String DATETIME_FORMAT = "EEE, MMM dd h:mm a";
@@ -55,7 +60,10 @@ public class SearchActivity extends AppCompatActivity {
     private final int MONTHLY_ADDRESS_REQUEST_CODE = 102;
 
     private DateType selectedDateType;
+    private SearchType searchType = SearchType.Daily;
 
+    private Place placeDaily;
+    private Place placeMonthly;
     private Date dateStartTime;
     private Date dateEndTime;
     private Date dateStartParkingOn;
@@ -131,8 +139,12 @@ public class SearchActivity extends AppCompatActivity {
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId() + ", " + place.getAddress());
                 if (requestCode == DAILY_ADDRESS_REQUEST_CODE) {
                     editAddress.setText(place.getAddress());
+                    editAddress.setError(null);
+                    placeDaily = place;
                 } else {
                     editAddressMonthly.setText(place.getAddress());
+                    editAddressMonthly.setError(null);
+                    placeMonthly = place;
                 }
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 // TODO: Handle the error.
@@ -151,9 +163,11 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 0) {
+                    searchType = SearchType.Daily;
                     layoutDaily.setVisibility(View.VISIBLE);
                     layoutMonthly.setVisibility(View.GONE);
                 } else {
+                    searchType = SearchType.Monthly;
                     layoutMonthly.setVisibility(View.VISIBLE);
                     layoutDaily.setVisibility(View.GONE);
                 }
@@ -201,23 +215,69 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.search_edit_start_time)
-    public void onClickStartTime(TextInputEditText editText) {
-        showDateTimePicker(DateType.StartTime, editText);
+    public void onClickStartTime(View view) {
+        showDateTimePicker(DateType.StartTime, view);
     }
 
     @OnClick(R.id.search_edit_end_time)
-    public void onClickEndTime(TextInputEditText editText) {
-        showDateTimePicker(DateType.EndTime, editText);
+    public void onClickEndTime(View view) {
+        showDateTimePicker(DateType.EndTime, view);
     }
 
     @OnClick(R.id.search_edit_start_parking)
-    public void onClickStartParkingOn(TextInputEditText editText) {
-        showDateTimePicker(DateType.StartParkingOn, editText);
+    public void onClickStartParkingOn(View view) {
+        showDateTimePicker(DateType.StartParkingOn, view);
     }
 
     @OnClick(R.id.search_btn_search)
     public void onClickSearch(View view) {
 
+        boolean valid = true;
+
+        if (searchType == SearchType.Daily) {
+            if (placeDaily == null) {
+                editAddress.setError(getString(R.string.error_empty_address));
+                valid = false;
+            }
+
+            if (dateStartTime == null) {
+                editStartTime.setError(getString(R.string.error_empty_start_time));
+                valid = false;
+            }
+
+            if (dateEndTime == null) {
+                editEndTime.setError(getString(R.string.error_empty_end_time));
+                valid = false;
+            }
+
+            if (valid) {
+                Intent intent = new Intent();
+                SearchResult result = new SearchResult(0, placeDaily.getLatLng(), dateStartTime.toString(), dateEndTime.toString());
+                intent.putExtra("searchResult", result);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+                overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+            }
+        } else {
+            if (placeMonthly == null) {
+                editAddressMonthly.setError(getString(R.string.error_empty_address));
+                valid = false;
+            }
+
+            if (dateStartParkingOn == null) {
+                editStartParking.setError(getString(R.string.error_empty_start_parking_on));
+                valid = false;
+            }
+
+            if (valid) {
+                Intent intent = new Intent();
+                SearchResult result = new SearchResult(1, placeMonthly.getLatLng(), dateStartParkingOn.toString());
+                intent.putExtra("searchResult", result);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+                overridePendingTransition(R.anim.nothing, R.anim.bottom_down);
+            }
+        }
     }
 
     @OnTouch(R.id.search_scrollView)
@@ -228,8 +288,8 @@ public class SearchActivity extends AppCompatActivity {
         return false;
     }
 
-    private void showDateTimePicker(DateType dateType, TextInputEditText editText) {
-        Utils.hideKeyboard(this, editText);
+    private void showDateTimePicker(DateType dateType, View view) {
+        Utils.hideKeyboard(this, view);
         selectedDateType = dateType;
 
         Date minDate = Calendar.getInstance().getTime();
@@ -285,8 +345,8 @@ public class SearchActivity extends AppCompatActivity {
                         @Override
                         public void onDateSelected(Date date) {
                             dateStartParkingOn = date;
-                            editText.setText(getStringFromDate(date, DATE_FORMAT));
-
+                            editStartParking.setText(getStringFromDate(date, DATE_FORMAT));
+                            editStartParking.setError(null);
                         }
                     }).display();
         } else {
@@ -308,12 +368,15 @@ public class SearchActivity extends AppCompatActivity {
                             switch (selectedDateType) {
                                 case StartTime:
                                     dateStartTime = date;
+                                    editStartTime.setText(getStringFromDate(date, DATETIME_FORMAT));
+                                    editStartTime.setError(null);
                                     break;
                                 case EndTime:
                                     dateEndTime = date;
+                                    editEndTime.setText(getStringFromDate(date, DATETIME_FORMAT));
+                                    editEndTime.setError(null);
                                     break;
                             }
-                            editText.setText(getStringFromDate(date, DATETIME_FORMAT));
 
                         }
                     }).display();

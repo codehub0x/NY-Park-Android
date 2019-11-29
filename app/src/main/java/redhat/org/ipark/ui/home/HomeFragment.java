@@ -3,6 +3,7 @@ package redhat.org.ipark.ui.home;
 import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -58,6 +59,7 @@ import redhat.org.ipark.R;
 import redhat.org.ipark.SavedActivity;
 import redhat.org.ipark.SearchActivity;
 import redhat.org.ipark.adapters.HomeBottomAdapter;
+import redhat.org.ipark.models.SearchResult;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
@@ -400,14 +402,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     @OnClick(R.id.home_btn_search)
     public void onClickSearch(View view) {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
-        getActivity().startActivityForResult(intent, SEARCH_REQUEST_CODE);
+        startActivityForResult(intent, SEARCH_REQUEST_CODE);
         getActivity().overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
     @OnClick(R.id.home_layout_timer)
     public void onClickTimer(View view) {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
-        getActivity().startActivityForResult(intent, SEARCH_REQUEST_CODE);
+        startActivityForResult(intent, SEARCH_REQUEST_CODE);
         getActivity().overridePendingTransition(R.anim.bottom_up, R.anim.nothing);
     }
 
@@ -485,6 +487,20 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 break;
         }
         updateLocationUI();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SEARCH_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                SearchResult searchResult = data.getParcelableExtra("searchResult");
+
+                int type = searchResult.getType(); // 0: daily search, 1: monthly search
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                        new LatLng(searchResult.getLatitude(), searchResult.getLongitude()),
+                        DEFAULT_ZOOM));
+            }
+        }
     }
 
     /**
