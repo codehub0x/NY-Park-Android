@@ -63,6 +63,50 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
         btnCreate.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorYellow));
 
         textTerms.setPaintFlags(textTerms.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        editFullName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    editFullName.setError(null);
+                } else {
+                    String fullName = editFullName.getText().toString().trim();
+                    if (fullName.isEmpty()) {
+                        editFullName.setError(getString(R.string.error_empty_full_name));
+                    }
+                }
+            }
+        });
+
+        editEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    editEmail.setError(null);
+                } else {
+                    String email = editEmail.getText().toString().trim();
+                    if (email.isEmpty()) {
+                        editEmail.setError(getString(R.string.error_empty_email));
+                    } else if (!Utils.isValidEmail(email)) {
+                        editEmail.setError(getString(R.string.error_invalid_email));
+                    }
+                }
+            }
+        });
+
+        editPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    editPassword.setError(null);
+                } else {
+                    String password = editPassword.getText().toString().trim();
+                    if (password.isEmpty()) {
+                        editPassword.setError(getString(R.string.error_empty_password));
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -82,12 +126,48 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
 
     @OnClick(R.id.signup_btn_create)
     public void onClickCreate(View view) {
-        ((MyApplication) this.getApplication()).setLoggedIn(true);
-        Intent intent = new Intent(SignupActivity.this, MenuActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
-        finish();
+        boolean valid = true;
+        String fullName = editFullName.getText().toString().trim();
+        String email = editEmail.getText().toString().trim();
+        String password = editPassword.getText().toString().trim();
+
+        if (fullName.isEmpty()) {
+            editFullName.setError(getString(R.string.error_empty_full_name));
+            valid = false;
+            editFullName.requestFocus();
+        }
+
+        if (email.isEmpty()) {
+            editEmail.setError(getString(R.string.error_empty_email));
+            if (valid) {
+                editEmail.requestFocus();
+            }
+            valid = false;
+        } else if (!Utils.isValidEmail(email)) {
+            editEmail.setError(getString(R.string.error_invalid_email));
+            if (valid) {
+                editEmail.requestFocus();
+            }
+            valid = false;
+        }
+
+        if (password.isEmpty()) {
+            editPassword.setError(getString(R.string.error_empty_password));
+            if (valid) {
+                editPassword.requestFocus();
+            }
+            valid = false;
+        }
+
+        if (valid) {
+            ((MyApplication) this.getApplication()).setLoggedIn(true);
+            Intent intent = new Intent(SignupActivity.this, MenuActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
+            finish();
+        }
+
     }
 
     @OnClick(R.id.signup_btn_login)
