@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,10 +27,16 @@ import redhat.org.ipark.extras.Utils;
 
 public class SignupActivity extends AppCompatActivity implements KeyboardVisibilityListener {
 
+    @BindView(R.id.signup_inputLayout_fullname)
+    TextInputLayout inputLayoutFullName;
     @BindView(R.id.signup_edit_fullname)
     TextInputEditText editFullName;
+    @BindView(R.id.signup_inputLayout_email)
+    TextInputLayout inputLayoutEmail;
     @BindView(R.id.signup_edit_email)
     TextInputEditText editEmail;
+    @BindView(R.id.signup_inputLayout_password)
+    TextInputLayout inputLayoutPassword;
     @BindView(R.id.signup_edit_password)
     TextInputEditText editPassword;
     @BindView(R.id.signup_btn_create)
@@ -68,11 +75,13 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    editFullName.setError(null);
+                    inputLayoutFullName.setError(null);
                 } else {
                     String fullName = editFullName.getText().toString().trim();
                     if (fullName.isEmpty()) {
-                        editFullName.setError(getString(R.string.error_empty_full_name));
+                        inputLayoutFullName.setError(getString(R.string.error_empty_full_name));
+                    } else {
+                        inputLayoutFullName.setError(null);
                     }
                 }
             }
@@ -82,13 +91,15 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    editEmail.setError(null);
+                    inputLayoutEmail.setError(null);
                 } else {
                     String email = editEmail.getText().toString().trim();
                     if (email.isEmpty()) {
-                        editEmail.setError(getString(R.string.error_empty_email));
+                        inputLayoutEmail.setError(getString(R.string.error_empty_email));
                     } else if (!Utils.isValidEmail(email)) {
-                        editEmail.setError(getString(R.string.error_invalid_email));
+                        inputLayoutEmail.setError(getString(R.string.error_invalid_email));
+                    } else {
+                        inputLayoutEmail.setError(null);
                     }
                 }
             }
@@ -98,11 +109,13 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    editPassword.setError(null);
+                    inputLayoutPassword.setError(null);
                 } else {
                     String password = editPassword.getText().toString().trim();
                     if (password.isEmpty()) {
-                        editPassword.setError(getString(R.string.error_empty_password));
+                        inputLayoutPassword.setError(getString(R.string.error_empty_password));
+                    } else {
+                        inputLayoutPassword.setError(null);
                     }
                 }
             }
@@ -132,31 +145,37 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
         String password = editPassword.getText().toString().trim();
 
         if (fullName.isEmpty()) {
-            editFullName.setError(getString(R.string.error_empty_full_name));
             valid = false;
             editFullName.requestFocus();
+            inputLayoutFullName.setError(getString(R.string.error_empty_full_name));
+        } else {
+            inputLayoutFullName.setError(null);
         }
 
         if (email.isEmpty()) {
-            editEmail.setError(getString(R.string.error_empty_email));
             if (valid) {
                 editEmail.requestFocus();
             }
             valid = false;
+            inputLayoutEmail.setError(getString(R.string.error_empty_email));
         } else if (!Utils.isValidEmail(email)) {
-            editEmail.setError(getString(R.string.error_invalid_email));
             if (valid) {
                 editEmail.requestFocus();
             }
             valid = false;
+            inputLayoutEmail.setError(getString(R.string.error_invalid_email));
+        } else {
+            inputLayoutEmail.setError(null);
         }
 
         if (password.isEmpty()) {
-            editPassword.setError(getString(R.string.error_empty_password));
             if (valid) {
                 editPassword.requestFocus();
             }
             valid = false;
+            inputLayoutPassword.setError(getString(R.string.error_empty_password));
+        } else {
+            inputLayoutPassword.setError(null);
         }
 
         if (valid) {

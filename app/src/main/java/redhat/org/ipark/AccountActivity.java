@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -48,14 +49,24 @@ public class AccountActivity extends AppCompatActivity {
 
     @BindView(R.id.account_image_avatar)
     RoundedImageView imageAvatar;
+    @BindView(R.id.account_inputLayout_fullname)
+    TextInputLayout inputLayoutFullName;
     @BindView(R.id.account_edit_fullname)
     TextInputEditText editFullName;
+    @BindView(R.id.account_inputLayout_email)
+    TextInputLayout inputLayoutEmail;
     @BindView(R.id.account_edit_email)
     TextInputEditText editEmail;
+    @BindView(R.id.account_inputLayout_phone)
+    TextInputLayout inputLayoutPhone;
     @BindView(R.id.account_edit_phone)
     TextInputEditText editPhone;
+    @BindView(R.id.account_inputLayout_password)
+    TextInputLayout inputLayoutPassword;
     @BindView(R.id.account_edit_password)
     TextInputEditText editPassword;
+    @BindView(R.id.account_inputLayout_repeat_password)
+    TextInputLayout inputLayoutRepeatPassword;
     @BindView(R.id.account_edit_repeat_password)
     TextInputEditText editRepeatPassword;
     @BindView(R.id.account_btn_save)
@@ -79,7 +90,7 @@ public class AccountActivity extends AppCompatActivity {
         // call this once the bitmap(s) usage is over
         ImagePickerActivity.clearCache(this);
 
-        editPhone.addTextChangedListener(new PhoneTextFormatter(editPhone, "###-###-####"));
+        initialize();
     }
 
     @Override
@@ -93,6 +104,96 @@ public class AccountActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+    }
+
+    private void initialize() {
+        editFullName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    inputLayoutFullName.setError(null);
+                } else {
+                    String fullName = editFullName.getText().toString().trim();
+                    if (fullName.isEmpty()) {
+                        inputLayoutFullName.setError(getString(R.string.error_empty_full_name));
+                    } else {
+                        inputLayoutFullName.setError(null);
+                    }
+                }
+            }
+        });
+
+        editEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    inputLayoutEmail.setError(null);
+                } else {
+                    String email = editEmail.getText().toString().trim();
+                    if (email.isEmpty()) {
+                        inputLayoutEmail.setError(getString(R.string.error_empty_email));
+                    } else if (!Utils.isValidEmail(email)) {
+                        inputLayoutEmail.setError(getString(R.string.error_invalid_email));
+                    } else {
+                        inputLayoutEmail.setError(null);
+                    }
+                }
+            }
+        });
+
+        editPhone.addTextChangedListener(new PhoneTextFormatter(editPhone, "###-###-####"));
+        editPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    inputLayoutPhone.setError(null);
+                } else {
+                    String phone = editPhone.getText().toString().trim();
+                    if (phone.isEmpty()) {
+                        inputLayoutPhone.setError(getString(R.string.error_empty_phone));
+                    } else if (!Utils.isValidPhoneNumber(phone)) {
+                        inputLayoutPhone.setError(getString(R.string.error_invalid_phone));
+                    } else {
+                        inputLayoutPhone.setError(null);
+                    }
+                }
+            }
+        });
+
+        editPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    inputLayoutPassword.setError(null);
+                } else {
+                    String password = editPassword.getText().toString().trim();
+                    if (password.isEmpty()) {
+                        inputLayoutPassword.setError(getString(R.string.error_empty_password));
+                    } else {
+                        inputLayoutPassword.setError(null);
+                    }
+                }
+            }
+        });
+
+        editRepeatPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    inputLayoutRepeatPassword.setError(null);
+                } else {
+                    String password = editPassword.getText().toString();
+                    String repeatPassword = editRepeatPassword.getText().toString();
+                    if (repeatPassword.isEmpty()) {
+                        inputLayoutRepeatPassword.setError(getString(R.string.error_empty_repeat_password));
+                    } else if (!password.equals(repeatPassword)) {
+                        inputLayoutRepeatPassword.setError(getString(R.string.error_mismatch_password));
+                    } else {
+                        inputLayoutRepeatPassword.setError(null);
+                    }
+                }
+            }
+        });
     }
 
     private void loadProfile(String url) {
@@ -111,7 +212,81 @@ public class AccountActivity extends AppCompatActivity {
 
     @OnClick(R.id.account_btn_save)
     void onClickSave(View view) {
+        boolean valid = true;
 
+        String fullName = editFullName.getText().toString().trim();
+        if (fullName.isEmpty()) {
+            editFullName.requestFocus();
+            valid = false;
+            inputLayoutFullName.setError(getString(R.string.error_empty_full_name));
+        }
+
+        String email = editEmail.getText().toString().trim();
+        if (email.isEmpty()) {
+            if (valid) {
+                editEmail.requestFocus();
+            }
+            valid = false;
+            inputLayoutEmail.setError(getString(R.string.error_empty_email));
+        } else if (!Utils.isValidEmail(email)) {
+            if (valid) {
+                editEmail.requestFocus();
+            }
+            valid = false;
+            inputLayoutEmail.setError(getString(R.string.error_invalid_email));
+        } else {
+            inputLayoutEmail.setError(null);
+        }
+
+        String phone = editPhone.getText().toString().trim();
+        if (phone.isEmpty()) {
+            if (valid) {
+                editPhone.requestFocus();
+            }
+            valid = false;
+            inputLayoutPhone.setError(getString(R.string.error_empty_phone));
+        } else if (!Utils.isValidPhoneNumber(phone)) {
+            if (valid) {
+                editPhone.requestFocus();
+            }
+            valid = false;
+            inputLayoutPhone.setError(getString(R.string.error_invalid_phone));
+        } else {
+            inputLayoutPhone.setError(null);
+        }
+
+        String password = editPassword.getText().toString();
+        if (password.isEmpty()) {
+            if (valid) {
+                editPassword.requestFocus();
+            }
+            valid = false;
+            inputLayoutPassword.setError(getString(R.string.error_empty_password));
+        } else {
+            inputLayoutPassword.setError(null);
+        }
+
+        String repeatPassword = editRepeatPassword.getText().toString();
+        if (repeatPassword.isEmpty()) {
+            if (valid) {
+                editRepeatPassword.requestFocus();
+            }
+            valid = false;
+            inputLayoutRepeatPassword.setError(getString(R.string.error_empty_repeat_password));
+        } else if (!password.equals(repeatPassword)) {
+            if (valid) {
+                editRepeatPassword.requestFocus();
+            }
+            valid = false;
+            inputLayoutRepeatPassword.setError(getString(R.string.error_mismatch_password));
+        } else {
+            inputLayoutRepeatPassword.setError(null);
+        }
+
+        if (valid) {
+            finish();
+            overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
+        }
     }
 
     @OnClick(R.id.account_layout_payment)

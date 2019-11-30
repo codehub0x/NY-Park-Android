@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +31,10 @@ import redhat.org.ipark.extras.Utils;
 
 public class LoginActivity extends AppCompatActivity implements KeyboardVisibilityListener {
 
+    @BindView(R.id.login_inputLayout_email)
+    TextInputLayout inputLayoutEmail;
+    @BindView(R.id.login_inputLayout_password)
+    TextInputLayout inputLayoutPassword;
     @BindView(R.id.login_edit_email)
     TextInputEditText editEmail;
     @BindView(R.id.login_edit_password)
@@ -66,13 +71,15 @@ public class LoginActivity extends AppCompatActivity implements KeyboardVisibili
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    editEmail.setError(null);
+                    inputLayoutEmail.setError(null);
                 } else {
                     String email = editEmail.getText().toString().trim();
                     if (email.isEmpty()) {
-                        editEmail.setError(getString(R.string.error_empty_email));
+                        inputLayoutEmail.setError(getString(R.string.error_empty_email));
                     } else if (!Utils.isValidEmail(email)) {
-                        editEmail.setError(getString(R.string.error_invalid_email));
+                        inputLayoutEmail.setError(getString(R.string.error_invalid_email));
+                    } else {
+                        inputLayoutEmail.setError(null);
                     }
                 }
             }
@@ -82,11 +89,13 @@ public class LoginActivity extends AppCompatActivity implements KeyboardVisibili
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    editPassword.setError(null);
+                    inputLayoutPassword.setError(null);
                 } else {
                     String password = editPassword.getText().toString().trim();
                     if (password.isEmpty()) {
-                        editPassword.setError(getString(R.string.error_empty_password));
+                        inputLayoutPassword.setError(getString(R.string.error_empty_password));
+                    } else {
+                        inputLayoutPassword.setError(null);
                     }
                 }
             }
@@ -115,21 +124,25 @@ public class LoginActivity extends AppCompatActivity implements KeyboardVisibili
         String password = editPassword.getText().toString().trim();
 
         if (email.isEmpty()) {
-            editEmail.setError(getString(R.string.error_empty_email));
-            valid = false;
             editEmail.requestFocus();
+            inputLayoutEmail.setError(getString(R.string.error_empty_email));
+            valid = false;
         } else if (!Utils.isValidEmail(email)) {
-            editEmail.setError(getString(R.string.error_invalid_email));
-            valid = false;
             editEmail.requestFocus();
+            inputLayoutEmail.setError(getString(R.string.error_invalid_email));
+            valid = false;
+        } else {
+            inputLayoutEmail.setError(null);
         }
 
         if (password.isEmpty()) {
-            editPassword.setError(getString(R.string.error_empty_password));
             if (valid) {
                 editPassword.requestFocus();
             }
             valid = false;
+            inputLayoutPassword.setError(getString(R.string.error_empty_password));
+        } else {
+            inputLayoutPassword.setError(null);
         }
 
         if (valid) {

@@ -61,11 +61,13 @@
                     android:layout_marginTop="@dimen/margin_32dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/account_inputLayout_fullname"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/full_name"
-                    android:layout_marginTop="@dimen/margin_12dp">
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/account_edit_fullname"
@@ -82,11 +84,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/account_inputLayout_email"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/email"
-                    android:layout_marginTop="@dimen/margin_12dp">
+                    android:layout_marginTop="@dimen/margin_4dp"
+                    app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/account_edit_email"
@@ -103,11 +107,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/account_inputLayout_phone"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/phone"
-                    android:layout_marginTop="@dimen/margin_12dp">
+                    android:layout_marginTop="@dimen/margin_4dp"
+                    app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/account_edit_phone"
@@ -125,11 +131,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/account_inputLayout_password"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/password"
-                    android:layout_marginTop="@dimen/margin_12dp">
+                    android:layout_marginTop="@dimen/margin_4dp"
+                    app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/account_edit_password"
@@ -146,11 +154,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/account_inputLayout_repeat_password"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/repeat_password"
-                    android:layout_marginTop="@dimen/margin_12dp">
+                    android:layout_marginTop="@dimen/margin_4dp"
+                    app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/account_edit_repeat_password"
@@ -175,7 +185,7 @@
                     android:textSize="@dimen/text_size_18sp"
                     android:fontFamily="@font/lato_black"
                     android:letterSpacing="0"
-                    android:layout_marginTop="@dimen/margin_24dp"
+                    android:layout_marginTop="@dimen/margin_8dp"
                     android:backgroundTint="@color/colorYellow"/>
 
             </LinearLayout>
