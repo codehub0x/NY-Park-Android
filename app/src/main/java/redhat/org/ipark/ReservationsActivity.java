@@ -1,12 +1,14 @@
 package redhat.org.ipark;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.tabs.TabLayout;
 
 import butterknife.BindView;
@@ -63,7 +65,10 @@ public class ReservationsActivity extends AppCompatActivity {
         adapter = new ReservationsAdapter(this, new ReservationsAdapter.ClickListener() {
             @Override
             public void onDirectionsClicked(int position) {
-
+                LatLng destLatlng = new LatLng(41.8057, 123.4315);
+                String urlStr = "http://maps.google.com/maps?daddr=" + destLatlng.latitude + "," + destLatlng.longitude;
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlStr));
+                startActivity(browserIntent);
             }
 
             @Override

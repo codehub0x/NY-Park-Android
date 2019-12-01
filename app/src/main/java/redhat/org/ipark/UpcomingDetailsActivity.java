@@ -1,5 +1,7 @@
 package redhat.org.ipark;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.button.MaterialButton;
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator;
 
@@ -148,7 +151,10 @@ public class UpcomingDetailsActivity extends AppCompatActivity {
 
     @OnClick(R.id.upcoming_btn_directions)
     public void onClickDirections(View view) {
-
+        LatLng destLatlng = new LatLng(41.8057, 123.4315);
+        String urlStr = "http://maps.google.com/maps?daddr=" + destLatlng.latitude + "," + destLatlng.longitude;
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlStr));
+        startActivity(browserIntent);
     }
 
     @OnClick(R.id.upcoming_btn_cancel_reservation)
