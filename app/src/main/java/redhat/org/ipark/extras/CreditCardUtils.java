@@ -47,17 +47,46 @@ public class CreditCardUtils {
     }
 
     public static boolean isValidCard(String cardNumber) {
-        cardNumber = cardNumber.replaceAll("\\D+","");
-        if (!TextUtils.isEmpty(cardNumber) && cardNumber.length() >= 4)
-            if (getCardType(cardNumber) == AMEX && cardNumber.length() == 15)
-                return true;
+        try {
+            cardNumber = cardNumber.replaceAll("\\D+","");
+            if (!TextUtils.isEmpty(cardNumber) && cardNumber.length() >= 4)
+                if (getCardType(cardNumber) == AMEX && cardNumber.length() == 15) {
+                    int originalCheckDigit = Integer.parseInt(cardNumber.substring(cardNumber.length() - 1));
+                    StringBuffer buffer = new StringBuffer(cardNumber.substring(0, cardNumber.length() - 1));
+                    String characters = buffer.reverse().toString();
+
+                    int digitSum = 0;
+                    for (int idx = 0; idx < characters.length(); idx ++) {
+                        int value = Integer.parseInt(characters.substring(idx, idx + 1));
+                        if (idx % 2 == 0) {
+                            int product = value * 2;
+                            if (product > 9) {
+                                product = product - 9;
+                            }
+
+                            digitSum += product;
+                        } else {
+                            digitSum += value;
+                        }
+                    }
+
+                    digitSum = digitSum * 9;
+                    int computedCheckDigit = digitSum % 10;
+
+                    boolean valid = originalCheckDigit == computedCheckDigit;
+                    return valid;
+                }
 //            if (getCardType(cardNumber) == VISA && ((cardNumber.length() == 13 || cardNumber.length() == 16)))
 //                return true;
 //            else if (getCardType(cardNumber) == MASTERCARD && cardNumber.length() == 16)
 //                return true;
 //            else if (getCardType(cardNumber) == DISCOVER && cardNumber.length() == 16)
 //                return true;
-        return false;
+            return false;
+        } catch (Exception e) {
+            Log.d("isValidCard exception: ", e.getLocalizedMessage());
+            return false;
+        }
     }
 
     public static String formattedExpDate(String expDate) {
