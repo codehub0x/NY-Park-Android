@@ -10,6 +10,10 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.mukesh.countrypicker.Country;
+import com.mukesh.countrypicker.CountryPicker;
+import com.mukesh.countrypicker.OnCountryPickerListener;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -146,12 +150,27 @@ public class BillingActivity extends AppCompatActivity {
 
 
     // CVV text change listener
-    @OnTextChanged(value = R.id.billing_edit_cvv)
+    @OnTextChanged(R.id.billing_edit_cvv)
     void cvvTextChange() {
         String str = editCVV.getText().toString();
         if (str.length() == 3) {
             editCity.requestFocus();
         }
+    }
+
+    // Country picker
+    @OnClick(R.id.billing_edit_country)
+    void onClickCountry() {
+        CountryPicker.Builder builder =
+            new CountryPicker.Builder().with(this)
+                .listener(new OnCountryPickerListener() {
+                    @Override
+                    public void onSelectCountry(Country country) {
+                        editCountry.setText(country.getName());
+                    }
+                });
+        CountryPicker picker = builder.build();
+        picker.showDialog(this);
     }
 
     private void initialize() {
@@ -253,7 +272,6 @@ public class BillingActivity extends AppCompatActivity {
             }
         });
 
-        editZipCode.addTextChangedListener(new MyTextFormatter(editCVV, "#####"));
         editZipCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

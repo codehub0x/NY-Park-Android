@@ -223,16 +223,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:hint="@string/card_number"
+                    android:hint="@string/country"
                     android:textSize="@dimen/text_size_15sp"
                     android:textColor="@color/colorBlack90"
                     android:fontFamily="@font/lato_regular"
                     android:paddingStart="@dimen/margin_16dp"
                     android:paddingEnd="@dimen/margin_16dp"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:nextFocusDown="@+id/billing_edit_phone"/>
+                    android:focusableInTouchMode="false" />
 
             </LinearLayout>
 

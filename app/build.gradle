@@ -38,11 +38,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.libraries.places:places:2.1.0'
-//    implementation 'com.google.android.libraries.places:places-compat:2.1.0'
 
     // ButterKnife
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+
+    // Country Picker
+    implementation 'com.github.mukeshsolanki:country-picker-android:2.0.0'
 
     //dexter permissions
     implementation "com.karumi:dexter:5.0.0"
