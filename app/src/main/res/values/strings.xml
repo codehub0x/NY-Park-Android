@@ -12,6 +12,7 @@
     <string name="title_help">Help</string>
     <string name="title_faq">FAQ</string>
     <string name="title_account">Account</string>
+    <string name="title_billing">Billing Settings</string>
     <string name="tab_home">Home</string>
     <string name="tab_reservations">Reservations</string>
     <string name="tab_rewards">Rewards</string>
@@ -25,6 +26,8 @@
     <string name="already_registered">Already registered? Login here:</string>
     <string name="amenities">AMENITIES:</string>
     <string name="apply_filters">Apply Filters</string>
+    <string name="billing_address">Billing Address</string>
+    <string name="billing_description">If using an international cell phone please include a valid country code and cell phone number to receive an SMS with confirmed parking reservation information (e.g. +44XXXXXXXXXXX).</string>
     <string name="book_again">Book Again</string>
     <string name="book_now">Book Now</string>
     <string name="book_on_multiple_days">Book on Multiple Days</string>
@@ -34,14 +37,19 @@
     <string name="cancel_reservation">Cancel Reservation</string>
     <string name="change_avatar">Change Avatar</string>
     <string name="change_your_settings">Change your settings here:</string>
+    <string name="card_details">CARD DETAILS</string>
+    <string name="card_number">Card Number</string>
     <string name="choose_from_gallery">Choose from gallery</string>
     <string name="choose_topic">Choose the topic you are interested in:</string>
+    <string name="city">City</string>
     <string name="clear">Clear</string>
     <string name="close">Close</string>
     <string name="color">Color</string>
     <string name="completed">Completed</string>
+    <string name="country">Country</string>
     <string name="create_account">Create an Account</string>
     <string name="create_your_account">Create Your Account</string>
+    <string name="cvv">CVV</string>
     <string name="daily">Daily</string>
     <string name="details">Details</string>
     <string name="dialog_permission_title">Grant Permissions</string>
@@ -51,6 +59,7 @@
     <string name="edit">Edit</string>
     <string name="email">Email</string>
     <string name="email_us">Email Us</string>
+    <string name="enter_phone_number">Enter phone number</string>
     <string name="enter_time">Enter Time</string>
     <string name="exit_time">Exit Time</string>
     <string name="error_empty_address">Address is required.</string>
@@ -65,6 +74,7 @@
     <string name="error_empty_password">Password is required.</string>
     <string name="error_empty_repeat_password">Repeat password is required.</string>
     <string name="error_mismatch_password">The specified password do not match.</string>
+    <string name="exp_date">Exp. Date</string>
     <string name="go_to_settings">GOTO SETTINGS</string>
     <string name="faq">Frequently Asked Questions</string>
     <string name="faq1">FAQ</string>
@@ -93,6 +103,7 @@
     <string name="payment_method">Payment Method</string>
     <string name="phone">Phone</string>
     <string name="phone_number">PHONE NUMBER:</string>
+    <string name="phone_number1">PHONE NUMBER</string>
     <string name="placeholder_end_time">End Time</string>
     <string name="placeholder_search">Street, attraction or neighborhood</string>
     <string name="placeholder_start_parking_on">Start Parking On</string>
@@ -118,6 +129,7 @@
     <string name="sort_by_distance">Sort By Distance</string>
     <string name="sort_by_price">Sort By Price</string>
     <string name="specials">Specials</string>
+    <string name="state">State</string>
     <string name="stay_period">Stay Period</string>
     <string name="suv">SUV</string>
     <string name="suv_large">Large SUV</string>
@@ -131,6 +143,7 @@
     <string name="vehicle_make">Vehicle Make</string>
     <string name="vehicle_model">Vehicle Model</string>
     <string name="website">Website</string>
+    <string name="zip_code">Zip Code</string>
     <string name="add_up_to_vehicles">You can add up to 3 vehicles</string>
 
     <!--Filter options-->

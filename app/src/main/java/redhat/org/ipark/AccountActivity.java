@@ -39,7 +39,7 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTouch;
-import redhat.org.ipark.extras.PhoneTextFormatter;
+import redhat.org.ipark.extras.MyTextFormatter;
 import redhat.org.ipark.extras.Utils;
 
 public class AccountActivity extends AppCompatActivity {
@@ -141,7 +141,7 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
-        editPhone.addTextChangedListener(new PhoneTextFormatter(editPhone, "###-###-####"));
+        editPhone.addTextChangedListener(new MyTextFormatter(editPhone, "###-###-####"));
         editPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

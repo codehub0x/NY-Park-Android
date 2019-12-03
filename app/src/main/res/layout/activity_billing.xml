@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/card_details"
+                android:textColor="@color/colorBlack50"
+                android:textSize="@dimen/text_size_13sp"
+                android:fontFamily="@font/lato_regular"
+                android:layout_marginTop="@dimen/margin_28dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_view"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginStart="@dimen/margin_8dp"
+                android:layout_marginEnd="@dimen/margin_8dp">
+
+                <EditText
+                    android:id="@+id/billing_edit_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/full_name"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:textColor="@color/colorBlack90"
+                    android:fontFamily="@font/lato_regular"
+                    android:paddingStart="@dimen/margin_16dp"
+                    android:paddingEnd="@dimen/margin_16dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:nextFocusDown="@+id/billing_edit_card_number"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorBlack40"/>
+
+                <EditText
+                    android:id="@+id/billing_edit_card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/card_number"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:textColor="@color/colorBlack90"
+                    android:fontFamily="@font/lato_regular"
+                    android:paddingStart="@dimen/margin_16dp"
+                    android:paddingEnd="@dimen/margin_16dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:digits="01234 56789"
+                    android:maxLines="1"
+                    android:maxLength="17"
+                    android:nextFocusDown="@+id/billing_edit_exp_date"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorBlack40"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/billing_edit_exp_date"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/exp_date"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:textColor="@color/colorBlack90"
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingStart="@dimen/margin_16dp"
+                        android:paddingEnd="@dimen/margin_16dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:digits="0123456789/"
+                        android:maxLines="1"
+                        android:maxLength="5"
+                        android:nextFocusDown="@+id/billing_edit_cvv"/>
+
+                    <ImageView
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorBlack40"/>
+
+                    <EditText
+                        android:id="@+id/billing_edit_cvv"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/cvv"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:textColor="@color/colorBlack90"
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingStart="@dimen/margin_16dp"
+                        android:paddingEnd="@dimen/margin_16dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberPassword"
+                        android:digits="0123456789"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:nextFocusDown="@+id/billing_edit_city"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billing_address"
+                android:textColor="@color/colorBlack50"
+                android:textSize="@dimen/text_size_13sp"
+                android:fontFamily="@font/lato_regular"
+                android:layout_marginTop="@dimen/margin_20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_view"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginStart="@dimen/margin_8dp"
+                android:layout_marginEnd="@dimen/margin_8dp">
+
+                <EditText
+                    android:id="@+id/billing_edit_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/city"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:textColor="@color/colorBlack90"
+                    android:fontFamily="@font/lato_regular"
+                    android:paddingStart="@dimen/margin_16dp"
+                    android:paddingEnd="@dimen/margin_16dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:nextFocusDown="@+id/billing_edit_state"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorBlack40"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/billing_edit_state"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/state"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:textColor="@color/colorBlack90"
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingStart="@dimen/margin_16dp"
+                        android:paddingEnd="@dimen/margin_16dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:nextFocusDown="@+id/billing_edit_zipcode"/>
+
+                    <ImageView
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorBlack40"/>
+
+                    <EditText
+                        android:id="@+id/billing_edit_zipcode"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/zip_code"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:textColor="@color/colorBlack90"
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingStart="@dimen/margin_16dp"
+                        android:paddingEnd="@dimen/margin_16dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:digits="0123456789"
+                        android:maxLength="5"
+                        android:maxLines="1"
+                        android:nextFocusDown="@+id/billing_edit_country"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorBlack40"/>
+
+                <EditText
+                    android:id="@+id/billing_edit_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/card_number"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:textColor="@color/colorBlack90"
+                    android:fontFamily="@font/lato_regular"
+                    android:paddingStart="@dimen/margin_16dp"
+                    android:paddingEnd="@dimen/margin_16dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:nextFocusDown="@+id/billing_edit_phone"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/phone_number1"
+                android:textColor="@color/colorBlack50"
+                android:textSize="@dimen/text_size_13sp"
+                android:fontFamily="@font/lato_regular"
+                android:layout_marginTop="@dimen/margin_20dp"/>
+
+            <EditText
+                android:id="@+id/billing_edit_phone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/card_view"
+                android:hint="@string/enter_phone_number"
+                android:textSize="@dimen/text_size_15sp"
+                android:textColor="@color/colorBlack90"
+                android:fontFamily="@font/lato_regular"
+                android:paddingStart="@dimen/margin_16dp"
+                android:paddingEnd="@dimen/margin_16dp"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginStart="@dimen/margin_8dp"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:inputType="phone"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_16dp"
+                android:text="@string/billing_description"
+                android:textColor="@color/colorBlack50"
+                android:textSize="@dimen/text_size_12sp"
+                android:fontFamily="@font/lato_regular"
+                android:textAlignment="center"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/billing_btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="@string/save_changes"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_18sp"
+                android:fontFamily="@font/lato_black"
+                android:letterSpacing="0"
+                android:backgroundTint="@color/colorYellow"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginBottom="@dimen/margin_40dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

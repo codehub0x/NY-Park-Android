@@ -6,15 +6,14 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 
-public class PhoneTextFormatter implements TextWatcher {
+public class MyTextFormatter implements TextWatcher {
 
     private final String TAG = this.getClass().getSimpleName();
 
     private EditText mEditText;
-
     private String mPattern;
 
-    public PhoneTextFormatter(EditText editText, String pattern) {
+    public MyTextFormatter(EditText editText, String pattern) {
         mEditText = editText;
         mPattern = pattern;
         //set max length of string
@@ -29,21 +28,21 @@ public class PhoneTextFormatter implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        StringBuilder phone = new StringBuilder(s);
+        StringBuilder str = new StringBuilder(s);
 
         Log.d(TAG, "join");
 
-        if (count > 0 && !isValid(phone.toString())) {
-            for (int i = 0; i < phone.length(); i++) {
-                Log.d(TAG, String.format("%s", phone));
+        if (count > 0 && !isValid(str.toString())) {
+            for (int i = 0; i < str.length(); i++) {
+                Log.d(TAG, String.format("%s", str));
                 char c = mPattern.charAt(i);
 
-                if ((c != '#') && (c != phone.charAt(i))) {
-                    phone.insert(i, c);
+                if ((c != '#') && (c != str.charAt(i))) {
+                    str.insert(i, c);
                 }
             }
 
-            mEditText.setText(phone);
+            mEditText.setText(str);
             mEditText.setSelection(mEditText.getText().length());
         }
     }
@@ -53,14 +52,13 @@ public class PhoneTextFormatter implements TextWatcher {
 
     }
 
-    private boolean isValid(String phone)
-    {
-        for (int i = 0; i < phone.length(); i++) {
+    private boolean isValid(String text) {
+        for (int i = 0; i < text.length(); i++) {
             char c = mPattern.charAt(i);
 
             if (c == '#') continue;
 
-            if (c != phone.charAt(i)) {
+            if (c != text.charAt(i)) {
                 return false;
             }
         }

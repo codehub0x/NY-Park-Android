@@ -152,7 +152,9 @@ public class BookActivity extends AppCompatActivity {
 
     @OnClick(R.id.book_layout_payment)
     public void onClickPayment(View view) {
-
+        Intent intent = new Intent(BookActivity.this, BillingActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
     }
 
     @OnClick(R.id.book_layout_promo_code)

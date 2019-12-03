@@ -16,6 +16,7 @@ public class Utils {
         final View contentView = activity.findViewById(android.R.id.content);
         contentView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             private int mPreviousHeight;
+
             @Override
             public void onGlobalLayout() {
                 int newHeight = contentView.getHeight();
@@ -61,4 +62,5 @@ public class Utils {
     public static boolean isValidPhoneNumber(String phoneNumber) {
         return !TextUtils.isEmpty(phoneNumber) && android.util.Patterns.PHONE.matcher(phoneNumber).matches();
     }
+
 }

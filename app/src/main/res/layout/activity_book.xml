@@ -297,7 +297,7 @@
                 android:backgroundTint="@color/colorYellow"
                 android:layout_marginStart="@dimen/margin_16dp"
                 android:layout_marginEnd="@dimen/margin_16dp"
-                android:layout_marginTop="40dp"/>
+                android:layout_marginTop="@dimen/margin_40dp"/>
 
             <TextView
                 android:layout_width="match_parent"

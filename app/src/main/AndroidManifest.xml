@@ -79,6 +79,9 @@
         <activity android:name=".AccountActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_account" />
+        <activity android:name=".BillingActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_billing" />
 
         <activity android:name="com.google.android.libraries.places.widget.AutocompleteActivity"/>
 
