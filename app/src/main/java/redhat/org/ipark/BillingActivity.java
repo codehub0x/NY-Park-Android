@@ -13,9 +13,6 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.hbb20.CountryCodePicker;
-import com.mukesh.countrypicker.Country;
-import com.mukesh.countrypicker.CountryPicker;
-import com.mukesh.countrypicker.OnCountryPickerListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -101,6 +98,7 @@ public class BillingActivity extends AppCompatActivity {
         String fullName = editFullName.getText().toString().trim();
         if (TextUtils.isEmpty(fullName)) {
             editFullName.requestFocus();
+            Utils.showKeyboard(this, editFullName);
             editFullName.setError(getString(R.string.error_empty_full_name));
             valid = false;
         } else {
@@ -112,6 +110,7 @@ public class BillingActivity extends AppCompatActivity {
         if (!CreditCardUtils.isValidCard(cardNumber)) {
             if (valid) {
                 editCardNumber.requestFocus();
+                Utils.showKeyboard(this, editCardNumber);
             }
             valid = false;
             editCardNumber.setError(getString(R.string.error_invalid_card_number));
@@ -125,6 +124,7 @@ public class BillingActivity extends AppCompatActivity {
         if (!CreditCardUtils.isValidExpDate(expDate)) {
             if (valid) {
                 editExpDate.requestFocus();
+                Utils.showKeyboard(this, editExpDate);
             }
             valid = false;
             editExpDate.setTextColor(errorTextColor);
@@ -138,6 +138,7 @@ public class BillingActivity extends AppCompatActivity {
         if (cvv.length() != 3) {
             if (valid) {
                 editCVV.requestFocus();
+                Utils.showKeyboard(this, editCVV);
             }
             valid = false;
             editCVV.setTextColor(errorTextColor);
@@ -156,6 +157,7 @@ public class BillingActivity extends AppCompatActivity {
         if (!Utils.isValidPhoneNumber(phone)) {
             if (valid) {
                 editPhone.requestFocus();
+                Utils.showKeyboard(this, editPhone);
             }
             valid = false;
             editPhone.setTextColor(errorTextColor);

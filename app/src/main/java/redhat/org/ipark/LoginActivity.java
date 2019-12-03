@@ -70,9 +70,7 @@ public class LoginActivity extends AppCompatActivity implements KeyboardVisibili
         editEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    inputLayoutEmail.setError(null);
-                } else {
+                if (!hasFocus) {
                     String email = editEmail.getText().toString().trim();
                     if (email.isEmpty()) {
                         inputLayoutEmail.setError(getString(R.string.error_empty_email));
@@ -125,10 +123,12 @@ public class LoginActivity extends AppCompatActivity implements KeyboardVisibili
 
         if (email.isEmpty()) {
             editEmail.requestFocus();
+            Utils.showKeyboard(this, editEmail);
             inputLayoutEmail.setError(getString(R.string.error_empty_email));
             valid = false;
         } else if (!Utils.isValidEmail(email)) {
             editEmail.requestFocus();
+            Utils.showKeyboard(this, editEmail);
             inputLayoutEmail.setError(getString(R.string.error_invalid_email));
             valid = false;
         } else {
@@ -138,6 +138,7 @@ public class LoginActivity extends AppCompatActivity implements KeyboardVisibili
         if (password.isEmpty()) {
             if (valid) {
                 editPassword.requestFocus();
+                Utils.showKeyboard(this, editPassword);
             }
             valid = false;
             inputLayoutPassword.setError(getString(R.string.error_empty_password));

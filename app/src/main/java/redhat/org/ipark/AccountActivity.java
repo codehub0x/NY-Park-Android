@@ -111,9 +111,7 @@ public class AccountActivity extends AppCompatActivity {
         editFullName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    inputLayoutFullName.setError(null);
-                } else {
+                if (!hasFocus) {
                     String fullName = editFullName.getText().toString().trim();
                     if (TextUtils.isEmpty(fullName)) {
                         inputLayoutFullName.setError(getString(R.string.error_empty_full_name));
@@ -127,9 +125,7 @@ public class AccountActivity extends AppCompatActivity {
         editEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    inputLayoutEmail.setError(null);
-                } else {
+                if (!hasFocus) {
                     String email = editEmail.getText().toString().trim();
                     if (TextUtils.isEmpty(email)) {
                         inputLayoutEmail.setError(getString(R.string.error_empty_email));
@@ -146,9 +142,7 @@ public class AccountActivity extends AppCompatActivity {
         editPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    inputLayoutPhone.setError(null);
-                } else {
+                if (!hasFocus) {
                     String phone = editPhone.getText().toString().trim();
                     if (TextUtils.isEmpty(phone)) {
                         inputLayoutPhone.setError(getString(R.string.error_empty_phone));
@@ -164,9 +158,7 @@ public class AccountActivity extends AppCompatActivity {
         editPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    inputLayoutPassword.setError(null);
-                } else {
+                if (!hasFocus) {
                     String password = editPassword.getText().toString().trim();
                     if (TextUtils.isEmpty(password)) {
                         inputLayoutPassword.setError(getString(R.string.error_empty_password));
@@ -218,6 +210,7 @@ public class AccountActivity extends AppCompatActivity {
         String fullName = editFullName.getText().toString().trim();
         if (fullName.isEmpty()) {
             editFullName.requestFocus();
+            Utils.showKeyboard(this, editFullName);
             valid = false;
             inputLayoutFullName.setError(getString(R.string.error_empty_full_name));
         }
@@ -226,12 +219,14 @@ public class AccountActivity extends AppCompatActivity {
         if (email.isEmpty()) {
             if (valid) {
                 editEmail.requestFocus();
+                Utils.showKeyboard(this, editEmail);
             }
             valid = false;
             inputLayoutEmail.setError(getString(R.string.error_empty_email));
         } else if (!Utils.isValidEmail(email)) {
             if (valid) {
                 editEmail.requestFocus();
+                Utils.showKeyboard(this, editEmail);
             }
             valid = false;
             inputLayoutEmail.setError(getString(R.string.error_invalid_email));
@@ -243,12 +238,14 @@ public class AccountActivity extends AppCompatActivity {
         if (phone.isEmpty()) {
             if (valid) {
                 editPhone.requestFocus();
+                Utils.showKeyboard(this, editPhone);
             }
             valid = false;
             inputLayoutPhone.setError(getString(R.string.error_empty_phone));
         } else if (!Utils.isValidPhoneNumber(phone)) {
             if (valid) {
                 editPhone.requestFocus();
+                Utils.showKeyboard(this, editPhone);
             }
             valid = false;
             inputLayoutPhone.setError(getString(R.string.error_invalid_phone));
@@ -260,6 +257,7 @@ public class AccountActivity extends AppCompatActivity {
         if (password.isEmpty()) {
             if (valid) {
                 editPassword.requestFocus();
+                Utils.showKeyboard(this, editPassword);
             }
             valid = false;
             inputLayoutPassword.setError(getString(R.string.error_empty_password));
@@ -271,12 +269,14 @@ public class AccountActivity extends AppCompatActivity {
         if (repeatPassword.isEmpty()) {
             if (valid) {
                 editRepeatPassword.requestFocus();
+                Utils.showKeyboard(this, editRepeatPassword);
             }
             valid = false;
             inputLayoutRepeatPassword.setError(getString(R.string.error_empty_repeat_password));
         } else if (!password.equals(repeatPassword)) {
             if (valid) {
                 editRepeatPassword.requestFocus();
+                Utils.showKeyboard(this, editRepeatPassword);
             }
             valid = false;
             inputLayoutRepeatPassword.setError(getString(R.string.error_mismatch_password));

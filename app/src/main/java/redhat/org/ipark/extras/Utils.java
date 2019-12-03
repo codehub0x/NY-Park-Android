@@ -55,6 +55,11 @@ public class Utils {
         }
     }
 
+    public static void showKeyboard(final Activity activity, View view) {
+        InputMethodManager imm = ((InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE));
+        imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+    }
+
     public static boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }

@@ -74,9 +74,7 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
         editFullName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    inputLayoutFullName.setError(null);
-                } else {
+                if (!hasFocus) {
                     String fullName = editFullName.getText().toString().trim();
                     if (fullName.isEmpty()) {
                         inputLayoutFullName.setError(getString(R.string.error_empty_full_name));
@@ -90,9 +88,7 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
         editEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    inputLayoutEmail.setError(null);
-                } else {
+                if (!hasFocus) {
                     String email = editEmail.getText().toString().trim();
                     if (email.isEmpty()) {
                         inputLayoutEmail.setError(getString(R.string.error_empty_email));
@@ -147,6 +143,7 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
         if (fullName.isEmpty()) {
             valid = false;
             editFullName.requestFocus();
+            Utils.showKeyboard(this, editFullName);
             inputLayoutFullName.setError(getString(R.string.error_empty_full_name));
         } else {
             inputLayoutFullName.setError(null);
@@ -155,12 +152,14 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
         if (email.isEmpty()) {
             if (valid) {
                 editEmail.requestFocus();
+                Utils.showKeyboard(this, editEmail);
             }
             valid = false;
             inputLayoutEmail.setError(getString(R.string.error_empty_email));
         } else if (!Utils.isValidEmail(email)) {
             if (valid) {
                 editEmail.requestFocus();
+                Utils.showKeyboard(this, editEmail);
             }
             valid = false;
             inputLayoutEmail.setError(getString(R.string.error_invalid_email));
@@ -171,6 +170,7 @@ public class SignupActivity extends AppCompatActivity implements KeyboardVisibil
         if (password.isEmpty()) {
             if (valid) {
                 editPassword.requestFocus();
+                Utils.showKeyboard(this, editPassword);
             }
             valid = false;
             inputLayoutPassword.setError(getString(R.string.error_empty_password));
