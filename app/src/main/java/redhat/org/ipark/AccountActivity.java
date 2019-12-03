@@ -292,7 +292,9 @@ public class AccountActivity extends AppCompatActivity {
 
     @OnClick(R.id.account_layout_payment)
     void onClickPayment(View view) {
-
+        Intent intent = new Intent(AccountActivity.this, BillingActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.nothing);
     }
 
     @OnCheckedChanged(R.id.account_switch_notification)
