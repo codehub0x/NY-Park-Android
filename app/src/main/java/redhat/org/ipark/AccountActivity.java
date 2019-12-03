@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -114,7 +115,7 @@ public class AccountActivity extends AppCompatActivity {
                     inputLayoutFullName.setError(null);
                 } else {
                     String fullName = editFullName.getText().toString().trim();
-                    if (fullName.isEmpty()) {
+                    if (TextUtils.isEmpty(fullName)) {
                         inputLayoutFullName.setError(getString(R.string.error_empty_full_name));
                     } else {
                         inputLayoutFullName.setError(null);
@@ -130,7 +131,7 @@ public class AccountActivity extends AppCompatActivity {
                     inputLayoutEmail.setError(null);
                 } else {
                     String email = editEmail.getText().toString().trim();
-                    if (email.isEmpty()) {
+                    if (TextUtils.isEmpty(email)) {
                         inputLayoutEmail.setError(getString(R.string.error_empty_email));
                     } else if (!Utils.isValidEmail(email)) {
                         inputLayoutEmail.setError(getString(R.string.error_invalid_email));
@@ -149,7 +150,7 @@ public class AccountActivity extends AppCompatActivity {
                     inputLayoutPhone.setError(null);
                 } else {
                     String phone = editPhone.getText().toString().trim();
-                    if (phone.isEmpty()) {
+                    if (TextUtils.isEmpty(phone)) {
                         inputLayoutPhone.setError(getString(R.string.error_empty_phone));
                     } else if (!Utils.isValidPhoneNumber(phone)) {
                         inputLayoutPhone.setError(getString(R.string.error_invalid_phone));
@@ -167,7 +168,7 @@ public class AccountActivity extends AppCompatActivity {
                     inputLayoutPassword.setError(null);
                 } else {
                     String password = editPassword.getText().toString().trim();
-                    if (password.isEmpty()) {
+                    if (TextUtils.isEmpty(password)) {
                         inputLayoutPassword.setError(getString(R.string.error_empty_password));
                     } else {
                         inputLayoutPassword.setError(null);
@@ -184,7 +185,7 @@ public class AccountActivity extends AppCompatActivity {
                 } else {
                     String password = editPassword.getText().toString();
                     String repeatPassword = editRepeatPassword.getText().toString();
-                    if (repeatPassword.isEmpty()) {
+                    if (TextUtils.isEmpty(repeatPassword)) {
                         inputLayoutRepeatPassword.setError(getString(R.string.error_empty_repeat_password));
                     } else if (!password.equals(repeatPassword)) {
                         inputLayoutRepeatPassword.setError(getString(R.string.error_mismatch_password));

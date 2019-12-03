@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
     <ScrollView
+        android:id="@+id/billing_scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -209,7 +212,7 @@
                         android:digits="0123456789"
                         android:maxLength="5"
                         android:maxLines="1"
-                        android:nextFocusDown="@+id/billing_edit_country"/>
+                        android:nextFocusDown="@+id/billing_edit_phone"/>
 
                 </LinearLayout>
 
@@ -218,18 +221,33 @@
                     android:layout_height="0.5dp"
                     android:background="@color/colorBlack40"/>
 
-                <EditText
-                    android:id="@+id/billing_edit_country"
+<!--                <EditText-->
+<!--                    android:id="@+id/billing_edit_country"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    android:hint="@string/country"-->
+<!--                    android:textSize="@dimen/text_size_15sp"-->
+<!--                    android:textColor="@color/colorBlack90"-->
+<!--                    android:fontFamily="@font/lato_regular"-->
+<!--                    android:paddingStart="@dimen/margin_16dp"-->
+<!--                    android:paddingEnd="@dimen/margin_16dp"-->
+<!--                    android:focusableInTouchMode="false" />-->
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/billing_ccp_country"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/country"
-                    android:textSize="@dimen/text_size_15sp"
-                    android:textColor="@color/colorBlack90"
-                    android:fontFamily="@font/lato_regular"
-                    android:paddingStart="@dimen/margin_16dp"
-                    android:paddingEnd="@dimen/margin_16dp"
-                    android:focusableInTouchMode="false" />
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/margin_8dp"
+                    android:paddingEnd="@dimen/margin_8dp"
+                    app:ccp_countryPreference="us"
+                    app:ccp_defaultPhoneCode="1"
+                    app:ccp_showNameCode="false"
+                    app:ccp_showFullName="true"
+                    app:ccp_showArrow="false"
+                    app:ccp_showPhoneCode="false"
+                    app:ccp_textGravity="LEFT"/>
 
             </LinearLayout>
 
@@ -242,23 +260,50 @@
                 android:fontFamily="@font/lato_regular"
                 android:layout_marginTop="@dimen/margin_20dp"/>
 
-            <EditText
-                android:id="@+id/billing_edit_phone"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:background="@drawable/card_view"
-                android:hint="@string/enter_phone_number"
-                android:textSize="@dimen/text_size_15sp"
-                android:textColor="@color/colorBlack90"
-                android:fontFamily="@font/lato_regular"
-                android:paddingStart="@dimen/margin_16dp"
-                android:paddingEnd="@dimen/margin_16dp"
                 android:layout_marginTop="@dimen/margin_16dp"
                 android:layout_marginStart="@dimen/margin_8dp"
-                android:layout_marginEnd="@dimen/margin_8dp"
-                android:imeOptions="actionDone"
-                android:maxLines="1"
-                android:inputType="phone"/>
+                android:layout_marginEnd="@dimen/margin_8dp">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/billing_ccp_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/margin_8dp"
+                    app:ccp_countryPreference="us"
+                    app:ccp_defaultPhoneCode="1"
+                    app:ccp_showNameCode="false"
+                    app:ccp_autoFormatNumber="true"
+                    />
+
+                <ImageView
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorBlack40"/>
+
+                <EditText
+                    android:id="@+id/billing_edit_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/enter_phone_number"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:textColor="@color/colorBlack90"
+                    android:fontFamily="@font/lato_regular"
+                    android:paddingStart="@dimen/margin_16dp"
+                    android:paddingEnd="@dimen/margin_16dp"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1"
+                    android:maxLength="12"
+                    android:inputType="phone"/>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"

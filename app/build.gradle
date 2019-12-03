@@ -46,6 +46,9 @@ dependencies {
     // Country Picker
     implementation 'com.github.mukeshsolanki:country-picker-android:2.0.0'
 
+    // Country Code Picker
+    implementation 'com.hbb20:ccp:2.3.4'
+
     //dexter permissions
     implementation "com.karumi:dexter:5.0.0"
 
