@@ -469,8 +469,8 @@ public class BillingActivity extends AppCompatActivity {
                 String expYear = String.valueOf(scanResult.expiryYear - 2000);
                 String expDate = expMonth + "/" + expYear;
                 editCardNumber.setText(CreditCardUtils.formattedCardNumber(scanResult.cardNumber));
-                editCVV.setText(CreditCardUtils.formattedCVV(scanResult.cvv, CreditCardUtils.AMEX));
                 editExpDate.setText(CreditCardUtils.formattedExpDate(expDate));
+                editCVV.setText(CreditCardUtils.formattedCVV(scanResult.cvv, CreditCardUtils.AMEX));
             } else {
                 Toast.makeText(this, "Scan was canceled.", Toast.LENGTH_SHORT).show();
             }
