@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
     private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
-    private static final int DEFAULT_ZOOM = 15;
+    private static final int DEFAULT_ZOOM = 13;
     private boolean mLocationPermissionGranted;
 
     // The geographical location where the device is currently located. That is, the last-known
@@ -431,7 +431,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Prompt the user for permission.
-        getLocationPermission();
+//        getLocationPermission();
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI();
         // Get the current location of the device and set the position of the map.
@@ -464,10 +464,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void getLocationPermission() {
-        if (Build.VERSION.SDK_INT < 23 || ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
             mLocationPermissionGranted = true;
+            getDeviceLocation();
         } else {
-            ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, LOCATION_REQUEST_CODE);
+            requestPermissions(new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, LOCATION_REQUEST_CODE);
             mLocationPermissionGranted = false;
         }
     }
@@ -480,6 +481,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
                     //Permission Granted
                     mLocationPermissionGranted = true;
+                    getDeviceLocation();
                 } else {
                     Toast.makeText(getContext(), "Location Permission Denied", Toast.LENGTH_SHORT).show();
                 }
@@ -513,14 +515,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             if (mLocationPermissionGranted) {
                 mMap.setMyLocationEnabled(true);
                 mMap.setIndoorEnabled(true);
-                mMap.setMinZoomPreference(10);
-
-                UiSettings uiSettings = mMap.getUiSettings();
-                uiSettings.setIndoorLevelPickerEnabled(true);
-                uiSettings.setMyLocationButtonEnabled(true);
-                uiSettings.setMapToolbarEnabled(true);
-                uiSettings.setCompassEnabled(true);
-                uiSettings.setZoomControlsEnabled(true);
+                mMap.setMinZoomPreference(8);
+                mMap.getUiSettings().setIndoorLevelPickerEnabled(true);
+                mMap.getUiSettings().setMyLocationButtonEnabled(true);
+                mMap.getUiSettings().setMapToolbarEnabled(true);
+                mMap.getUiSettings().setCompassEnabled(true);
+                mMap.getUiSettings().setZoomControlsEnabled(true);
+                mMap.getUiSettings().setAllGesturesEnabled(true);
             } else {
                 mMap.setMyLocationEnabled(false);
                 mMap.getUiSettings().setMyLocationButtonEnabled(false);
@@ -550,17 +551,16 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                             // Set the map's camera position to the current location of the device.
                             mLastKnownLocation = task.getResult();
                             if (mLastKnownLocation != null) {
-                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                        new LatLng(mLastKnownLocation.getLatitude(),
-                                                mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                                LatLng latLng = new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
+
                             }
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());
-                            mMap.moveCamera(CameraUpdateFactory
-                                    .newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
-                            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
                         }
+                        updateLocationUI();
                     }
                 });
             }
