@@ -16,8 +16,10 @@ public class CreditCardUtils {
 //    public static final String DISCOVER_PREFIX = "6011";
     public static final String AMEX_PREFIX = "34,37,";
 
-    public static String CARD_PATTERN = "#### ###### #####";
     public static String EXPDATE_PATTERN = "##/##";
+    public static String CVV_PATTERN = "###";
+    public static String AMEX_PATTERN = "#### ###### #####";
+    public static String AMEX_CVV_PATTERN = "####";
 
     public static int getCardType(String cardNumber) {
         if (AMEX_PREFIX.contains(cardNumber.substring(0, 2) + ","))
@@ -35,8 +37,17 @@ public class CreditCardUtils {
     public static String formattedCardNumber(String cardNumber) {
         cardNumber = cardNumber.replaceAll("\\D+", "");
         StringBuilder stringBuilder = new StringBuilder(cardNumber);
+
+        // Check card type
+        String pattern = "";
+        if (getCardType(cardNumber) == AMEX) {
+            pattern = AMEX_PATTERN;
+        } else {
+            return stringBuilder.toString();
+        }
+
         for (int i = 0; i < stringBuilder.length(); i ++) {
-            char c = CARD_PATTERN.charAt(i);
+            char c = pattern.charAt(i);
 
             if ((c != '#') && (c != stringBuilder.charAt(i))) {
                 stringBuilder.insert(i, c);
@@ -157,5 +168,34 @@ public class CreditCardUtils {
         }
 
         return false;
+    }
+
+    public static boolean isValidCVV(String cvv, int cardType) {
+        cvv = cvv.replaceAll("\\D+", "");
+        int cvvLength = 3;
+        if (cardType == AMEX) {
+            cvvLength = 4;
+        }
+        return cvv.length() == cvvLength;
+    }
+
+    public static String formattedCVV(String cvv, int cardType) {
+        StringBuilder stringBuilder = new StringBuilder(cvv);
+
+        // Check card type
+        String pattern = CVV_PATTERN;
+        if (cardType == AMEX) {
+            pattern = AMEX_CVV_PATTERN;
+        }
+
+        for (int i = 0; i < stringBuilder.length(); i ++) {
+            char c = pattern.charAt(i);
+
+            if ((c != '#') && (c != stringBuilder.charAt(i))) {
+                stringBuilder.insert(i, c);
+            }
+        }
+
+        return stringBuilder.toString();
     }
 }

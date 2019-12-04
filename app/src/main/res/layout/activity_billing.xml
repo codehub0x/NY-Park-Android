@@ -122,7 +122,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="numberPassword"
                         android:digits="0123456789"
-                        android:maxLength="3"
+                        android:maxLength="4"
                         android:maxLines="1"
                         android:nextFocusDown="@+id/billing_edit_city"/>
 
@@ -186,7 +186,7 @@
                         android:paddingStart="@dimen/margin_16dp"
                         android:paddingEnd="@dimen/margin_16dp"
                         android:imeOptions="actionNext"
-                        android:inputType="text"
+                        android:inputType="textCapWords"
                         android:maxLines="1"
                         android:nextFocusDown="@+id/billing_edit_zipcode"/>
 

@@ -1,15 +1,22 @@
 package redhat.org.ipark;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.hbb20.CountryCodePicker;
@@ -19,6 +26,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import butterknife.OnTouch;
+import io.card.payment.CardIOActivity;
+import io.card.payment.CreditCard;
 import redhat.org.ipark.extras.CreditCardUtils;
 import redhat.org.ipark.extras.Utils;
 
@@ -27,6 +36,8 @@ import static butterknife.OnTextChanged.Callback.AFTER_TEXT_CHANGED;
 public class BillingActivity extends AppCompatActivity {
 
     private final String TAG = this.getClass().getSimpleName();
+
+    private final int SCAN_REQUEST_CODE = 101;
 
     @BindView(R.id.billing_edit_full_name)
     EditText editFullName;
@@ -71,6 +82,32 @@ public class BillingActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.billing_menu, menu);
+        Drawable drawable = menu.findItem(R.id.scan).getIcon();
+        drawable = DrawableCompat.wrap(drawable);
+        DrawableCompat.setTint(drawable, ContextCompat.getColor(this, R.color.colorWhite));
+        menu.findItem(R.id.scan).setIcon(drawable);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.scan:
+                Log.d(TAG, "Select scan");
+                Intent intent = new Intent(this, CardIOActivity.class);
+                intent.putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true);
+                intent.putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, true);
+                intent.putExtra(CardIOActivity.EXTRA_SCAN_EXPIRY, true);
+                startActivityForResult(intent, SCAN_REQUEST_CODE);
+                return true;
+        }
+        return(super.onOptionsItemSelected(item));
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         finish();
         overridePendingTransition(R.anim.nothing, R.anim.left_to_right);
@@ -94,6 +131,7 @@ public class BillingActivity extends AppCompatActivity {
     @OnClick(R.id.billing_btn_save)
     public void onClickSave(View view) {
         boolean valid = true;
+        boolean isValidField;
 
         String fullName = editFullName.getText().toString().trim();
         if (TextUtils.isEmpty(fullName)) {
@@ -107,45 +145,81 @@ public class BillingActivity extends AppCompatActivity {
 
         String cardNumber = editCardNumber.getText().toString();
         cardNumber = cardNumber.replaceAll("\\D+", "");
-        if (!CreditCardUtils.isValidCard(cardNumber)) {
+        isValidField = CreditCardUtils.isValidCard(cardNumber);
+        updateLabel(isValidField, editCardNumber);
+        if (!isValidField) {
             if (valid) {
                 editCardNumber.requestFocus();
                 Utils.showKeyboard(this, editCardNumber);
             }
             valid = false;
             editCardNumber.setError(getString(R.string.error_invalid_card_number));
-            editCardNumber.setTextColor(errorTextColor);
         } else {
             editCardNumber.setError(null);
-            editCardNumber.setTextColor(defaultTextColor);
         }
 
         String expDate = editExpDate.getText().toString().trim();
-        if (!CreditCardUtils.isValidExpDate(expDate)) {
+        isValidField = CreditCardUtils.isValidExpDate(expDate);
+        updateLabel(isValidField, editExpDate);
+        if (!isValidField) {
             if (valid) {
                 editExpDate.requestFocus();
                 Utils.showKeyboard(this, editExpDate);
             }
             valid = false;
-            editExpDate.setTextColor(errorTextColor);
             editExpDate.setError(getString(R.string.error_invalid_exp_date));
         } else {
             editExpDate.setError(null);
-            editExpDate.setTextColor(defaultTextColor);
         }
 
-        String cvv = editCVV.getText().toString().trim();
-        if (cvv.length() != 3) {
+        String cvv = editCVV.getText().toString();
+        isValidField = CreditCardUtils.isValidCVV(cvv, CreditCardUtils.AMEX);
+        updateLabel(isValidField, editCVV);
+        if (!isValidField) {
             if (valid) {
                 editCVV.requestFocus();
                 Utils.showKeyboard(this, editCVV);
             }
             valid = false;
-            editCVV.setTextColor(errorTextColor);
             editCVV.setError(getString(R.string.error_invalid_cvv));
         } else {
-            editCVV.setTextColor(defaultTextColor);
             editCVV.setError(null);
+        }
+
+        String city = editCity.getText().toString();
+        if (TextUtils.isEmpty(city)) {
+            if (valid) {
+                editCity.requestFocus();;
+                Utils.showKeyboard(this, editCity);
+            }
+            valid = false;
+            editCity.setError(getString(R.string.error_empty_city));
+        } else {
+            editCity.setError(null);
+        }
+
+        String state = editState.getText().toString();
+        if (TextUtils.isEmpty(state)) {
+            if (valid) {
+                editState.requestFocus();;
+                Utils.showKeyboard(this, editState);
+            }
+            valid = false;
+            editState.setError(getString(R.string.error_empty_state));
+        } else {
+            editState.setError(null);
+        }
+
+        String zipCode = editZipCode.getText().toString().trim();
+        if (zipCode.length() == 5) {
+            editZipCode.setError(null);
+        } else {
+            if (valid) {
+                editZipCode.requestFocus();
+                Utils.showKeyboard(this, editZipCode);
+            }
+            valid = false;
+            editZipCode.setError(getString(R.string.error_invalid_zipcode));
         }
 
         String country = ccpCountry.getSelectedCountryName();
@@ -154,16 +228,16 @@ public class BillingActivity extends AppCompatActivity {
         }
 
         String phone = ccpPhone.getFullNumberWithPlus();
-        if (!Utils.isValidPhoneNumber(phone)) {
+        isValidField = Utils.isValidPhoneNumber(phone);
+        updateLabel(isValidField, editPhone);
+        if (!isValidField) {
             if (valid) {
                 editPhone.requestFocus();
                 Utils.showKeyboard(this, editPhone);
             }
             valid = false;
-            editPhone.setTextColor(errorTextColor);
             editPhone.setError(getString(R.string.error_invalid_phone));
         } else {
-            editPhone.setTextColor(defaultTextColor);
             editPhone.setError(null);
         }
 
@@ -198,11 +272,10 @@ public class BillingActivity extends AppCompatActivity {
             editCardNumber.setSelection(editCardNumber.getText().length());
         }
 
-        if (CreditCardUtils.isValidCard(editCardNumber.getText().toString())) {
-            editCardNumber.setTextColor(defaultTextColor);
+        boolean isValid = CreditCardUtils.isValidCard(editCardNumber.getText().toString());
+        updateLabel(isValid, editCardNumber);
+        if (isValid) {
             editExpDate.requestFocus();
-        } else {
-            editCardNumber.setTextColor(errorTextColor);
         }
     }
 
@@ -230,11 +303,10 @@ public class BillingActivity extends AppCompatActivity {
             editExpDate.setSelection(editExpDate.getText().length());
         }
 
-        if (CreditCardUtils.isValidExpDate(editExpDate.getText().toString())) {
-            editExpDate.setTextColor(defaultTextColor);
+        boolean isValid = CreditCardUtils.isValidExpDate(editExpDate.getText().toString());
+        updateLabel(isValid, editExpDate);
+        if (isValid) {
             editCVV.requestFocus(); // auto move to next edittext
-        } else {
-            editExpDate.setTextColor(errorTextColor);
         }
     }
 
@@ -243,7 +315,9 @@ public class BillingActivity extends AppCompatActivity {
     @OnTextChanged(R.id.billing_edit_cvv)
     void cvvTextChange() {
         String str = editCVV.getText().toString();
-        if (str.length() == 3) {
+        boolean isValid = CreditCardUtils.isValidCVV(str, CreditCardUtils.AMEX);
+        updateLabel(isValid, editCVV);
+        if (isValid) {
             editCity.requestFocus();
         }
     }
@@ -267,13 +341,13 @@ public class BillingActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    String cardNumber = editCardNumber.getText().toString().trim();
-                    if (!CreditCardUtils.isValidCard(cardNumber)) {
-                        editCardNumber.setTextColor(errorTextColor);
-                        editCardNumber.setError(getString(R.string.error_invalid_card_number));
-                    } else {
-                        editCardNumber.setTextColor(defaultTextColor);
+                    String cardNumber = editCardNumber.getText().toString();
+                    boolean isValid = CreditCardUtils.isValidCard(cardNumber);
+                    updateLabel(isValid, editCardNumber);
+                    if (isValid) {
                         editCardNumber.setError(null);
+                    } else {
+                        editCardNumber.setError(getString(R.string.error_invalid_card_number));
                     }
                 }
             }
@@ -284,12 +358,12 @@ public class BillingActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     String expDate = editExpDate.getText().toString().trim();
-                    if (!CreditCardUtils.isValidExpDate(expDate)) {
-                        editExpDate.setTextColor(errorTextColor);
-                        editExpDate.setError(getString(R.string.error_invalid_exp_date));
-                    } else {
-                        editExpDate.setTextColor(defaultTextColor);
+                    boolean isValid = CreditCardUtils.isValidExpDate(expDate);
+                    updateLabel(isValid, editExpDate);
+                    if (isValid) {
                         editExpDate.setError(null);
+                    } else {
+                        editExpDate.setError(getString(R.string.error_invalid_exp_date));
                     }
                 }
             }
@@ -299,12 +373,12 @@ public class BillingActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    String cvv = editCVV.getText().toString().trim();
-                    if (cvv.length() == 3) {
-                        editCVV.setTextColor(defaultTextColor);
+                    String cvv = editCVV.getText().toString();
+                    boolean isValid = CreditCardUtils.isValidCVV(cvv, CreditCardUtils.AMEX);
+                    updateLabel(isValid, editCVV);
+                    if (isValid) {
                         editCVV.setError(null);
                     } else {
-                        editCVV.setTextColor(errorTextColor);
                         editCVV.setError(getString(R.string.error_invalid_cvv));
                     }
                 }
@@ -344,11 +418,10 @@ public class BillingActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     String zipCode = editZipCode.getText().toString().trim();
-                    if (zipCode.length() == 5) {
-                        editZipCode.setTextColor(defaultTextColor);
+                    boolean isValid = zipCode.length() == 5;
+                    if (isValid) {
                         editZipCode.setError(null);
                     } else {
-                        editZipCode.setTextColor(errorTextColor);
                         editZipCode.setError(getString(R.string.error_invalid_zipcode));
                     }
                 }
@@ -360,12 +433,12 @@ public class BillingActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     String phone = ccpPhone.getFullNumberWithPlus();
-                    if (!Utils.isValidPhoneNumber(phone)) {
-                        editPhone.setTextColor(errorTextColor);
-                        editPhone.setError(getString(R.string.error_invalid_phone));
-                    } else {
-                        editPhone.setTextColor(defaultTextColor);
+                    boolean isValid = Utils.isValidPhoneNumber(phone);
+                    updateLabel(isValid, editPhone);
+                    if (isValid) {
                         editPhone.setError(null);
+                    } else {
+                        editPhone.setError(getString(R.string.error_invalid_phone));
                     }
                 }
             }
@@ -376,15 +449,38 @@ public class BillingActivity extends AppCompatActivity {
         ccpPhone.setPhoneNumberValidityChangeListener(new CountryCodePicker.PhoneNumberValidityChangeListener() {
             @Override
             public void onValidityChanged(boolean isValidNumber) {
-                if (isValidNumber) {
-                    editPhone.setTextColor(defaultTextColor);
-                } else {
-                    editPhone.setTextColor(errorTextColor);
-                }
+                updateLabel(isValidNumber, editPhone);
             }
         });
 
         btnSave.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorYellow));
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SCAN_REQUEST_CODE) {
+            if (data != null && data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
+                CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
+                String expMonth = scanResult.expiryMonth > 9 ? String.valueOf(scanResult.expiryMonth) : "0" + scanResult.expiryMonth;
+                String expYear = String.valueOf(scanResult.expiryYear - 2000);
+                String expDate = expMonth + "/" + expYear;
+                editCardNumber.setText(CreditCardUtils.formattedCardNumber(scanResult.cardNumber));
+                editCVV.setText(CreditCardUtils.formattedCVV(scanResult.cvv, CreditCardUtils.AMEX));
+                editExpDate.setText(CreditCardUtils.formattedExpDate(expDate));
+            } else {
+                Toast.makeText(this, "Scan was canceled.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void updateLabel(boolean isValid, EditText editText) {
+        if (isValid) {
+            editText.setTextColor(defaultTextColor);
+        } else {
+            editText.setTextColor(errorTextColor);
+        }
     }
 }

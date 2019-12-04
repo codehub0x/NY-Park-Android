@@ -84,6 +84,9 @@
             android:label="@string/title_billing" />
 
         <activity android:name="com.google.android.libraries.places.widget.AutocompleteActivity"/>
+        <activity android:name="io.card.payment.CardIOActivity"
+            android:configChanges="orientation"/>
+        <activity android:name="io.card.payment.DataEntryActivity"/>
 
         <activity android:name=".ImagePickerActivity" />
         <!-- uCrop cropping activity -->

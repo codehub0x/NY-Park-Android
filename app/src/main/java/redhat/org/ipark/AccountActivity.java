@@ -138,7 +138,7 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
-        editPhone.addTextChangedListener(new MyTextFormatter(editPhone, "###-###-####"));
+        editPhone.addTextChangedListener(new MyTextFormatter(editPhone, "(###) ###-####"));
         editPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
