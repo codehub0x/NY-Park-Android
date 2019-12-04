@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -25,6 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.ceryle.segmentedbutton.SegmentedButtonGroup;
+import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.DotsIndicatorPagerAdapter;
 
 public class DetailsActivity extends AppCompatActivity {

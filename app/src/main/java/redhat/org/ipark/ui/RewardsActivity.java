@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import redhat.org.ipark.MyApplication;
+import redhat.org.ipark.R;
 
 public class RewardsActivity extends AppCompatActivity {
 

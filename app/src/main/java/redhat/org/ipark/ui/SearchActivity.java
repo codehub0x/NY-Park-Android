@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +15,6 @@ import androidx.core.content.ContextCompat;
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.TypeFilter;
@@ -37,6 +36,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
+import redhat.org.ipark.R;
 import redhat.org.ipark.extras.Utils;
 import redhat.org.ipark.models.SearchResult;
 

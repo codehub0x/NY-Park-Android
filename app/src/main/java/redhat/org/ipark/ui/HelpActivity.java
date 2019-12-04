@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -16,6 +16,7 @@ import com.google.android.material.button.MaterialButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import redhat.org.ipark.R;
 
 public class HelpActivity extends AppCompatActivity {
 

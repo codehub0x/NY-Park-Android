@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.Manifest;
 import android.app.Activity;
@@ -40,6 +40,7 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTouch;
+import redhat.org.ipark.R;
 import redhat.org.ipark.extras.MyTextFormatter;
 import redhat.org.ipark.extras.Utils;
 

@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.ReservationsAdapter;
 
 public class ReservationsActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -25,6 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.DotsIndicatorPagerAdapter;
 
 public class UpcomingDetailsActivity extends AppCompatActivity {

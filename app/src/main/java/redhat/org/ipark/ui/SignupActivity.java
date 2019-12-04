@@ -1,11 +1,8 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -22,6 +19,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
+import redhat.org.ipark.MyApplication;
+import redhat.org.ipark.R;
 import redhat.org.ipark.extras.KeyboardVisibilityListener;
 import redhat.org.ipark.extras.Utils;
 

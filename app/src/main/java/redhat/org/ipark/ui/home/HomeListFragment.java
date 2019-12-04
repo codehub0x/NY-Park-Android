@@ -17,8 +17,8 @@ import com.google.android.material.button.MaterialButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import redhat.org.ipark.BookActivity;
-import redhat.org.ipark.DetailsActivity;
+import redhat.org.ipark.ui.BookActivity;
+import redhat.org.ipark.ui.DetailsActivity;
 import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.HomeAdapter;
 

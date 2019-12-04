@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +11,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.FAQAdapter;
 import redhat.org.ipark.models.FaqItem;
 import redhat.org.ipark.models.FaqSubItem;

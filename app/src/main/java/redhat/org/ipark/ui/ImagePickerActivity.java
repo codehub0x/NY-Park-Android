@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.Manifest;
 import android.app.Activity;
@@ -27,6 +27,8 @@ import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 import java.util.List;
+
+import redhat.org.ipark.R;
 
 import static androidx.core.content.FileProvider.getUriForFile;
 

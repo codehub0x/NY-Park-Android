@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.BookAdapter;
 import redhat.org.ipark.models.BookItem;
 

@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,9 @@ import com.warkiz.widget.IndicatorSeekBar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import redhat.org.ipark.BuildConfig;
+import redhat.org.ipark.MyApplication;
+import redhat.org.ipark.R;
 
 public class MenuActivity extends AppCompatActivity {
 

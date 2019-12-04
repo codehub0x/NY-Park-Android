@@ -31,7 +31,7 @@
             android:value="@string/google_maps_key"/>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoTitleBar">
             <intent-filter>
@@ -40,46 +40,46 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReservationsActivity"
+        <activity android:name=".ui.ReservationsActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_reservations" />
-        <activity android:name=".RewardsActivity"
+        <activity android:name=".ui.RewardsActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_rewards" />
-        <activity android:name=".MenuActivity"
+        <activity android:name=".ui.MenuActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Transparent"/>
-        <activity android:name=".SavedActivity"
+        <activity android:name=".ui.SavedActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_saved" />
-        <activity android:name=".SearchActivity"
+        <activity android:name=".ui.SearchActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_search" />
-        <activity android:name=".DetailsActivity"
+        <activity android:name=".ui.DetailsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".UpcomingDetailsActivity"
+        <activity android:name=".ui.UpcomingDetailsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".BookActivity"
+        <activity android:name=".ui.BookActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".VehiclesActivity"
+        <activity android:name=".ui.VehiclesActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_vehicles"/>
-        <activity android:name=".LoginActivity"
+        <activity android:name=".ui.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoTitleBar"/>
-        <activity android:name=".SignupActivity"
+        <activity android:name=".ui.SignupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoTitleBar"/>
-        <activity android:name=".HelpActivity"
+        <activity android:name=".ui.HelpActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_help" />
-        <activity android:name=".FAQActivity"
+        <activity android:name=".ui.FAQActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_faq" />
-        <activity android:name=".AccountActivity"
+        <activity android:name=".ui.AccountActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_account" />
-        <activity android:name=".BillingActivity"
+        <activity android:name=".ui.BillingActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_billing" />
 
@@ -88,7 +88,7 @@
             android:configChanges="orientation"/>
         <activity android:name="io.card.payment.DataEntryActivity"/>
 
-        <activity android:name=".ImagePickerActivity" />
+        <activity android:name=".ui.ImagePickerActivity" />
         <!-- uCrop cropping activity -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -28,6 +28,7 @@ import butterknife.OnTextChanged;
 import butterknife.OnTouch;
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
+import redhat.org.ipark.R;
 import redhat.org.ipark.extras.CreditCardUtils;
 import redhat.org.ipark.extras.Utils;
 

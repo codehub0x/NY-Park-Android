@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.SavedAdapter;
 
 public class SavedActivity extends AppCompatActivity {

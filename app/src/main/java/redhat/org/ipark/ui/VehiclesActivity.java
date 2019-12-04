@@ -1,4 +1,4 @@
-package redhat.org.ipark;
+package redhat.org.ipark.ui;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
+import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.VehicleAdapter;
 import redhat.org.ipark.extras.Utils;
 
