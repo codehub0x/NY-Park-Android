@@ -259,7 +259,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/details_btn_book"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginStart="@dimen/margin_16dp"

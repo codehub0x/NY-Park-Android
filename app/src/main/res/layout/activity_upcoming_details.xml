@@ -258,7 +258,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/upcoming_btn_add_to_calendar"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginStart="@dimen/margin_16dp"
@@ -461,7 +461,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/upcoming_btn_directions"
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        style="@style/Widget.MaterialComponents.Button"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:backgroundTint="@color/colorYellow"

@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
@@ -77,7 +78,7 @@ public class SearchActivity extends AppCompatActivity {
 
     // Daily tab
     @BindView(R.id.search_layout_daily)
-    LinearLayout layoutDaily;
+    ConstraintLayout layoutDaily;
     @BindView(R.id.search_inputLayout_address)
     TextInputLayout inputLayoutAddress;
     @BindView(R.id.search_inputLayout_start)
@@ -93,7 +94,7 @@ public class SearchActivity extends AppCompatActivity {
 
     // Monthly tab
     @BindView(R.id.search_layout_monthly)
-    LinearLayout layoutMonthly;
+    ConstraintLayout layoutMonthly;
     @BindView(R.id.search_inputLayout_address_monthly)
     TextInputLayout inputLayoutAddressMonthly;
     @BindView(R.id.search_inputLayout_start_parking)
@@ -139,11 +140,11 @@ public class SearchActivity extends AppCompatActivity {
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId() + ", " + place.getAddress());
                 if (requestCode == DAILY_ADDRESS_REQUEST_CODE) {
                     editAddress.setText(place.getAddress());
-                    editAddress.setError(null);
+                    inputLayoutAddress.setError(null);
                     placeDaily = place;
                 } else {
                     editAddressMonthly.setText(place.getAddress());
-                    editAddressMonthly.setError(null);
+                    inputLayoutAddressMonthly.setError(null);
                     placeMonthly = place;
                 }
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
@@ -236,17 +237,17 @@ public class SearchActivity extends AppCompatActivity {
 
         if (searchType == SearchType.Daily) {
             if (placeDaily == null) {
-                editAddress.setError(getString(R.string.error_empty_address));
+                inputLayoutAddress.setError(getString(R.string.error_empty_address));
                 valid = false;
             }
 
             if (dateStartTime == null) {
-                editStartTime.setError(getString(R.string.error_empty_start_time));
+                inputLayoutStartTime.setError(getString(R.string.error_empty_start_time));
                 valid = false;
             }
 
             if (dateEndTime == null) {
-                editEndTime.setError(getString(R.string.error_empty_end_time));
+                inputLayoutEndTime.setError(getString(R.string.error_empty_end_time));
                 valid = false;
             }
 
@@ -260,12 +261,12 @@ public class SearchActivity extends AppCompatActivity {
             }
         } else {
             if (placeMonthly == null) {
-                editAddressMonthly.setError(getString(R.string.error_empty_address));
+                inputLayoutAddressMonthly.setError(getString(R.string.error_empty_address));
                 valid = false;
             }
 
             if (dateStartParkingOn == null) {
-                editStartParking.setError(getString(R.string.error_empty_start_parking_on));
+                inputLayoutStartParking.setError(getString(R.string.error_empty_start_parking_on));
                 valid = false;
             }
 
@@ -346,7 +347,7 @@ public class SearchActivity extends AppCompatActivity {
                         public void onDateSelected(Date date) {
                             dateStartParkingOn = date;
                             editStartParking.setText(getStringFromDate(date, DATE_FORMAT));
-                            editStartParking.setError(null);
+                            inputLayoutStartParking.setError(null);
                         }
                     }).display();
         } else {
@@ -369,12 +370,12 @@ public class SearchActivity extends AppCompatActivity {
                                 case StartTime:
                                     dateStartTime = date;
                                     editStartTime.setText(getStringFromDate(date, DATETIME_FORMAT));
-                                    editStartTime.setError(null);
+                                    inputLayoutStartTime.setError(null);
                                     break;
                                 case EndTime:
                                     dateEndTime = date;
                                     editEndTime.setText(getStringFromDate(date, DATETIME_FORMAT));
-                                    editEndTime.setError(null);
+                                    inputLayoutEndTime.setError(null);
                                     break;
                             }
 

@@ -46,165 +46,221 @@
             android:paddingEnd="@dimen/margin_24dp"
             android:paddingBottom="@dimen/margin_32dp">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/search_layout_daily"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/search_image_address"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_search_black_24dp"
+                    android:tint="@color/colorBlack80"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/search_inputLayout_address"
+                    app:layout_constraintBottom_toBottomOf="@+id/search_inputLayout_address"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/search_inputLayout_address"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-                    android:layout_width="match_parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/placeholder_search"
                     android:foregroundTint="@color/colorPrimary"
-                    android:dividerPadding="@dimen/margin_4dp"
-                    app:boxCollapsedPaddingTop="@dimen/margin_8dp"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    app:errorEnabled="true"
+                    app:boxCollapsedPaddingTop="@dimen/margin_2dp"
                     app:boxStrokeColor="@color/colorPrimary"
-                    app:boxBackgroundColor="@android:color/transparent">
+                    app:boxBackgroundColor="@android:color/transparent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/search_image_address">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/search_edit_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_search_black_24dp"
-                        android:drawableTint="@color/colorBlack70"
-                        android:paddingStart="0dp"
-                        android:drawablePadding="@dimen/margin_4dp"
                         android:focusableInTouchMode="false"
                         android:textColor="@color/colorBlack100"
                         android:textColorHint="@color/colorBlack70"
                         android:textSize="@dimen/text_size_15sp"
-                        android:fontFamily="@font/lato_regular"/>
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/search_image_start"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_time_black_24dp"
+                    android:tint="@color/colorBlack80"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/search_inputLayout_start"
+                    app:layout_constraintBottom_toBottomOf="@+id/search_inputLayout_start"/>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/search_inputLayout_start"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-                    android:layout_width="match_parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/placeholder_start_time"
                     android:foregroundTint="@color/colorPrimary"
-                    android:dividerPadding="@dimen/margin_4dp"
-                    android:layout_marginTop="@dimen/margin_16dp"
-                    app:boxCollapsedPaddingTop="@dimen/margin_8dp"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    app:errorEnabled="true"
+                    app:boxCollapsedPaddingTop="@dimen/margin_2dp"
                     app:boxStrokeColor="@color/colorPrimary"
-                    app:boxBackgroundColor="@android:color/transparent">
+                    app:boxBackgroundColor="@android:color/transparent"
+                    app:layout_constraintTop_toBottomOf="@+id/search_inputLayout_address"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/search_image_start">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/search_edit_start_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_time_black_24dp"
-                        android:drawableTint="@color/colorBlack70"
-                        android:paddingStart="0dp"
-                        android:drawablePadding="@dimen/margin_4dp"
                         android:focusableInTouchMode="false"
                         android:textColor="@color/colorBlack100"
                         android:textColorHint="@color/colorBlack70"
                         android:textSize="@dimen/text_size_15sp"
-                        android:fontFamily="@font/lato_regular"/>
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/search_image_end"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_time_black_24dp"
+                    android:tint="@color/colorBlack80"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/search_inputLayout_end"
+                    app:layout_constraintBottom_toBottomOf="@+id/search_inputLayout_end"/>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/search_inputLayout_end"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-                    android:layout_width="match_parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/placeholder_end_time"
                     android:foregroundTint="@color/colorPrimary"
-                    android:dividerPadding="@dimen/margin_4dp"
-                    android:layout_marginTop="@dimen/margin_16dp"
-                    app:boxCollapsedPaddingTop="@dimen/margin_8dp"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    app:errorEnabled="true"
+                    app:boxCollapsedPaddingTop="@dimen/margin_2dp"
                     app:boxStrokeColor="@color/colorPrimary"
-                    app:boxBackgroundColor="@android:color/transparent">
+                    app:boxBackgroundColor="@android:color/transparent"
+                    app:layout_constraintTop_toBottomOf="@+id/search_inputLayout_start"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/search_image_end">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/search_edit_end_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_time_black_24dp"
-                        android:drawableTint="@color/colorBlack70"
-                        android:paddingStart="0dp"
-                        android:drawablePadding="@dimen/margin_4dp"
                         android:focusableInTouchMode="false"
                         android:textColor="@color/colorBlack100"
                         android:textColorHint="@color/colorBlack70"
                         android:textSize="@dimen/text_size_15sp"
-                        android:fontFamily="@font/lato_regular"/>
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/search_layout_monthly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/search_image_address_monthly"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_search_black_24dp"
+                    android:tint="@color/colorBlack80"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/search_inputLayout_address_monthly"
+                    app:layout_constraintBottom_toBottomOf="@+id/search_inputLayout_address_monthly"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/search_inputLayout_address_monthly"
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/placeholder_search"
                     android:foregroundTint="@color/colorPrimary"
-                    android:dividerPadding="@dimen/margin_4dp"
-                    app:boxCollapsedPaddingTop="@dimen/margin_8dp"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    app:errorEnabled="true"
+                    app:boxCollapsedPaddingTop="@dimen/margin_2dp"
                     app:boxStrokeColor="@color/colorPrimary"
-                    app:boxBackgroundColor="@android:color/transparent">
+                    app:boxBackgroundColor="@android:color/transparent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/search_image_address_monthly">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/search_edit_address_monthly"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_search_black_24dp"
-                        android:drawableTint="@color/colorBlack70"
-                        android:paddingStart="0dp"
-                        android:drawablePadding="@dimen/margin_4dp"
                         android:focusableInTouchMode="false"
                         android:textColor="@color/colorBlack100"
                         android:textColorHint="@color/colorBlack70"
                         android:textSize="@dimen/text_size_15sp"
-                        android:fontFamily="@font/lato_regular"/>
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/search_image_start_parking"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_time_black_24dp"
+                    android:tint="@color/colorBlack80"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/search_inputLayout_start_parking"
+                    app:layout_constraintBottom_toBottomOf="@+id/search_inputLayout_start_parking"/>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/search_inputLayout_start_parking"
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/placeholder_start_parking_on"
                     android:foregroundTint="@color/colorPrimary"
-                    android:dividerPadding="@dimen/margin_4dp"
-                    android:layout_marginTop="@dimen/margin_16dp"
-                    app:boxCollapsedPaddingTop="@dimen/margin_8dp"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    app:errorEnabled="true"
+                    app:boxCollapsedPaddingTop="@dimen/margin_2dp"
                     app:boxStrokeColor="@color/colorPrimary"
-                    app:boxBackgroundColor="@android:color/transparent">
+                    app:boxBackgroundColor="@android:color/transparent"
+                    app:layout_constraintTop_toBottomOf="@+id/search_inputLayout_address_monthly"
+                    app:layout_constraintStart_toEndOf="@+id/search_image_start_parking"
+                    app:layout_constraintEnd_toEndOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/search_edit_start_parking"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_time_black_24dp"
-                        android:drawableTint="@color/colorBlack70"
-                        android:paddingStart="0dp"
-                        android:drawablePadding="@dimen/margin_4dp"
                         android:focusableInTouchMode="false"
                         android:textColor="@color/colorBlack100"
                         android:textColorHint="@color/colorBlack70"
                         android:textSize="@dimen/text_size_15sp"
-                        android:fontFamily="@font/lato_regular"/>
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </FrameLayout>
 
