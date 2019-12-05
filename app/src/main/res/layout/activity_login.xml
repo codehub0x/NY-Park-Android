@@ -111,7 +111,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/login_btn_signin"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/sign_in"
                 android:textColor="@android:color/white"

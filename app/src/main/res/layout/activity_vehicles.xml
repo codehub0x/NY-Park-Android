@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -40,14 +41,16 @@
                     android:gravity="center_vertical"/>
                 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/vehicle_inputLayout_make"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/vehicle_make"
+                    app:errorEnabled="true"
                     android:layout_marginTop="@dimen/margin_16dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/vehicle_edit_vehicle_make"
+                        android:id="@+id/vehicle_edit_make"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColor="@color/colorBlack90"
@@ -55,20 +58,22 @@
                         android:fontFamily="@font/lato_regular"
                         android:maxLines="1"
                         android:inputType="text"
-                        android:nextFocusDown="@+id/vehicle_edit_vehicle_model"
+                        android:nextFocusDown="@+id/vehicle_edit_model"
                         android:imeOptions="actionNext"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/vehicle_inputLayout_model"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/vehicle_model"
-                    android:layout_marginTop="@dimen/margin_16dp">
+                    app:errorEnabled="true"
+                    android:layout_marginTop="@dimen/margin_4dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/vehicle_edit_vehicle_model"
+                        android:id="@+id/vehicle_edit_model"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColor="@color/colorBlack90"
@@ -77,17 +82,18 @@
                         android:maxLines="1"
                         android:inputType="text"
                         android:nextFocusDown="@+id/vehicle_edit_color"
-                        android:nextFocusUp="@+id/vehicle_edit_vehicle_make"
                         android:imeOptions="actionNext"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/vehicle_inputLayout_color"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/color"
-                    android:layout_marginTop="@dimen/margin_16dp">
+                    app:errorEnabled="true"
+                    android:layout_marginTop="@dimen/margin_4dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/vehicle_edit_color"
@@ -99,17 +105,18 @@
                         android:maxLines="1"
                         android:inputType="text"
                         android:nextFocusDown="@+id/vehicle_edit_plate"
-                        android:nextFocusUp="@+id/vehicle_edit_vehicle_model"
                         android:imeOptions="actionNext"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/vehicle_inputLayout_plate"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/plate"
-                    android:layout_marginTop="@dimen/margin_16dp">
+                    app:errorEnabled="true"
+                    android:layout_marginTop="@dimen/margin_4dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/vehicle_edit_plate"
@@ -120,7 +127,6 @@
                         android:fontFamily="@font/lato_regular"
                         android:maxLines="1"
                         android:inputType="text"
-                        android:nextFocusUp="@+id/vehicle_edit_color"
                         android:imeOptions="actionDone"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -135,7 +141,7 @@
                     android:fontFamily="@font/lato_black"
                     android:letterSpacing="0"
                     android:backgroundTint="@color/colorYellow"
-                    android:layout_marginTop="@dimen/margin_24dp"/>
+                    android:layout_marginTop="@dimen/margin_8dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -146,10 +152,11 @@
                     android:fontFamily="@font/lato_regular"
                     android:textAlignment="center"
                     android:layout_marginTop="@dimen/margin_40dp"/>
+
             </LinearLayout>
 
-
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>

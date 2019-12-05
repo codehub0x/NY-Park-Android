@@ -136,7 +136,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/signup_btn_create"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:backgroundTint="@color/colorYellow"
                 android:text="@string/create_your_account"
                 android:textColor="@android:color/white"

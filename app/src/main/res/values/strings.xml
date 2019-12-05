@@ -84,6 +84,10 @@
     <string name="error_empty_state">State is required.</string>
     <string name="error_empty_zipcode">Zip Code is required.</string>
     <string name="error_invalid_zipcode">Zip Code is invalid.</string>
+    <string name="error_empty_vehicle_make">Vehicle Make is required.</string>
+    <string name="error_empty_vehicle_model">Vehicle Model is required.</string>
+    <string name="error_empty_color">Color is required.</string>
+    <string name="error_empty_plate">Plate is required.</string>
     <string name="exp_date">Exp. Date</string>
     <string name="go_to_settings">GOTO SETTINGS</string>
     <string name="faq">Frequently Asked Questions</string>
