@@ -174,7 +174,7 @@ public class BillingActivity extends AppCompatActivity {
         }
 
         String cvv = editCVV.getText().toString();
-        isValidField = CreditCardUtils.isValidCVV(cvv, CreditCardUtils.AMEX);
+        isValidField = CreditCardUtils.isValidCVV(cvv, cardNumber);
         updateLabel(isValidField, editCVV);
         if (!isValidField) {
             if (valid) {
@@ -250,26 +250,12 @@ public class BillingActivity extends AppCompatActivity {
         }
     }
 
-    // Card Number text change listener
-    @OnTextChanged(R.id.billing_edit_card_number)
-    void cardNumberTextChange(CharSequence s, int start, int before, int count) {
-        if (before == 0)
-            isDelete = false;
-        else
-            isDelete = true;
-    }
-
     @OnTextChanged(value = R.id.billing_edit_card_number, callback = AFTER_TEXT_CHANGED)
     void afterCardNumberChanged(Editable s) {
         StringBuilder str = new StringBuilder(s.toString());
         String formattedStr = CreditCardUtils.formattedCardNumber(str.toString());
-        if (str.length() == 5 || str.length() == 12) {
-            if (isDelete) {
-                str.deleteCharAt(str.length() - 1);
-                editCardNumber.setText(str.toString());
-            } else {
-                editCardNumber.setText(formattedStr);
-            }
+        if (str.length() != formattedStr.length()) {
+            editCardNumber.setText(formattedStr);
             editCardNumber.setSelection(editCardNumber.getText().length());
         }
 
@@ -316,7 +302,8 @@ public class BillingActivity extends AppCompatActivity {
     @OnTextChanged(R.id.billing_edit_cvv)
     void cvvTextChange() {
         String str = editCVV.getText().toString();
-        boolean isValid = CreditCardUtils.isValidCVV(str, CreditCardUtils.AMEX);
+        String cardNumber = editCardNumber.getText().toString();
+        boolean isValid = CreditCardUtils.isValidCVV(str, cardNumber);
         updateLabel(isValid, editCVV);
         if (isValid) {
             editCity.requestFocus();
@@ -375,7 +362,8 @@ public class BillingActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     String cvv = editCVV.getText().toString();
-                    boolean isValid = CreditCardUtils.isValidCVV(cvv, CreditCardUtils.AMEX);
+                    String cardNumber = editCardNumber.getText().toString();
+                    boolean isValid = CreditCardUtils.isValidCVV(cvv, cardNumber);
                     updateLabel(isValid, editCVV);
                     if (isValid) {
                         editCVV.setError(null);
@@ -470,7 +458,7 @@ public class BillingActivity extends AppCompatActivity {
                 String expDate = expMonth + "/" + expYear;
                 editCardNumber.setText(CreditCardUtils.formattedCardNumber(scanResult.cardNumber));
                 editExpDate.setText(CreditCardUtils.formattedExpDate(expDate));
-                editCVV.setText(CreditCardUtils.formattedCVV(scanResult.cvv, CreditCardUtils.AMEX));
+                editCVV.setText(scanResult.cvv);
             } else {
                 Toast.makeText(this, "Scan was canceled.", Toast.LENGTH_SHORT).show();
             }

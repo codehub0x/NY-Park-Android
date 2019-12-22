@@ -71,7 +71,6 @@
                     android:inputType="number"
                     android:digits="01234 56789"
                     android:maxLines="1"
-                    android:maxLength="17"
                     android:nextFocusDown="@+id/billing_edit_exp_date"/>
 
                 <ImageView

@@ -4,95 +4,107 @@ import android.text.TextUtils;
 import android.util.Log;
 import java.util.Calendar;
 
+import io.card.payment.CardType;
+
 public class CreditCardUtils {
-    public static final int NONE = 0;
-//    public static final int VISA = 1;
-//    public static final int MASTERCARD = 2;
-//    public static final int DISCOVER = 3;
-    public static final int AMEX = 4;
-
-//    public static final String VISA_PREFIX = "4";
-//    public static final String MASTERCARD_PREFIX = "51,52,53,54,55,";
-//    public static final String DISCOVER_PREFIX = "6011";
-    public static final String AMEX_PREFIX = "34,37,";
-
     public static String EXPDATE_PATTERN = "##/##";
-    public static String CVV_PATTERN = "###";
-    public static String AMEX_PATTERN = "#### ###### #####";
-    public static String AMEX_CVV_PATTERN = "####";
 
-    public static int getCardType(String cardNumber) {
-        if (AMEX_PREFIX.contains(cardNumber.substring(0, 2) + ","))
-            return AMEX;
-//        if (cardNumber.substring(0, 1).equals(VISA_PREFIX))
-//            return VISA;
-//        else if (MASTERCARD_PREFIX.contains(cardNumber.substring(0, 2) + ","))
-//            return MASTERCARD;
-//        else if (cardNumber.substring(0, 4).equals(DISCOVER_PREFIX))
-//            return DISCOVER;
+    public static String validEditableNumber(String cardNumber) {
+        String cleanCardNumber = cardNumber.replaceAll("\\D+", "");
+        int length = cleanCardNumber.length();
 
-        return NONE;
+        CardType cardType = CardType.fromCardNumber(cleanCardNumber);
+        if (cardType == CardType.UNKNOWN || cardType == CardType.INSUFFICIENT_DIGITS) {
+            if (length <= 16) {
+                return cleanCardNumber;
+            } else {
+                return cleanCardNumber.substring(0, 16);
+            }
+        } else {
+            if (length <= cardType.numberLength()) {
+                return cleanCardNumber;
+            } else {
+                return cleanCardNumber.substring(0, cardType.numberLength());
+            }
+        }
     }
 
     public static String formattedCardNumber(String cardNumber) {
-        cardNumber = cardNumber.replaceAll("\\D+", "");
-        StringBuilder stringBuilder = new StringBuilder(cardNumber);
+        String cleanCardNumber = validEditableNumber(cardNumber);
+        StringBuilder stringBuilder = new StringBuilder(cleanCardNumber);
 
         // Check card type
         String pattern = "";
-        if (getCardType(cardNumber) == AMEX) {
-            pattern = AMEX_PATTERN;
+        CardType cardType = CardType.fromCardNumber(cleanCardNumber);
+        switch (cardType) {
+            case AMEX:
+                pattern = "#### ###### #####";
+                break;
+            case VISA:
+            case MASTERCARD:
+            case DISCOVER:
+            case JCB:
+            case MAESTRO:
+                pattern = "#### #### #### ####";
+                break;
+            case DINERSCLUB:
+                pattern = "#### ###### ####";
+                break;
+            default:
+                break;
+        }
+
+        if (pattern.isEmpty()) {
+            return cleanCardNumber;
         } else {
+            for (int i = 0; i < stringBuilder.length(); i ++) {
+                char c = pattern.charAt(i);
+
+                if ((c != '#') && (c != stringBuilder.charAt(i))) {
+                    stringBuilder.insert(i, c);
+                }
+            }
+
             return stringBuilder.toString();
         }
-
-        for (int i = 0; i < stringBuilder.length(); i ++) {
-            char c = pattern.charAt(i);
-
-            if ((c != '#') && (c != stringBuilder.charAt(i))) {
-                stringBuilder.insert(i, c);
-            }
-        }
-
-        return stringBuilder.toString();
     }
 
     public static boolean isValidCard(String cardNumber) {
         try {
-            cardNumber = cardNumber.replaceAll("\\D+","");
-            if (!TextUtils.isEmpty(cardNumber) && cardNumber.length() >= 4)
-                if (getCardType(cardNumber) == AMEX && cardNumber.length() == 15) {
-                    int originalCheckDigit = Integer.parseInt(cardNumber.substring(cardNumber.length() - 1));
-                    StringBuffer buffer = new StringBuffer(cardNumber.substring(0, cardNumber.length() - 1));
-                    String characters = buffer.reverse().toString();
+            String cleanCardNumber = cardNumber.replaceAll("\\D+","");
+            if (!TextUtils.isEmpty(cardNumber) && cleanCardNumber.length() >= 4) {
+                CardType cardType = CardType.fromCardNumber(cleanCardNumber);
+                if (cardType == CardType.UNKNOWN || cardType == CardType.INSUFFICIENT_DIGITS) {
+                    return false;
+                } else {
+                    if (cleanCardNumber.length() == cardType.numberLength()) {
+                        int originalCheckDigit = Integer.parseInt(cleanCardNumber.substring(cleanCardNumber.length() - 1));
+                        StringBuffer buffer = new StringBuffer(cleanCardNumber.substring(0, cleanCardNumber.length() - 1));
+                        String characters = buffer.reverse().toString();
 
-                    int digitSum = 0;
-                    for (int idx = 0; idx < characters.length(); idx ++) {
-                        int value = Integer.parseInt(characters.substring(idx, idx + 1));
-                        if (idx % 2 == 0) {
-                            int product = value * 2;
-                            if (product > 9) {
-                                product = product - 9;
+                        int digitSum = 0;
+                        for (int idx = 0; idx < characters.length(); idx++) {
+                            int value = Integer.parseInt(characters.substring(idx, idx + 1));
+                            if (idx % 2 == 0) {
+                                int product = value * 2;
+                                if (product > 9) {
+                                    product = product - 9;
+                                }
+
+                                digitSum += product;
+                            } else {
+                                digitSum += value;
                             }
-
-                            digitSum += product;
-                        } else {
-                            digitSum += value;
                         }
+
+                        digitSum = digitSum * 9;
+                        int computedCheckDigit = digitSum % 10;
+
+                        boolean valid = originalCheckDigit == computedCheckDigit;
+                        return valid;
                     }
-
-                    digitSum = digitSum * 9;
-                    int computedCheckDigit = digitSum % 10;
-
-                    boolean valid = originalCheckDigit == computedCheckDigit;
-                    return valid;
                 }
-//            if (getCardType(cardNumber) == VISA && ((cardNumber.length() == 13 || cardNumber.length() == 16)))
-//                return true;
-//            else if (getCardType(cardNumber) == MASTERCARD && cardNumber.length() == 16)
-//                return true;
-//            else if (getCardType(cardNumber) == DISCOVER && cardNumber.length() == 16)
-//                return true;
+            }
             return false;
         } catch (Exception e) {
             Log.d("isValidCard exception: ", e.getLocalizedMessage());
@@ -170,32 +182,11 @@ public class CreditCardUtils {
         return false;
     }
 
-    public static boolean isValidCVV(String cvv, int cardType) {
+    public static boolean isValidCVV(String cvv, String cardNumber) {
         cvv = cvv.replaceAll("\\D+", "");
-        int cvvLength = 3;
-        if (cardType == AMEX) {
-            cvvLength = 4;
-        }
-        return cvv.length() == cvvLength;
+        String cleanCardNumber = cardNumber.replaceAll("\\D+","");
+        CardType cardType = CardType.fromCardNumber(cleanCardNumber);
+        return cvv.length() == cardType.cvvLength();
     }
 
-    public static String formattedCVV(String cvv, int cardType) {
-        StringBuilder stringBuilder = new StringBuilder(cvv);
-
-        // Check card type
-        String pattern = CVV_PATTERN;
-        if (cardType == AMEX) {
-            pattern = AMEX_CVV_PATTERN;
-        }
-
-        for (int i = 0; i < stringBuilder.length(); i ++) {
-            char c = pattern.charAt(i);
-
-            if ((c != '#') && (c != stringBuilder.charAt(i))) {
-                stringBuilder.insert(i, c);
-            }
-        }
-
-        return stringBuilder.toString();
-    }
 }
