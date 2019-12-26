@@ -27,10 +27,11 @@ import butterknife.OnClick;
 import co.ceryle.segmentedbutton.SegmentedButtonGroup;
 import redhat.org.ipark.R;
 import redhat.org.ipark.adapters.DotsIndicatorPagerAdapter;
+import redhat.org.ipark.components.ImageViewer.ImageViewer;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    private List<Integer> images = new ArrayList<>();
+    private List<String> images = new ArrayList<>();
     private DotsIndicatorPagerAdapter pagerAdapter;
 
     @BindView(R.id.details_text_enter_time)
@@ -165,12 +166,22 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
         // Define ViewPager & DotsIndicator
-        images.add(R.drawable.image1);
-        images.add(R.drawable.image2);
-        images.add(R.drawable.image1);
-        images.add(R.drawable.image2);
+        images.add("https://ipark.com/wp-content/uploads/2018/02/276-2-e1537392870275.jpg");
+        images.add("https://ipark.com/wp-content/uploads/2017/01/1-700x525.jpg");
+        images.add("https://ipark.com/wp-content/uploads/2017/01/48-North-web-700x525.jpg");
+        images.add("https://ipark.com/wp-content/uploads/2017/01/IMG_0128-web.jpg");
+        images.add("https://ipark.com/wp-content/uploads/2017/01/31-700x525.jpg");
 
         pagerAdapter = new DotsIndicatorPagerAdapter(this, images);
+        pagerAdapter.setOnClickListener(new DotsIndicatorPagerAdapter.ClickListener() {
+            @Override
+            public void onClickItem(int position) {
+                new ImageViewer.Builder<>(DetailsActivity.this, images)
+                        .setStartPosition(position)
+                        .show();
+            }
+        });
+
         viewPager.setAdapter(pagerAdapter);
         dotsIndicator.setViewPager(viewPager);
     }
