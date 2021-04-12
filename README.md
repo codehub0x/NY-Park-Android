@@ -12,7 +12,6 @@
 
 ### 🌱 Technologies and Frameworks
 <p>
-    <br/>
     <!-- Android -->
     <img src="https://img.shields.io/badge/Android-3ddc84?flat=plastic&logo=android&logoColor=white" height="32" alt="Android" />
     &nbsp;
