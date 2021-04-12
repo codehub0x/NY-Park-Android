@@ -14,14 +14,14 @@
     <!-- Android -->
     <img src="https://img.shields.io/badge/Android-3ddc84?flat=plastic&logo=android&logoColor=white" height="32" alt="Android" />
     &nbsp;
-    <!-- Swift -->
-    <img src="https://img.shields.io/badge/CocoaPods-ee3322?flat=plastic&logo=cocoapods&logoColor=white" height="32" alt="CocoaPods" />
+    <!-- Java -->
+    <img src="https://img.shields.io/badge/Java-007396?flat=plastic&logo=java&logoColor=white" height="32" alt="Java" />
     &nbsp;
     <!-- Google Maps -->
     <img src="https://img.shields.io/badge/Google%20Maps-4285f4?flat=plastic&logo=google%20maps&logoColor=white" height="32" alt="Google Maps" />
     &nbsp;
     <!-- Apple Pay -->
-    <img src="https://img.shields.io/badge/Apple%20Pay-000000?flat=plastic&logo=apple%20pay&logoColor=white" height="32" alt="Apple Pay" />
+    <img src="https://img.shields.io/badge/Google%20Pay-42b5f4?flat=plastic&logo=google%20pay&logoColor=white" height="32" alt="Google Pay" />
     &nbsp;
     <!-- MasterCard -->
     <img src="https://img.shields.io/badge/MasterCard-eb001b?flat=plastic&logo=mastercard&logoColor=white" height="32" alt="MasterCard" />
