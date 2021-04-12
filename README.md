@@ -5,14 +5,14 @@
  <p align="center">Get dynamically generated GitHub stats on your readmes!</p>
 </p>
 <p align="center">
-  <img src="https://img.shields.io/badge/Supported%20by-Xcode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Supported%20by-Android%20Studio%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
 </p>
 
 ### 🌱 Technologies and Frameworks
 <p>
     <br/>
-    <!-- Swift -->
-    <img src="https://img.shields.io/badge/Swift-fa7343?flat=plastic&logo=swift&logoColor=white" height="32" alt="Swift" />
+    <!-- Android -->
+    <img src="https://img.shields.io/badge/Android-3ddc84?flat=plastic&logo=android&logoColor=white" height="32" alt="Android" />
     &nbsp;
     <!-- Swift -->
     <img src="https://img.shields.io/badge/CocoaPods-ee3322?flat=plastic&logo=cocoapods&logoColor=white" height="32" alt="CocoaPods" />
